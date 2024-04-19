@@ -9,6 +9,7 @@ import CreatePost from './pages/createpost';
 import PostPage from './pages/postpage';
 import ContactPage from './pages/contactpage';
 import EditPost from './pages/editpost';
+import ReportPost from './pages/reportpage';
 
 function App() {
 
@@ -23,7 +24,7 @@ function App() {
          <Route path = "/post/:id" element = {<PostPage />}/>
          <Route path = "/contact" element = {<ContactPage />} />
          <Route path = "/edit/:id" element = {<EditPost />} />
-
+         <Route path = "/report" element = {<ReportPost />} />
         </Route>
       </Routes>
     </UserContextProvider>

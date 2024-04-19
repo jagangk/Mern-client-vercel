@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Footer from "../footer";
 
 export default function ContactPage() {
   const [name, setName] = useState('');
@@ -29,31 +30,29 @@ export default function ContactPage() {
   };
 
   return (
-    <form className="login" onSubmit={handleSubmit}>
+    <><form className="login" onSubmit={handleSubmit}>
       <h1>Let's Connect!</h1>
 
       <input
         type="text"
         placeholder="Name"
         value={name}
-        onChange={(ev) => setName(ev.target.value)}
-      />
+        onChange={(ev) => setName(ev.target.value)} />
 
       <input
         type="email"
         placeholder="Email"
         value={email}
-        onChange={(ev) => setEmail(ev.target.value)}
-      />
+        onChange={(ev) => setEmail(ev.target.value)} />
 
       <textarea
         type="text"
         value={query}
-        onChange={(ev) => setQuery(ev.target.value)}
-      />
-
+        onChange={(ev) => setQuery(ev.target.value)} />
       <button>Submit</button>
-    </form>
+    </form><div>
+      <Footer />
+      </div></>
   );
 }
 

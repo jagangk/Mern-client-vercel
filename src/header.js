@@ -51,7 +51,7 @@ export default function Header() {
   return (
     <header>
       <div className="logo">
-          <img className="icon" src="b.png"/>
+          <Link to="/"><img className="icon" src="/b.jpg" alt="Blog Logo"/></Link>
           <Link className="web-title" to="/">Blogstera</Link>
       </div>
       <nav>

@@ -14,7 +14,7 @@ export default function Footer() {
                     <li><Link to='/login'>Login</Link></li>
                     <li><Link to='/register'>Register</Link></li>
                     <li><Link to='/login'>Contact</Link></li>
-                    <li><Link target='_blank' to='https://jagangk.social/'>Author</Link></li>
+                    <li><Link target='_blank' to='https://jagangk.me/'>Author</Link></li>
                 </ul>
             </div>
 
@@ -22,8 +22,8 @@ export default function Footer() {
             <ul class="social-menu">
               <li><a class='facebook'  href="#"><i class="fa fa-facebook"></i></a></li>
               <li><a class='twitter'  href="#"><i class="fa fa-twitter"></i></a></li>
-              <li><a class='dribble'  href="#"><i class="fa fa-github"></i></a></li>
-              <li><a class='linkedin'  href="#"><i class="fa fa-linkedin"></i></a></li>   
+              <li><a target='_blank' class='dribble'  href="https://github.com/jagangk"><i class="fa fa-github"></i></a></li>
+              <li><a target='_blank' class='linkedin'  href="https://www.linkedin.com/in/jagan-vijayakumar-13a6a1221"><i class="fa fa-linkedin"></i></a></li>   
             </ul>
           </div>
     </footer>

@@ -160,11 +160,21 @@ form.login, form.register{
   margin: 0 auto;
   margin-bottom: 100px;
 }
+
+form.report{
+  max-width: 500px;
+  margin: 0 auto;
+  margin-bottom: 100px;
+}
+form.report h1{
+  text-align: center;
+}
+
 input{
   display: block;
   margin-bottom: 5px;
   width: 100%;
-  padding: 5px 10px;
+  padding: 7px 10px;
   border: 0;
   background-color: rgba(129, 129, 129, 0.723);
   border-radius: 2px;
@@ -181,10 +191,43 @@ textarea{
   border-radius: 3px;
 }
 
+textarea::placeholder{
+  color: #cbcbcb;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+select{
+  margin-bottom: 5px;
+  width: 100%;
+  padding: 4px 5px;
+  border: 0;
+  background-color:rgb(109, 109, 109);
+  border-radius: 3px;
+}
+
+optgroup,option{
+  text-align:justify;
+}
+
+h5,input{
+  margin-top:0 ;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
+h4{
+  font-weight: bold;
+}
+
+label{
+  font-size: small;
+  font-weight: bold;
+}
+
 input::file-selector-button {
   font-weight: bold;
   color:  rgb(255, 255, 255);
-  background-color: #0ab2d3;
+  background-color: #6dcaae;
   padding: 0.3em;
   border: 0;
   border-radius: 3px;
@@ -211,6 +254,7 @@ button{
   cursor: pointer;
   outline: none;
 }
+
 
 button:hover{
   box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5); 
@@ -322,6 +366,7 @@ footer{
   max-width: 100%;
   text-align: center;
   align-items: center;
+  display: block;
 }
 
 footer hr.small{
@@ -336,6 +381,7 @@ hr {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  align-items: center;
   gap: 5px;
 }
 
@@ -449,11 +495,26 @@ a svg{
   gap: 5px;
 }
 
+div.report-btn a{
+  background-color: #bb3443;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: smaller;
+  padding: 5px 5px;
+  cursor: pointer;
+  width: max-content;
+  border-radius: 5px;
+  align-items: center;
+  display: inline-flex;
+
+}
 
 .ql-toolbar {
   background-color: rgba(204, 204, 204, 0.723);
   border-radius: 1px;
 }
+
+
 
 
 
