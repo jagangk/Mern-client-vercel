@@ -37,8 +37,6 @@ export default function Header() {
       method: 'POST',
     });
 
-    setUserInfo(null);
-
     if (response.ok) {
       alert('Log out successful');
       navigate('/');
