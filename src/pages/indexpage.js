@@ -24,7 +24,7 @@ export default function IndexPage() {
             {posts.length > 0 ? (
                 posts.map(post => <Post key={post._id} {...post} />)
             ) : (
-                <p>Loading posts...</p>
+                <p style={{ color: '#6dacaae' }}>Loading posts...</p>
             )}
             <Footer />
         </>
