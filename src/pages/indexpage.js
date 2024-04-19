@@ -1,26 +1,32 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
+import { UserContext } from "../userContext"; 
 import Post from "../post";
 import Footer from "../footer";
 
-export default function IndexPage(){
-    const [posts,setPosts] = useState([]);
+export default function IndexPage() {
+    const { posts, setPosts } = useContext(UserContext);
+
     useEffect(() => {
-        const url = `${process.env.REACT_APP_API_URL}/post`;
-        fetch(url).then(response => {
-            response.json().then(posts =>{
-                setPosts(posts);
-            });
-        });
-    }, []);
+        if (posts.length === 0) {
+            const url = `${process.env.REACT_APP_API_URL}/post`;
+            fetch(url)
+                .then(response => response.json())
+                .then(data => setPosts(data))
+                .catch(error => console.error("Error fetching posts:", error));
+        }
+    }, [posts, setPosts]); 
+
     return (
-    <>
-        <div class ='hone-index'>
-            <h1>Feeds</h1>
-        </div>
-       {posts.length > 0 && posts.map(post => (
-        <Post key={post._id} {...post} />
-       ))}
-       <Footer />
-    </>
-  );
+        <>
+            <div className='home-index'>
+                <h1>Feeds</h1>
+            </div>
+            {posts.length > 0 ? (
+                posts.map(post => <Post key={post._id} {...post} />)
+            ) : (
+                <p>Loading posts...</p>
+            )}
+            <Footer />
+        </>
+    );
 }
