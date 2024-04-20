@@ -35,8 +35,12 @@ export default function EditPost() {
     }
     const response = await fetch(`${process.env.REACT_APP_API_URL}/update`, {
       method: 'PUT',
+      headers: {
+    'Content-Type': 'application/json',
+    },
       body: data,
       credentials: 'include',
+      mode: 'cors'
     });
     if (response.ok) {
       setRedirect(true);
