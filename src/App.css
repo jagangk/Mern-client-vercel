@@ -171,6 +171,7 @@ form.login, form.register{
   max-width: 400px;
   margin: 0 auto;
 }
+<<<<<<< HEAD
 form.login a{
   color: #6dcaae;
   text-decoration: none;
@@ -204,17 +205,28 @@ form.contact h1{
   color: #6dcaae;
   text-decoration: none;
 }
+=======
+>>>>>>> 8a5422ca005a7f9b267e7ec4066af6c0641804f1
 
 form.report{
   max-width: 500px;
   margin: 0 auto;
+<<<<<<< HEAD
 }
 
+=======
+  margin-bottom: 100px;
+}
+>>>>>>> 8a5422ca005a7f9b267e7ec4066af6c0641804f1
 form.report h1{
   text-align: center;
 }
 
+<<<<<<< HEAD
 input {
+=======
+input{
+>>>>>>> 8a5422ca005a7f9b267e7ec4066af6c0641804f1
   display: block;
   margin-bottom: 5px;
   width: 100%;
@@ -250,21 +262,32 @@ textarea{
 
 textarea::placeholder{
   color: #cbcbcb;
+<<<<<<< HEAD
+=======
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+>>>>>>> 8a5422ca005a7f9b267e7ec4066af6c0641804f1
 }
 
 select{
   margin-bottom: 5px;
   width: 100%;
   padding: 4px 5px;
+<<<<<<< HEAD
+=======
+  border: 0;
+>>>>>>> 8a5422ca005a7f9b267e7ec4066af6c0641804f1
   background-color:rgb(109, 109, 109);
   border-radius: 3px;
 }
 
+<<<<<<< HEAD
 .select-error{
   border-color: #ea3333;
   border-width: 2px;
 }
 
+=======
+>>>>>>> 8a5422ca005a7f9b267e7ec4066af6c0641804f1
 optgroup,option{
   text-align:justify;
 }
@@ -314,6 +337,7 @@ button{
   cursor: pointer;
   outline: none;
 }
+
 
 button:hover{
   box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5); 
@@ -567,9 +591,33 @@ div.report-btn a{
   border-radius: 5px;
   align-items: center;
   display: inline-flex;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8a5422ca005a7f9b267e7ec4066af6c0641804f1
 }
 
 .ql-toolbar {
   background-color: rgba(204, 204, 204, 0.723);
   border-radius: 1px;
+<<<<<<< HEAD
 }
+=======
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+>>>>>>> 8a5422ca005a7f9b267e7ec4066af6c0641804f1
