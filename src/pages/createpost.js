@@ -23,7 +23,6 @@ export default function CreatePost() {
 
   const updateSummary = (ev) => {
     const inputSummary = ev.target.value;
-    // Split the input summary into words and slice the array to get the first 100 words
     const limitedSummary = inputSummary.split(' ').slice(0, 30).join(' ');
     setSummary(limitedSummary);
   };
@@ -60,18 +59,20 @@ export default function CreatePost() {
       <input
         type="title"
         placeholder={'Title'}
+        required
         value={title}
         onChange={(ev) => setTitle(ev.target.value)}
       />
 
       <input
         type="summary"
-        placeholder={'Brief'} 
+        placeholder={'Brief'}
+        required 
         value={summary}
         onChange={updateSummary}
       />
 
-      <input type="file" onChange={(ev) => setFiles(ev.target.files)} />
+      <input required type="file" onChange={(ev) => setFiles(ev.target.files)} />
 
       <ReactQuill
         value={content}

@@ -1,9 +1,26 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { Alert, AlertIcon, AlertTitle, useDisclosure } from "@chakra-ui/react";
 import { UserContext } from './userContext';
 
 export default function Header() {
   const { setUserInfo, userInfo } = useContext(UserContext);
+  const [successMessage, setSuccessMessage] = useState('');
+  const { isOpen: isSuccessOpen, onOpen: onOpenSuccess, onClose: onCloseSuccess } = useDisclosure();
+  useEffect(() => {
+    let timer;
+
+    if (isSuccessOpen) {
+      timer = setTimeout(() => {
+        onCloseSuccess();
+        setSuccessMessage('');
+      }, 3000);
+    }
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [isSuccessOpen]);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -29,7 +46,6 @@ export default function Header() {
       });
   }, [setUserInfo]);
 
-  //logout
   async function logout() {
     const url = `${process.env.REACT_APP_API_URL}/logout`;
     const response = await fetch(url, {
@@ -37,10 +53,9 @@ export default function Header() {
       method: 'POST',
     });
 
-    setUserInfo(null);
-
     if (response.ok) {
-      alert('Log out successful');
+      setSuccessMessage('Log out successful');
+      onOpenSuccess();
       navigate('/');
       setUserInfo(null);
     }
@@ -49,6 +64,7 @@ export default function Header() {
   const username = userInfo?.username;
 
   return (
+  <div className="header-container">
     <header>
       <div className="logo">
           <Link to="/"><img className="icon" src="/b.jpg" alt="Blog Logo"/></Link>
@@ -78,5 +94,28 @@ export default function Header() {
         )}
       </nav>
     </header>
-  );
+
+    {isSuccessOpen && (
+      <Alert
+        status='success'
+        variant='subtle'
+        flexDirection='column'
+        alignItems='center'
+        justifyContent='center'
+        textAlign='center'
+        height='80px'
+        colorScheme="red"
+        bg='#6dcaae'
+        borderRadius='10px'
+        fontSize='small'
+        className="alert-box"
+      >
+        <AlertIcon boxSize='30px' mr={0} />
+        <AlertTitle mt={4} mb={1} fontSize='lg'>
+          {successMessage}
+        </AlertTitle>
+      </Alert>
+    )}
+  </div>
+);
 }

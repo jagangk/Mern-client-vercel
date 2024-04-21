@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { Alert, AlertIcon, AlertTitle, useDisclosure } from "@chakra-ui/react";
 import Footer from "../footer";
 
 export default function ReportPost() {
@@ -6,6 +7,42 @@ export default function ReportPost() {
   const [email, setEmail] = useState('');
   const [query, setQuery] = useState('');
   const [reportType, setReportType] = useState('');
+  const [catchMessage, setCatchMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  const { isOpen: isSuccessOpen, onOpen: onOpenSuccess, onClose: onCloseSuccess } = useDisclosure();
+  const { isOpen: isErrorOpen, onOpen: onOpenError, onClose: onCloseError } = useDisclosure();
+  const { isOpen: isCatchOpen, onOpen: onOpenCatch, onClose: onCloseCatch } = useDisclosure();
+  
+  useEffect(() => {
+    let timer;
+
+    if (isSuccessOpen) {
+      timer = setTimeout(() => {
+        onCloseSuccess();
+        setSuccessMessage('');
+      }, 3000);
+    }
+
+    if (isErrorOpen) {
+      timer = setTimeout(() => {
+        onCloseError();
+        setErrorMessage('');
+      }, 3000);
+    }
+
+    if (isCatchOpen) {
+      timer = setTimeout(() => {
+        onCloseCatch();
+        setCatchMessage('');
+      }, 3000);
+    }
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [isSuccessOpen, isErrorOpen, isCatchOpen]);
+ 
   const [postInfo] = useState(() => {
     const storedPostInfo = localStorage.getItem('postInfo');
     return storedPostInfo ? JSON.parse(storedPostInfo) : null;
@@ -13,9 +50,21 @@ export default function ReportPost() {
 
   const author = postInfo?.author?.username || '';
   const postName = postInfo?.title || '';
-
+  const handleReportTypeChange = (value) => {
+    if (value && value !== "") {
+      document.getElementById('reportType').classList.remove('select-error');
+    }
+  };
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!reportType || reportType === "") {
+      document.getElementById('reportType').classList.add('select-error');
+      setErrorMessage('Please select a reason for reporting.');
+      onOpenError();
+      return;
+    }
+
     try {
       const url = `${process.env.REACT_APP_API_URL}/report`;
       const response = await fetch(url, {
@@ -27,21 +76,87 @@ export default function ReportPost() {
       });
       
       if (response.ok) {
-        alert('Form submitted successfully');
-      } else {
-        alert('Form submission failed');
+        setSuccessMessage("Form submitted successfully");
+        onOpenSuccess(); 
+      }
+
+       else {
+        setErrorMessage("Please fill out all the fields.");
+        onOpenError();
       }
     } catch (error) {
-      alert('Error submitting form: ' + error.message);
+      setCatchMessage('Error submitting form: ' + error.message);
+      onOpenCatch();
     }
-
   };
 
   return (
     <>
       <form className="report" onSubmit={handleSubmit}>
-        <h1>Help Center</h1>
+      {isSuccessOpen && (
+        <Alert
+          status='success'
+          variant='subtle'
+          flexDirection='column'
+          alignItems='center'
+          justifyContent='center'
+          textAlign='center'
+          height='80px'
+          colorScheme="red"
+          bg='#6dcaae'
+          borderRadius='10px'
+          fontSize='small'
+        >
+          <AlertIcon boxSize='30px' mr={0} />
+          <AlertTitle mt={4} mb={1} fontSize='lg'>
+            {successMessage}
+          </AlertTitle>
+        </Alert>
+      )}
 
+      {isErrorOpen && (
+        <Alert
+          status='error'
+          variant='subtle'
+          flexDirection='column'
+          alignItems='center'
+          justifyContent='center'
+          textAlign='center'
+          height='80px'
+          colorScheme="red"
+          bg='#d83030'
+          borderRadius='10px'
+          fontSize='small'
+        >
+          <AlertIcon boxSize='30px' mr={0} />
+          <AlertTitle mt={4} mb={1} fontSize='lg'>
+            {errorMessage}
+          </AlertTitle>
+        </Alert>
+      )}
+
+      {isCatchOpen && (
+        <Alert
+          status='error'
+          variant='subtle'
+          flexDirection='column'
+          alignItems='center'
+          justifyContent='center'
+          textAlign='center'
+          height='80px'
+          colorScheme="red"
+          bg='#d83030'
+          borderRadius='10px'
+          fontSize='small'
+        >
+          <AlertIcon boxSize='30px' mr={0} />
+          <AlertTitle mt={4} mb={1} fontSize='lg'>
+            {catchMessage}
+          </AlertTitle>
+        </Alert>
+      )}
+
+        <h1>Help Center</h1>
         <input
           style={{ color: '#6DCAAE', cursor: "not-allowed" }}
           className="disabled-input"
@@ -74,13 +189,18 @@ export default function ReportPost() {
           required
         />
 
-        <select value={reportType} onChange={(ev) => setReportType(ev.target.value)} required>
+        <select id="reportType" 
+        value={reportType} onChange={(ev) => {
+        setReportType(ev.target.value);
+        handleReportTypeChange(ev.target.value);
+        }} required>
           <optgroup>
             <option disabled value="">Why are you reporting this?</option>
             <option>It's spam</option>
             <option>Nudity or sexual content</option>
             <option>Hate speech</option>
-            <option>Violence or dangerous content</option>
+            <option>Violence content</option>
+            <option>Dangerous content</option>
             <option>Sale of illegal goods</option>
             <option>Intellectual property violation</option>
             <option>Drugs</option>
@@ -97,19 +217,14 @@ export default function ReportPost() {
         />
         <button type="submit">Submit</button>
       </form>
-      <div>
-        <h3>Reporting Guidelines:</h3>
-            <p>If you believe that content on our platform violates our community guidelines, please report it to us. We take reports seriously and will review them carefully.</p>
-          <h3>Community Guidelines:</h3>
-            <p>*Create respectful content - no explicit or offensive material, support for illegal activities, or piracy links. Respect user privacy, engage in civil communication, and report violations for a positive community. Violations may lead to content removal or account actions.</p>
-          <h3>Action Upon Violation:</h3>
-            <p>When a report matches our guidelines and we find that a user has violated our community guidelines, we will take appropriate action.</p>
-          <ul>
-             <li>Content violating guidelines will be removed.</li>
-             <li>Repeat offenders may face account restrictions or bans.</li>
-             <li>We strive to maintain a safe and respectful community and appreciate your cooperation in upholding these standards.</li>
-          </ul>
-          <p>For further</p>
+      <div className="report-div">
+        <h3>Reporting Guidelines</h3>
+            <p>
+If you believe that content on our platform violates our community guidelines, please report it to us. We take reports seriously and will review them carefully. However, we kindly ask that you only report content that you genuinely believe violates our guidelines.Your cooperation helps us maintain a safe and respectful environment for everyone.</p>
+          <h3>Community Guidelines</h3>
+            <p>Create respectful content - no explicit or offensive material, support for illegal activities, or piracy links. Respect user privacy, engage in civil communication, and report violations for a positive community. Violations may lead to content removal or account actions.</p>
+          <h3>Action Upon Violation</h3>
+          <p>When a report matches our guidelines and we find that a user has violated our community guidelines, we will take appropriate action. Content violating guidelines will be removed also repeat offenders may face account restrictions or bans.We strive to maintain a safe and respectful community and appreciate your cooperation in upholding these standards.</p>
         <Footer/>
       </div>
     </>
