@@ -33,15 +33,12 @@ export default function EditPost() {
     if (files?.[0]) {
       data.set('file', files?.[0]);
     }
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/update`, {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/update`,{
       method: 'PUT',
-      headers: {
-    'Content-Type': 'application/json',
-    },
       body: data,
       credentials: 'include',
-      mode: 'cors'
     });
+    
     if (response.ok) {
       setRedirect(true);
     }

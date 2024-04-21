@@ -5,12 +5,13 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import '../node_modules/font-awesome/css/font-awesome.min.css'; 
+import { createRoot } from 'react-dom/client';
 
-ReactDOM.render(
+const root = document.getElementById('root');
+const rootElement = createRoot(root);
+rootElement.render(
   <BrowserRouter>
     <App />
-  </BrowserRouter>,
-  document.getElementById('root')
+  </BrowserRouter>
 );
-
 reportWebVitals();
