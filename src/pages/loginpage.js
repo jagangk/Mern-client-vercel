@@ -70,7 +70,7 @@ export default function LoginPage() {
               colorScheme="red"
               bg='#d83030'
               borderRadius='10px'
-              maxW='40%'
+              maxW='60%'
               mx='auto'
               fontSize='small'
           >
