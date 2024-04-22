@@ -32,9 +32,6 @@ body{
 }
 
 @media screen and (max-width: 768px) {
-  body {
-    background-image: url();
-  }
 }
 
 img{
@@ -366,10 +363,7 @@ div.post-page div.image img{
   object-position: center;
 }
 
-div.post-page a{
-  color: #00c3ff;
-  text-decoration: underline;
-}
+
 div.post-page h2{
   text-align: left;
   margin: 10px 0 5px;
@@ -411,7 +405,7 @@ div.post-page div.author-word{
 div.post-page time{
   display: block;
   font-weight: bold;
-  font-size: smaller;
+  font-size: medium;
   color: #c5c5c5;
 }
 
@@ -419,7 +413,7 @@ div.post-page div.author{
   font-weight: 700;
   color: #6dcaae;
   display: inline-flex;
-  font-size:smaller;
+  font-size:medium;
   font-weight: bold;
 }
 
@@ -539,39 +533,23 @@ hr {
   font-size:14px
 }
 
-div.edit-btn a{
-  background-color: #07a0ce;
-  color: #ffffff;
-  text-decoration: none;
-  font-size: smaller;
-  padding: 3.5px 5px;
-  cursor: pointer;
-  width: max-content;
-  border-radius: 5px;
-  align-items: center;
-  display: inline-flex;
-
+.dropdown-container {
+  position: relative;
+  width: 100px; 
+  margin-top: 10px;
 }
 
-a svg{
-  height: 20px;
-  display: inline-flex;
-  align-items: center;
+.dropdown-container select::-ms-expand {
+  display: none;
+}
+.dropdown-container select option {
+  padding: 10px;
   gap: 5px;
+  border-radius: 5px;
+  color: #ffffff;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
-div.report-btn a{
-  background-color: #bb3443;
-  color: #ffffff;
-  text-decoration: none;
-  font-size: smaller;
-  padding: 5px 5px;
-  cursor: pointer;
-  width: max-content;
-  border-radius: 5px;
-  align-items: center;
-  display: inline-flex;
-}
 
 .ql-toolbar {
   background-color: rgba(204, 204, 204, 0.723);
