@@ -41,7 +41,7 @@ export default function ReportPost() {
     return () => {
       clearTimeout(timer);
     };
-  }, [isSuccessOpen, isErrorOpen, isCatchOpen]);
+  },);
  
   const [postInfo] = useState(() => {
     const storedPostInfo = localStorage.getItem('postInfo');
@@ -194,6 +194,7 @@ export default function ReportPost() {
         setReportType(ev.target.value);
         handleReportTypeChange(ev.target.value);
         }} required>
+
           <optgroup>
             <option disabled value="">Why are you reporting this?</option>
             <option>It's spam</option>

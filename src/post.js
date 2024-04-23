@@ -1,6 +1,6 @@
 import {format} from 'date-fns'
 import { Link} from 'react-router-dom';
-export default function Post({_id,author,createdAt,title,summary,cover,content}){
+export default function Post({_id,author,createdAt,title,summary,cover,PostType}){
   const url = `${process.env.REACT_APP_API_URL}/`;
 
     return (

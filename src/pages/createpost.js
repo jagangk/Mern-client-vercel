@@ -18,6 +18,7 @@ export default function CreatePost() {
   const [title, setTitle] = useState('');
   const [summary, setSummary] = useState('');
   const [content, setContent] = useState('');
+  const [PostType, setPostType] = useState('');
   const [files, setFiles] = useState('');
   const [redirect, setRedirect] = useState(false);
 
@@ -32,7 +33,9 @@ export default function CreatePost() {
     data.set('title', title);
     data.set('summary', summary);
     data.set('content', content);
+    data.set('PostType', PostType);
     data.set('file', files[0]);
+
     ev.preventDefault();
     console.log(files);
     const url = `${process.env.REACT_APP_API_URL}/post`;
@@ -51,7 +54,9 @@ export default function CreatePost() {
 
   if (redirect) {
     alert('Post created🤩');
-    return <Navigate to={'/'} />;
+    <Navigate to='/' replace />;  
+    window.location.href = '/';  
+    window.scrollTo(0, 0);
   }
 
   return (
@@ -71,6 +76,21 @@ export default function CreatePost() {
         value={summary}
         onChange={updateSummary}
       />
+
+      <select id="PostType" value= {PostType} onChange={(ev) => { setPostType(ev.target.value);}} required>
+          <optgroup>
+            <option disabled value="">Catagory</option>
+            <option>Business</option>
+            <option>News</option>
+            <option>Science and Technology</option>
+            <option>Entertainment</option>
+            <option>Sports</option>
+            <option>Health</option>
+            <option>Lifestyle and Travel</option>
+            <option>Food</option>
+            <option>Opinions</option>
+          </optgroup>
+      </select>
 
       <input required type="file" onChange={(ev) => setFiles(ev.target.files)} />
 

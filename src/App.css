@@ -106,19 +106,18 @@ header nav span{
 }
 
 .header-container {
-  position: relative; /* Make the container relative */
+  position: relative;
 }
 
 .alert-box {
   position: absolute;
-  top: 100%; /* Position the alert box below the header */
+  top: 100%;
   left: 50%;
-  transform: translateX(-50%); /* Center the alert box horizontally */
+  transform: translateX(-50%);
   width: 100%;
   max-width: 400px; 
   margin-top: 10px; 
 }
-
 
 /*---------------------------------Post page component------------------*/
 div.post{
@@ -240,6 +239,7 @@ textarea{
   width: 100%;
   height: 100px ;
   padding: 5px 10px;
+  margin-top: 5px;
   border: 0;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   background-color:rgb(109, 109, 109);
@@ -254,10 +254,11 @@ textarea::placeholder{
 select{
   margin-bottom: 5px;
   width: 100%;
-  padding: 4px 5px;
+  padding: 7px 5px;
   border: 0;
   background-color:rgb(109, 109, 109);
   border-radius: 3px;
+  margin-bottom: 0;
 }
 
 .select-error{
@@ -315,11 +316,9 @@ button{
   outline: none;
 }
 
-
 button:hover{
   box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5); 
 }
-
 
 form.login h1,form.register h1{
   text-align: center;
@@ -347,7 +346,7 @@ form.login h1,form.register h1{
 
 }
 
-.dropdown-content a:hover {background-color: #afafaf;;
+.dropdown-content a:hover {background-color: #afafaf;
 border-radius: 15px;}
 
 nav:hover .dropdown-content {display: block;}
@@ -363,11 +362,11 @@ div.post-page div.image img{
   object-position: center;
 }
 
-
 div.post-page h2{
   text-align: left;
   margin: 10px 0 5px;
 }
+
 p{
   font-weight: 500;
   color: #c7c7c7;
@@ -420,8 +419,8 @@ div.post-page div.author{
 div.hone-index{
   padding-left: 5px;
 }
-/*--------------------------footer-------------------------------*/
 
+/*--------------------------footer-------------------------------*/
 footer{
   max-width: 100%;
   text-align: center;
@@ -474,13 +473,6 @@ hr {
   margin-right: 30px;
 }
 
-.social-menu{
-  display: flex;
-  list-style: none;
-  gap: 15px;
-  justify-content: center;
-  margin-right: 30px;
-}
 .footer-menu a{
   text-decoration: none;
   font-weight: bold;
@@ -493,11 +485,22 @@ hr {
   margin: 0;
 }
 
-.social-menu li
-{
-  display:inline-block;
-  margin-bottom:4px
+.social-menu{
+  display: flex;
+  list-style: none;
+  gap: 15px;
+  justify-content: center;
+  margin-right: 30px;
 }
+
+.social-menu-post{
+  display: flex;
+  list-style: none;
+  gap: 15px;
+  justify-content: center;
+  align-items: center;
+}
+
 .social-menu li.title
 {
   margin-right:15px;
@@ -506,6 +509,18 @@ hr {
   font-weight:700;
   font-size:13px
 }
+
+.social-menu-post a{
+  color:#ffffff;
+  font-size:20px;
+  display:inline-block;
+  width:20px;
+  height:20px;
+  -webkit-transition:all .2s linear;
+  -o-transition:all .2s linear;
+  transition:all .2s linear
+}
+
 .social-menu a{
   background-color: rgb(29, 29, 29);
   color:#ffffff;
@@ -520,11 +535,17 @@ hr {
   -o-transition:all .2s linear;
   transition:all .2s linear
 }
+
+.social-menu-post a:active,.social-menu-post a:focus,.social-menu-post a:hover {
+  color:#6dcaae;
+}
+
 .social-menu a:active,.social-menu a:focus,.social-menu a:hover
 {
   color:#fff;
   background-color: #2e8168;
 }
+
 .social-menu.size-sm a
 {
   line-height:34px;
@@ -535,13 +556,20 @@ hr {
 
 .dropdown-container {
   position: relative;
-  width: 100px; 
-  margin-top: 10px;
+  width: 120px;
+  margin: 2px;
+}
+.action-container{
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .dropdown-container select::-ms-expand {
   display: none;
 }
+
 .dropdown-container select option {
   padding: 10px;
   gap: 5px;
@@ -549,7 +577,6 @@ hr {
   color: #ffffff;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
-
 
 .ql-toolbar {
   background-color: rgba(204, 204, 204, 0.723);

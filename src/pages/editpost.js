@@ -2,12 +2,12 @@ import {useEffect, useState} from "react";
 import {Navigate, useParams} from "react-router-dom";
 import Editor from "../Editor";
 
-
 export default function EditPost() {
   const {id} = useParams();
   const [title,setTitle] = useState('');
   const [summary,setSummary] = useState('');
   const [content,setContent] = useState('');
+  const [PostType, setPostType] = useState('');
   const [files, setFiles] = useState('');
   const [redirect,setRedirect] = useState(false);
 
@@ -19,6 +19,7 @@ export default function EditPost() {
           setTitle(postInfo.title);
           setContent(postInfo.content);
           setSummary(postInfo.summary);
+          setPostType(postInfo.PostType);
         });
       });
   }, []);
@@ -29,6 +30,7 @@ export default function EditPost() {
     data.set('title', title);
     data.set('summary', summary);
     data.set('content', content);
+    data.set('PostType', PostType);
     data.set('id', id);
     if (files?.[0]) {
       data.set('file', files?.[0]);
@@ -45,8 +47,10 @@ export default function EditPost() {
   }
 
   if (redirect) {
-    return <Navigate to={'/post/'+id} />
-  }
+      <Navigate to={'/post/'+id} />
+      window.location.reload();
+      window.scrollTo(0, 0);
+    }
 
   return (
     <form onSubmit={updatePost}>
@@ -54,10 +58,27 @@ export default function EditPost() {
              placeholder={'Title'}
              value={title}
              onChange={ev => setTitle(ev.target.value)} />
+
       <input type="summary"
              placeholder={'Summary'}
              value={summary}
              onChange={ev => setSummary(ev.target.value)} />
+
+      <select type="PostType" value= {PostType} onChange={ev=> setPostType(ev.target.value)}>
+          <optgroup>
+            <option disabled value="">Catagory</option>
+            <option>Business</option>
+            <option>News</option>
+            <option>Science and Technology</option>
+            <option>Entertainment</option>
+            <option>Sports</option>
+            <option>Health</option>
+            <option>Lifestyle and Travel</option>
+            <option>Food</option>
+            <option>Opinions</option>
+          </optgroup>
+      </select>
+
       <input type="file"
              onChange={ev => setFiles(ev.target.files)} />
       <Editor onChange={setContent} value={content} />

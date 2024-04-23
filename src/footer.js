@@ -6,7 +6,7 @@ export default function Footer() {
             <h2>Sign up to our newsletter to receive updates</h2>
             <p>Don't miss out on the latest news, offers, and exciting developments. Subscribe now for a front-row seat to all things new and noteworthy!</p>
             <div class='newsletter'>
-                <input type="email" class='f-input'  placeholder="email@email.com"   />
+                <input type="email" class='f-input'  placeholder="Email"   />
                 <button class='f-btn'>Subscribe</button>
             </div>
             <div class='footer-route'>
