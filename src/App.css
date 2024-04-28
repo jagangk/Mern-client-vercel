@@ -25,7 +25,7 @@ body{
   padding-left: 5px;
   padding-right: 5px;
   color: #d5d5d5;
-  background-color: #1f1f1f;
+  background-color: #000000cf;
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
@@ -52,13 +52,8 @@ main{
   padding: 20px;
   max-width: 900px;
   margin: 0 auto;
-  background-color: rgb(132, 140, 204);
-  background: rgba(152, 152, 152, 0.176);
   border-radius: 16px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.319);
-  backdrop-filter: blur(1.1px);
-  -webkit-backdrop-filter: blur(8.1px);
-
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.512);
 }
 
 /*------------------Header component------------------------*/
@@ -68,6 +63,7 @@ header{
   margin-top: 20px;
   margin-bottom: 50px;
   align-items: center;
+  border-radius: 8px;
 }
 
 header a{
@@ -426,14 +422,10 @@ footer{
   text-align: center;
   align-items: center;
   display: block;
-}
-
-footer hr.small{
-  margin: 0;
-}
-
-hr {
-  border-color: #ffffff; 
+  background-color: #2e81687a;
+  border-radius: 25px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 .newsletter{
@@ -455,7 +447,7 @@ hr {
   height: 30px;
   border-radius: 20px;
   align-items: center;
-  color: #6dcaae;
+  color: #ffffff;
 }
 
 .footer-route, .social-route{
@@ -543,7 +535,7 @@ hr {
 .social-menu a:active,.social-menu a:focus,.social-menu a:hover
 {
   color:#fff;
-  background-color: #2e8168;
+  background-color: #595959;
 }
 
 .social-menu.size-sm a
