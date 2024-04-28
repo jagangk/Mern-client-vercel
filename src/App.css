@@ -151,6 +151,7 @@ div.post p.info{
 div.post p.info a.author{
   color: #6dcaae;
   margin-right: 5px;
+  text-transform: uppercase;
 }
 
 div.post p.summary{
@@ -214,7 +215,7 @@ input {
   padding: 7px 10px;
   border: 0;
   background-color: rgba(129, 129, 129, 0.723);
-  border-radius: 2px;
+  border-radius: 5px;
   color: white; 
 }
 
@@ -239,7 +240,7 @@ textarea{
   border: 0;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   background-color:rgb(109, 109, 109);
-  border-radius: 3px;
+  border-radius: 5px;
 }
 
 textarea::placeholder{
@@ -253,7 +254,7 @@ select{
   padding: 7px 5px;
   border: 0;
   background-color:rgb(109, 109, 109);
-  border-radius: 3px;
+  border-radius: 5px;
   margin-bottom: 0;
 }
 
@@ -304,7 +305,7 @@ button{
   display: block;
   background-color:  #000000cf;
   border: 0;
-  border-radius: 2px;
+  border-radius: 5px;
   padding: 7px 0;
   font-weight: bolder;
   color: #ffffff;
@@ -393,7 +394,6 @@ div.post-page div.post-info{
 div.post-page div.author-word{
   font-weight: 700;
   font-size: medium;
-
   color: #cecece;
 }
 
@@ -409,7 +409,6 @@ div.post-page div.author{
   color: #6dcaae;
   display: inline-flex;
   font-size:medium;
-  font-weight: bold;
 }
 
 div.hone-index{
@@ -428,22 +427,29 @@ footer{
   padding-bottom: 5px;
 }
 
+.footer-div{
+  padding-left: 50px;
+  padding-right: 50px;
+  text-align: left;
+}
+
 .newsletter{
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  justify-content: left;
+  align-items:baseline;
+  padding-left: 50px;
   gap: 5px;
 }
 
 .f-input{
   height: 30px;
-  width: 30%;
+  width: 40%;
   border-radius: 20px;
 }
 
 .f-btn{
-  width: 20%;
+  width: 30%;
   height: 30px;
   border-radius: 20px;
   align-items: center;
@@ -452,23 +458,22 @@ footer{
 
 .footer-route, .social-route{
   display: flex;
-  justify-content: center;
+  justify-content:left;
   margin: 10px;
 }
+
 
 .footer-menu {
   display: flex;
   list-style: none;
   gap: 25px;
-  justify-content: center;
   margin: 0;
-  margin-right: 30px;
 }
 
 .footer-menu a{
   text-decoration: none;
   font-weight: bold;
-  font-size: large;
+  font-size: medium;
   color: #dcdcdc;
 }
 
@@ -516,11 +521,11 @@ footer{
 .social-menu a{
   background-color: rgb(29, 29, 29);
   color:#ffffff;
-  font-size:20px;
+  font-size:px;
   display:inline-block;
-  line-height:44px;
-  width:40px;
-  height:40px;
+  line-height:35px;
+  width:35px;
+  height:35px;
   text-align:center;
   border-radius:100%;
   -webkit-transition:all .2s linear;

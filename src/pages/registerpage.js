@@ -104,12 +104,14 @@ export default function RegisterPage() {
         <input type="text" 
         placeholder="Enter username"
         value={username}
+        required
         onChange={ev => setUsername(ev.target.value)}
         />
         
         <input type="password" 
         placeholder="Password" 
         value={password}
+        required
         onChange={ev => setPassword(ev.target.value)}
         />
         

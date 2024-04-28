@@ -87,12 +87,14 @@ export default function LoginPage() {
                     type="text"
                     placeholder="Enter username"
                     value={username}
+                    required
                     onChange={ev => setUsername(ev.target.value)}
                 />
 
                 <input
                     type="password"
                     placeholder="Password"
+                    required
                     value={password}
                     onChange={ev => setPassword(ev.target.value)}
                 />
@@ -102,7 +104,7 @@ export default function LoginPage() {
                 <h4>New to Blogstera?</h4>
                 <button onClick={navigateToRegister}>Create account</button>
             </form><div className="contact-div">
-        <p>You'll be able to access our platform's features after successful login. If you encounter any issues during the registration process, please reach us out <Link to='/contact'>click here to contact.</Link></p>
+        <p>You'll be able to access our platform's features after successful login. If you encounter any issues during the login process, please reach us out <Link to='/contact'>click here to contact.</Link></p>
        </div></>
     );
 }

@@ -2,8 +2,10 @@ import { Link} from 'react-router-dom';
 export default function Footer() {
     return (
         <footer>
-            <h2>Sign up to our newsletter to receive updates</h2>
+            <div className='footer-div'>
+            <h2>Sign up to our newsletter to receive updates!</h2>
             <p>Don't miss out on the latest news, offers, and exciting developments. Subscribe now for a front-row seat to all things new and noteworthy!</p>
+            </div>
             <div class='newsletter'>
                 <input type="email" class='f-input'  placeholder="Email"   />
                 <button class='f-btn'>Subscribe</button>
@@ -12,7 +14,7 @@ export default function Footer() {
                 <ul class='footer-menu'>
                     <li><Link to='/login'>Login</Link></li>
                     <li><Link to='/register'>Register</Link></li>
-                    <li><Link to='/login'>Contact</Link></li>
+                    <li><Link to='/contact'>Contact</Link></li>
                     <li><Link target='_blank' to='https://jagangk.me/'>Author</Link></li>
                 </ul>
             </div>
