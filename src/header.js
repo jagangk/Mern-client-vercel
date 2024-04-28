@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Alert, AlertIcon, AlertTitle, useDisclosure } from "@chakra-ui/react";
 import { UserContext } from './userContext';
 
+
 export default function Header() {
   const { setUserInfo, userInfo } = useContext(UserContext);
   const [successMessage, setSuccessMessage] = useState('');
@@ -87,8 +88,7 @@ export default function Header() {
           </>
         ) : (
           <>
-            <Link to="/login">Login</Link>
-            <Link to="/register">Register</Link>
+            <Link to="/login">Sign in</Link>
           </>
         )}
       </nav>
