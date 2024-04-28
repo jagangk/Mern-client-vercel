@@ -77,7 +77,7 @@ export default function CreatePost() {
         onChange={updateSummary}
       />
 
-      <select id="PostType" value= {PostType} onChange={(ev) => { setPostType(ev.target.value);}} required>
+    <select id="PostType" value={PostType} onChange={(ev) => {setPostType(ev.target.value)}} required>
           <optgroup>
             <option disabled value="">Catagory</option>
             <option>Business</option>
@@ -106,4 +106,3 @@ export default function CreatePost() {
     </form>
   );
 }
- 
