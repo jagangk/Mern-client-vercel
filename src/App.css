@@ -428,7 +428,7 @@ footer{
 }
 
 .footer-div{
-  padding-left: 50px;
+  padding-left: 30px;
   padding-right: 50px;
   text-align: left;
 }
@@ -438,7 +438,7 @@ footer{
   flex-direction: row;
   justify-content: left;
   align-items:baseline;
-  padding-left: 50px;
+  padding-left: 30px;
   gap: 5px;
 }
 
@@ -468,6 +468,7 @@ footer{
   list-style: none;
   gap: 25px;
   margin: 0;
+  padding-left: 25px;
 }
 
 .footer-menu a{
@@ -486,8 +487,7 @@ footer{
   display: flex;
   list-style: none;
   gap: 15px;
-  justify-content: center;
-  margin-right: 30px;
+  padding-left: 30px;
 }
 
 .social-menu-post{
