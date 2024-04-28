@@ -418,7 +418,6 @@ div.hone-index{
 /*--------------------------footer-------------------------------*/
 footer{
   max-width: 100%;
-  text-align: center;
   align-items: center;
   display: block;
   background-color: #2e81687a;
@@ -458,7 +457,7 @@ footer{
 
 .footer-route, .social-route{
   display: flex;
-  justify-content:left;
+  gap: 10px;
   margin: 10px;
 }
 
@@ -478,16 +477,17 @@ footer{
   color: #dcdcdc;
 }
 
-.copyriht-info{
+.copyright-info{
+  font-size: smaller;
   text-align: center;
-  margin: 0;
 }
 
 .social-menu{
   display: flex;
   list-style: none;
   gap: 15px;
-  padding-left: 30px;
+  padding-left: 22px;
+  margin: 0;
 }
 
 .social-menu-post{
