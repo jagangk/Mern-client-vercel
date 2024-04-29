@@ -28,6 +28,14 @@ export default function CreatePost() {
     setSummary(limitedSummary);
   };
 
+  const handleKeyDown = (event) => {
+    const maxWords = 5;
+    const words = event.target.value.split(' ');
+    if (words.length >= maxWords && event.key !== 'Backspace' && event.key !== 'Delete') {
+      event.preventDefault();
+    }
+  };
+
   const createNewPost = async (ev) => {
     const data = new FormData();
     data.set('title', title);
@@ -75,6 +83,7 @@ export default function CreatePost() {
         required 
         value={summary}
         onChange={updateSummary}
+        onKeyDown={handleKeyDown}
       />
 
     <select id="PostType" value={PostType} onChange={(ev) => {setPostType(ev.target.value)}} required>
