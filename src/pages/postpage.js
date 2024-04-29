@@ -1,32 +1,37 @@
 import { useContext, useEffect, useState } from "react";
-import { useParams, useNavigate} from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { format } from 'date-fns';
 import { UserContext } from "../userContext";
 import Footer from "../footer";
+import { Helmet } from 'react-helmet';
 
 export default function PostPage() {
-    const [postInfo, setPostInfo] = useState(() => {
-        const storedPostInfo = localStorage.getItem('postInfo');
-        return storedPostInfo ? JSON.parse(storedPostInfo) : null;
-    });
+    const [postInfo, setPostInfo] = useState(null);
     const { id } = useParams();
     const { userInfo } = useContext(UserContext);
     const navigate = useNavigate();
 
     useEffect(() => {
-        const url = `${process.env.REACT_APP_API_URL}/post/${id}`;
-        fetch(url)
-            .then(response => {
-                response.json().then(postInfo => {
-                    setPostInfo(postInfo);
-                    localStorage.setItem('postInfo', JSON.stringify(postInfo));
-                });
-            });
-    }, [id]); 
+        const fetchPost = async () => {
+            try {
+                const response = await fetch(`${process.env.REACT_APP_API_URL}/post/${id}`);
+                if (response.ok) {
+                    const postData = await response.json();
+                    setPostInfo(postData);
+                } else {
+                    console.error("Failed to fetch post");
+                }
+            } catch (error) {
+                console.error("Error fetching post:", error);
+            }
+        };
 
-    if (!postInfo) return '';
+        fetchPost();
+    }, [id]);
 
+    if (!postInfo) return null;
     const url_photo = `${postInfo.cover}`;
+
 
     const handleDropdownChange = async (e) => {
         const selectedValue = e.target.value;
@@ -60,7 +65,14 @@ export default function PostPage() {
 
 
     return (
-        <><div className='post-page'>
+        <>
+        <Helmet>
+                <title>{postInfo.title}</title>
+                <meta name="description" content={postInfo.summary} />
+                
+        </Helmet>
+
+        <div className='post-page'>
             <h2>{postInfo.title}</h2>
             <div className='post-info'>
                 <div className='author'>{postInfo.author.username}</div>

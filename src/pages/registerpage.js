@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Alert, AlertIcon, AlertTitle, useDisclosure } from "@chakra-ui/react";
 import { useNavigate, Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 
 
 export default function RegisterPage() {
@@ -56,7 +57,13 @@ export default function RegisterPage() {
 
 
     return (
-        <><form class ="register" onSubmit={register}>
+        <>
+        <Helmet>
+                <title>Login</title>
+                <meta name="description" content="Sign up to blogstera today and unlock exclusive benefits! Sign up now to access premium content, receive updates, and connect with like-minded individuals. Start your journey with us and discover new opportunities to learn, grow, and thrive." />
+        </Helmet>
+
+        <form class ="register" onSubmit={register}>
         {isSuccessOpen && (
         <Alert
           status='success'

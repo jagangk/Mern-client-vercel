@@ -2,6 +2,7 @@ import { useState, useContext, useEffect } from "react";
 import { useNavigate, Navigate, Link } from "react-router-dom"; 
 import { Alert, AlertIcon, AlertDescription, useDisclosure} from "@chakra-ui/react";
 import { UserContext } from "../userContext"; 
+import { Helmet } from 'react-helmet';
 
 export default function LoginPage() {
     const navigate = useNavigate();
@@ -80,6 +81,11 @@ export default function LoginPage() {
               </AlertDescription>
             </Alert>
             )}
+
+        <Helmet>
+                <title>Login</title>
+                <meta name="description" content="Welcome back to Blogstera! your ultimate destination for all things blogging! From tips and tricks to guides and inspiration, we've got you covered. Join our community of passionate bloggers and take your blog to the next level."/>
+        </Helmet>
 
             <form className="login" onSubmit={login}>
                 <h1>Welcome back!</h1>

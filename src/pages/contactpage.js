@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Alert, AlertIcon, AlertTitle, useDisclosure } from "@chakra-ui/react";
 import Footer from "../footer";
+import { Helmet } from 'react-helmet';
 
 
 export default function ContactPage() {
@@ -70,7 +71,12 @@ export default function ContactPage() {
   };
 
   return (
-    <><form className="contact" onSubmit={handleSubmit}>
+    <>
+      <Helmet>
+                <title>Login</title>
+                <meta name="description" content="We're always eager to hear from you! Whether you have feedback, questions, business inquiries, or just want to say hello, please don't hesitate to get in touch with us. Your thoughts and concerns are important to us, and we're committed to providing you with the best possible support." />
+        </Helmet>
+    <form className="contact" onSubmit={handleSubmit}>
       {isSuccessOpen && (
         <Alert
           status='success'
