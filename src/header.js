@@ -68,7 +68,7 @@ export default function Header() {
   <div className="header-container">
     <header>
       <div className="logo">
-          <Link to="/"><img className="icon" src="/B.jpg" alt="Blog Logo"/></Link>
+          <Link to="/"><img className="icon" src="/b.jpg" alt="Blog Logo"/></Link>
           <Link className="web-title" to="/">Blogstera</Link>
       </div>
       <nav>
