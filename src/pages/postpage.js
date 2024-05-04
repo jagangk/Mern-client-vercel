@@ -7,6 +7,7 @@ import { Helmet } from 'react-helmet';
 
 export default function PostPage() {
     const [postInfo, setPostInfo] = useState(null);
+    const [loading, setLoading] = useState(true);
     const { id } = useParams();
     const { userInfo } = useContext(UserContext);
     const navigate = useNavigate();
@@ -23,15 +24,17 @@ export default function PostPage() {
                 }
             } catch (error) {
                 console.error("Error fetching post:", error);
+            } finally {
+                setLoading(false);
             }
         };
 
         fetchPost();
     }, [id]);
 
+    if (loading)  return <p>Loading posts...</p>; 
     if (!postInfo) return null;
     const url_photo = `${postInfo.cover}`;
-
 
     const handleDropdownChange = async (e) => {
         const selectedValue = e.target.value;
