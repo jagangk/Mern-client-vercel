@@ -6,6 +6,8 @@ import { Helmet } from 'react-helmet';
 
 export default function RegisterPage() {
     const [username, setUsername] = useState('');
+    const [Email, setEmail] = useState('');
+    const [InterestType, setInterestType] = useState('');
     const [password, setPassword] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
@@ -109,11 +111,33 @@ export default function RegisterPage() {
        <h1>Hola!</h1>
         
         <input type="text" 
-        placeholder="Enter username"
+        placeholder="Username"
         value={username}
         required
         onChange={ev => setUsername(ev.target.value)}
         />
+
+        <input type="email"
+        placeholder="Email"
+        value={Email}
+        required
+        onChange={ev => setEmail(ev.target.value)}
+        />
+
+      <select id="PostType" value={InterestType} onChange={(ev) => {setInterestType(ev.target.value)}} required>
+          <optgroup>
+            <option disabled value="">Interested Topic</option>
+            <option>Business</option>
+            <option>News</option>
+            <option>Science and Technology</option>
+            <option>Entertainment</option>
+            <option>Sports</option>
+            <option>Health</option>
+            <option>Lifestyle and Travel</option>
+            <option>Food</option>
+            <option>Opinions</option>
+          </optgroup>
+      </select>
         
         <input type="password" 
         placeholder="Password" 

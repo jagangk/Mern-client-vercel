@@ -386,9 +386,10 @@ div.post-page div.post-info{
   padding: 5px;
   margin-top: 5px;
   margin-bottom: 5px;
-  max-width:max-content;
   align-items: center;
-  width: 100%;
+  width: 150%;
+  max-width: max-content;
+  margin: 0;
 }
 
 div.post-page div.author-word{
@@ -400,7 +401,7 @@ div.post-page div.author-word{
 div.post-page time{
   display: block;
   font-weight: bold;
-  font-size: medium;
+  font-size: small;
   color: #c5c5c5;
 }
 
@@ -408,7 +409,8 @@ div.post-page div.author{
   font-weight: 700;
   color: #6dcaae;
   display: inline-flex;
-  font-size:medium;
+  font-size:small;
+  text-transform: uppercase;
 }
 
 div.hone-index{
