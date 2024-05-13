@@ -18,7 +18,7 @@ export default function Post({_id,author,createdAt,title,summary,cover,PostType}
             <time> {format(new Date(createdAt), 'dd/LL/yyyy')}</time>
           </p>
           <p className="info">Catagory • <Link style={{color:'#0097B2'}}>{PostType}</Link></p>
-          <p className='summary'>{summary}...<Link style={{color:'#6dcaae', fontStyle:'italic'}} to={`/post/${_id}` >Read more</Link></p>
+          <p className='summary'>{summary}...<Link style={{color:'#6dcaae', fontStyle:'italic'}} to={`/post/${_id}`} >Read more</Link></p>
         </div>
       </div>
     );
