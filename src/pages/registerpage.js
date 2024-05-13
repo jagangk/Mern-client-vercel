@@ -149,9 +149,6 @@ export default function RegisterPage() {
         <button>Register</button>
        </form>
        <div className="contact-div">
-        <h3>Requirements</h3>
-        <p><strong>Username:</strong> Your username must be unique and at least 4 characters long. Make sure to choose a username that reflects your identity and is easy for you to remember.</p>
-        <p><strong>Password:</strong> For security reasons, your password must also be a minimum of 4 characters long. Please choose a strong password that includes a combination of letters, numbers, and special characters to ensure the safety of your account.</p>
         <p>After registering, you'll be able to log in and access our platform's features. If you encounter any issues during the registration process, please reach us out <Link to='/contact'>click here to contact.</Link></p>
        </div></>
     );
