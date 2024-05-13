@@ -91,11 +91,13 @@ export default function CreatePost() {
             <option disabled value="">Catagory</option>
             <option>Business</option>
             <option>News</option>
-            <option>Science and Technology</option>
+            <option>Science</option>
+            <option>Technology</option>
             <option>Entertainment</option>
             <option>Sports</option>
             <option>Health</option>
-            <option>Lifestyle and Travel</option>
+            <option>Lifestyle</option>
+            <option>Travel</option>
             <option>Food</option>
             <option>Opinions</option>
           </optgroup>

@@ -14,8 +14,8 @@ export default function Post({_id,author,createdAt,title,summary,cover,PostType}
            <h2>{title}</h2>
         </Link>
           <p class="info">
-            <Link class="author">{author.username}</Link>
-            <time>{format(new Date(createdAt), 'dd/LL/yyyy')}</time>
+            <Link class="author">{author.username}</Link>•
+            <time> {format(new Date(createdAt), 'dd/LL/yyyy')}</time>
           </p>
           <p className="info">Catagory • <Link style={{color:'#0097B2'}}>{PostType}</Link></p>
           <p className='summary'>{summary}...<Link style={{color:'#6dcaae', fontStyle:'italic'}}>Read more</Link></p>

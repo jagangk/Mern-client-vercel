@@ -196,17 +196,18 @@ export default function ReportPost() {
         }} required>
 
           <optgroup>
-            <option disabled value="">Why are you reporting this?</option>
-            <option>It's spam</option>
-            <option>Nudity or sexual content</option>
-            <option>Hate speech</option>
-            <option>Violence content</option>
-            <option>Dangerous content</option>
-            <option>Sale of illegal goods</option>
-            <option>Intellectual property violation</option>
-            <option>Drugs</option>
-            <option>False information</option>
-            <option>Scam or fraud</option>
+          <option disabled value="">Catagory</option>
+            <option>Business</option>
+            <option>News</option>
+            <option>Science</option>
+            <option>Technology</option>
+            <option>Entertainment</option>
+            <option>Sports</option>
+            <option>Health</option>
+            <option>Lifestyle</option>
+            <option>Travel</option>
+            <option>Food</option>
+            <option>Opinions</option>
           </optgroup>
         </select>
 
