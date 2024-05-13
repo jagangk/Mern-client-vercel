@@ -124,7 +124,7 @@ export default function RegisterPage() {
 
       <select id="PostType" value={interestType} onChange={(ev) => {setInterestType(ev.target.value)}} required>
           <optgroup>
-          <option disabled value="">Catagory</option>
+          <option disabled value="">Select your favourite topic</option>
             <option>Business</option>
             <option>News</option>
             <option>Science</option>
