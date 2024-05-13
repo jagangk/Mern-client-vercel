@@ -20,7 +20,6 @@ export default function IndexPage() {
     return (
         <>
             <div className='home-index'>
-                <Link to="/"><img src="/blogsterabanner.png" alt="Blog Logo"/></Link>
                 <h1>Feeds</h1>
             </div>
             {posts.length > 0 ? (

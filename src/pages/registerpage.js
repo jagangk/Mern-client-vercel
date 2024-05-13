@@ -6,8 +6,8 @@ import { Helmet } from 'react-helmet';
 
 export default function RegisterPage() {
     const [username, setUsername] = useState('');
-    const [Email, setEmail] = useState('');
-    const [InterestType, setInterestType] = useState('');
+    const [email, setEmail] = useState('');
+    const [interestType, setInterestType] = useState('');
     const [password, setPassword] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
@@ -43,7 +43,7 @@ export default function RegisterPage() {
                 const url = `${process.env.REACT_APP_API_URL}/register`;
                 const response = await fetch(url, {
                 method: 'POST',
-                body: JSON.stringify({username,password}),
+                body: JSON.stringify({username,password, email, interestType}),
                 headers: {'Content-Type':'application/json'},
             });
             if (response.ok === false ) {
@@ -55,8 +55,6 @@ export default function RegisterPage() {
                 navigate('/login');
             }       
     }
-
-
 
     return (
         <>
@@ -119,12 +117,12 @@ export default function RegisterPage() {
 
         <input type="email"
         placeholder="Email"
-        value={Email}
+        value={email}
         required
         onChange={ev => setEmail(ev.target.value)}
         />
 
-      <select id="PostType" value={InterestType} onChange={(ev) => {setInterestType(ev.target.value)}} required>
+      <select id="PostType" value={interestType} onChange={(ev) => {setInterestType(ev.target.value)}} required>
           <optgroup>
             <option disabled value="">Interested Topic</option>
             <option>Business</option>
@@ -149,9 +147,6 @@ export default function RegisterPage() {
         <button>Register</button>
        </form>
        <div className="contact-div">
-        <h3>Requirements</h3>
-        <p><strong>Username:</strong> Your username must be unique and at least 4 characters long. Make sure to choose a username that reflects your identity and is easy for you to remember.</p>
-        <p><strong>Password:</strong> For security reasons, your password must also be a minimum of 4 characters long. Please choose a strong password that includes a combination of letters, numbers, and special characters to ensure the safety of your account.</p>
         <p>After registering, you'll be able to log in and access our platform's features. If you encounter any issues during the registration process, please reach us out <Link to='/contact'>click here to contact.</Link></p>
        </div></>
     );
