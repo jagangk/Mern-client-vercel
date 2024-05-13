@@ -76,7 +76,7 @@ export default function ReportPost() {
       });
       
       if (response.ok) {
-        setSuccessMessage("Form submitted successfully");
+        setSuccessMessage("Thank you for Reporting");
         onOpenSuccess(); 
       }
 
@@ -220,8 +220,7 @@ export default function ReportPost() {
       </form>
       <div className="report-div">
         <h3>Reporting Guidelines</h3>
-            <p>
-If you believe that content on our platform violates our community guidelines, please report it to us. We take reports seriously and will review them carefully. However, we kindly ask that you only report content that you genuinely believe violates our guidelines.Your cooperation helps us maintain a safe and respectful environment for everyone.</p>
+            <p>If you believe that content on our platform violates our community guidelines, please report it to us. We take reports seriously and will review them carefully. However, we kindly ask that you only report content that you genuinely believe violates our guidelines.Your cooperation helps us maintain a safe and respectful environment for everyone.</p>
           <h3>Community Guidelines</h3>
             <p>Create respectful content - no explicit or offensive material, support for illegal activities, or piracy links. Respect user privacy, engage in civil communication, and report violations for a positive community. Violations may lead to content removal or account actions.</p>
           <h3>Action Upon Violation</h3>
