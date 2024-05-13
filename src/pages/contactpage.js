@@ -58,7 +58,7 @@ export default function ContactPage() {
       });
 
       if (response.ok) {
-        setSuccessMessage("Form submitted successfully");
+        setSuccessMessage("Thanks for your contact!");
         onOpenSuccess(); 
       } else {
         setErrorMessage("Please fill out all the fields.");
