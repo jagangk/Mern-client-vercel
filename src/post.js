@@ -1,5 +1,4 @@
 import {format} from 'date-fns'
-import { color } from 'framer-motion';
 import { Link} from 'react-router-dom';
 export default function Post({_id,author,createdAt,title,summary,cover,PostType}){
   const url = `${process.env.REACT_APP_API_URL}/`;
@@ -21,7 +20,7 @@ export default function Post({_id,author,createdAt,title,summary,cover,PostType}
             <time>{format(new Date(createdAt), 'dd/LL/yyyy')}</time>
           </p>
           <p className="info">Catagory • <a style={{color:'#0097B2'}}>{PostType}</a></p>
-          <p className='summary'>{summary}...<i style={{color:'#6dcaae'}}>Read more</i></p>
+          <p className='summary'>{summary}...<Link style={{color:'#6dcaae', fontStyle:'italic'}} to={`/post/${_id}`} >Read more</Link></p>
         </div>
       </div>
     );
