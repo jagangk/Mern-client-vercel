@@ -1,7 +1,6 @@
 import { useContext, useEffect } from "react";
 import { UserContext } from "../userContext"; 
 import Post from "../post";
-import { Link } from "react-router-dom";
 import Footer from "../footer";
 
 export default function IndexPage() {
