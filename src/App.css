@@ -156,6 +156,7 @@ div.post p.info a.author{
 div.post p.summary{
   margin: 6px 0;
   line-height: 1.5rem;
+  color: #d8d8d8;
 }
 
 /*-----------------------------form component css------------------*/
