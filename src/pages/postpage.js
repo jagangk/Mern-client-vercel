@@ -78,9 +78,8 @@ export default function PostPage() {
         <div className='post-page'>
             <h2>{postInfo.title}</h2>
             <div className='post-info'>
-                <div className='author'>{postInfo.author.username}</div>•
-                <time>{format(new Date(postInfo.createdAt), 'dd/LL/yyyy')}</time>•
-                <div className="author" style={{color:'#A7C6F9'}}>{postInfo.PostType}</div>
+                <div className='author'>{postInfo.author.username}</div>
+                <time>{format(new Date(postInfo.createdAt), 'dd/LL/yyyy')}</time>
             </div>
         <div className="action-container">
             <div className='dropdown-container'>

@@ -148,7 +148,7 @@ div.post p.info{
 }
 
 div.post p.info a.author{
-  color: #6dcaae;
+  color: #98bdf7;
   margin-right: 5px;
   text-transform: uppercase;
 }
@@ -338,7 +338,10 @@ form.login h1,form.register h1{
   background: 15px;
 }
 .dropbtn{
-  color: #6dcaae;
+  background: linear-gradient(to right, #6b96c5, #c14999 , #b39847);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight:700;
 }
 
 .dropdown-content a:hover {background-color: #afafaf;
@@ -388,6 +391,8 @@ div.post-page div.post-info{
   width: 150%;
   max-width: max-content;
   margin: 0;
+  font-weight: 700;
+  font-size: small;
 }
 
 div.post-page div.author-word{
@@ -405,7 +410,7 @@ div.post-page time{
 
 div.post-page div.author{
   font-weight: 700;
-  color: #6dcaae;
+  color: #98bdf7;
   display: inline-flex;
   font-size:small;
   text-transform: uppercase;
