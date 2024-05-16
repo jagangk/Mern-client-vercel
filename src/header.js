@@ -76,7 +76,7 @@ export default function Header() {
           <>
             <div className="dropdown">
               <span>
-                <Link className="dropbtn">Hello, {username}</Link>
+                <Link className="dropbtn">Hello {username}</Link>
               </span>
               <div className="dropdown-content">
                 <Link to="/create">Create post</Link>

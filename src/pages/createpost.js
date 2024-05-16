@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Navigate } from 'react-router-dom';
 import ReactQuill from "react-quill";
+import { Alert, AlertIcon, AlertTitle, useDisclosure } from "@chakra-ui/react";
 import 'react-quill/dist/quill.snow.css';
 
 const formats = ['header', 'bold', 'italic', 'underline', 'strike', 'blockquote', 'list', 'bullet', 'indent', 'link', 'image'];
@@ -21,6 +22,35 @@ export default function CreatePost() {
   const [PostType, setPostType] = useState('');
   const [files, setFiles] = useState('');
   const [redirect, setRedirect] = useState(false);
+  const [successMessage, setSuccessMessage] = useState('');
+  const { isOpen: isSuccessOpen, onOpen: onOpenSuccess, onClose: onCloseSuccess } = useDisclosure();
+
+  useEffect(() => {
+    let timer;
+
+    if (isSuccessOpen) {
+      timer = setTimeout(() => {
+        onCloseSuccess();
+        setSuccessMessage('');
+      }, 3000);
+    }
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [isSuccessOpen]);
+  
+
+
+
+
+
+
+
+
+
+
+
+
 
   const updateSummary = (ev) => {
     const inputSummary = ev.target.value;
