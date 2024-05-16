@@ -13,11 +13,11 @@ export default function Post({_id,author,createdAt,title,summary,cover,PostType}
         <Link to={`/post/${_id}`}>
            <h2>{title}</h2>
         </Link>
+          <p className='summary'>{summary}<Link to={`/post/${_id}`} >...more</Link></p>
           <p class="info">
-            <Link class="author">{author.username}</Link>•
-            <time> {format(new Date(createdAt), 'dd/LL/yyyy')} </time>
+            <Link class="author">{author.username}</Link>
+            <time> {format(new Date(createdAt), 'dd-LL-yyyy')} </time>
           </p>
-          <p className='summary'>{summary}<Link style={{color:'#848482'}} to={`/post/${_id}`} >...More</Link></p>
         </div>
       </div>
     );
