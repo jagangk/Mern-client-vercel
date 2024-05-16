@@ -159,13 +159,13 @@ export default function ContactPage() {
         onChange={(ev) => setQuery(ev.target.value)} />
       <button>Submit</button>
   
-    </form><div className="contact-div">
-      <h3>Contact Us</h3>
-      <p>We're always eager to hear from you! Whether you have feedback, questions, business inquiries, or just want to say hello, please don't hesitate to get in touch with us. Your thoughts and concerns are important to us, and we're committed to providing you with the best possible support.</p>
+    </form>
+    <div className="contact-div">
       <h3>Business Inquiries</h3>
       <p>Interested in partnering with us or have a business proposal? Please reach us out at <a target="_blank" href="mailto:blogsteratech@gmail.com">blogsteratech@gmail.com</a>.</p>
+      </div>
       <Footer />
-      </div></>
+      </>
   );
 }
 

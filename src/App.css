@@ -201,10 +201,16 @@ form.contact h1{
   text-align: center;
 }
 
-.contact-div{
-  margin-top: 50px;
+.contact-div {
+  margin: 0;
+  padding-top: 25px;
   text-align: justify;
   width: 100%;
+}
+
+.contact-div h3, .contact-div p {
+  margin: 0;
+  padding: 0;
 }
 
 .contact-div a{
@@ -443,7 +449,7 @@ footer{
   box-shadow: 0 0 0 2px rgb(255, 255, 255);
   padding-top: 5px;
   padding-bottom: 5px;
-  margin-top: 50px;
+  margin-top: 30px;
 }
 
 .footer-div{

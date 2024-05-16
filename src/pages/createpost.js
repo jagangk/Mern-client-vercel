@@ -142,8 +142,10 @@ export default function CreatePost() {
         formats={formats}
       />
       <button style={{ marginTop: '5px' }}>Post</button>
+      <div className="contact-div">
         <h3>Community Guidelines:</h3>
         <p>Create respectful content - no explicit or offensive material, support for illegal activities, or piracy links. Respect user privacy, engage in civil communication, and report violations for a positive community. Violations may lead to content removal or account actions.</p>
-    </form>
+    </div>
+        </form>
   );
 }
