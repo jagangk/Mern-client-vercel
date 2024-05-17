@@ -59,7 +59,7 @@ export default function RegisterPage() {
     return (
         <>
         <Helmet>
-                <title>Login</title>
+                <title>Create an account</title>
                 <meta name="description" content="Sign up to blogstera today and unlock exclusive benefits! Sign up now to access premium content, receive updates, and connect with like-minded individuals. Start your journey with us and discover new opportunities to learn, grow, and thrive." />
         </Helmet>
 
@@ -106,7 +106,7 @@ export default function RegisterPage() {
         </Alert>
       )}
 
-       <h1>Hola!</h1>
+       <h1>Create an account</h1>
         
         <input type="text" 
         placeholder="Username"

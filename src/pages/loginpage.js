@@ -88,7 +88,7 @@ export default function LoginPage() {
         </Helmet>
 
             <form className="login" onSubmit={login}>
-                <h1>Welcome back!</h1>
+                <h1>Welcome Back!</h1>
                 <input
                     type="text"
                     placeholder="Enter username"

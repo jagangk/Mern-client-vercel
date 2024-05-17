@@ -393,7 +393,12 @@ p{
 
 .report-div{
   text-align: justify;
-  margin-top: 50px; 
+  margin-top: 25px; 
+}
+
+.report-div h3, .report-div p {
+  margin: 0;
+  padding-bottom: 8px;
 }
 
 li{

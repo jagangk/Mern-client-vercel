@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Alert, AlertIcon, AlertTitle, useDisclosure } from "@chakra-ui/react";
 import Footer from "../footer";
+import { useLocation } from "react-router-dom";
 
 export default function ReportPost() {
   const [name, setName] = useState('');
@@ -42,14 +43,10 @@ export default function ReportPost() {
       clearTimeout(timer);
     };
   },);
- 
-  const [postInfo] = useState(() => {
-    const storedPostInfo = localStorage.getItem('postInfo');
-    return storedPostInfo ? JSON.parse(storedPostInfo) : null;
-  });
 
-  const author = postInfo?.author?.username || '';
-  const postName = postInfo?.title || '';
+    const location = useLocation();
+    const { author, postName } = location.state || {};
+ 
   const handleReportTypeChange = (value) => {
     if (value && value !== "") {
       document.getElementById('reportType').classList.remove('select-error');
@@ -158,18 +155,18 @@ export default function ReportPost() {
 
         <h1>Help Center</h1>
         <input
-          style={{ color: '#6DCAAE', cursor: "not-allowed" }}
+          style={{ color: '#98bdf7', cursor: "not-allowed" }}
           className="disabled-input"
           type="text"
-          value={postInfo.author.username}
+          value={author}
           disabled
         />
 
         <input
-          style={{ color: '#6DCAAE', cursor: "not-allowed" }}
+          style={{ color: '#98bdf7', cursor: "not-allowed" }}
           className="disabled-input"
           type="text"
-          value={postInfo.title}
+          value={postName}
           disabled
         />
 
@@ -196,18 +193,17 @@ export default function ReportPost() {
         }} required>
 
           <optgroup>
-          <option disabled value="">Catagory</option>
-            <option>Business</option>
-            <option>News</option>
-            <option>Science</option>
-            <option>Technology</option>
-            <option>Entertainment</option>
-            <option>Sports</option>
-            <option>Health</option>
-            <option>Lifestyle</option>
-            <option>Travel</option>
-            <option>Food</option>
-            <option>Opinions</option>
+            <option disabled value="">Why are you reporting this?</option>
+            <option>It's spam</option>
+            <option>Nudity or sexual content</option>
+            <option>Hate speech</option>
+            <option>Violence content</option>
+            <option>Dangerous content</option>
+            <option>Sale of illegal goods</option>
+            <option>Intellectual property</option>
+            <option>Drugs</option>
+            <option>False information</option>
+            <option>Scam or fraud</option>
           </optgroup>
         </select>
 

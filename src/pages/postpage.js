@@ -62,10 +62,9 @@ export default function PostPage() {
                 }
             }
         } else if (selectedValue === 'report') {
-            navigate('/report');
+            navigate('/report', { state: { author: postInfo.author.username, postName: postInfo.title } });
         }
     };
-
 
     return (
         <>

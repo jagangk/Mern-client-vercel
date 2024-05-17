@@ -1,6 +1,6 @@
 import {format} from 'date-fns'
 import { Link} from 'react-router-dom';
-export default function Post({_id,author,createdAt,title,summary,cover,PostType}){
+export default function Post({_id,author,createdAt,title,summary,cover}){
     return (
         <div key={_id} class="post">
          <div class="image">
