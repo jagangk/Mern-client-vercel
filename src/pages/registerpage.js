@@ -131,7 +131,7 @@ export default function RegisterPage() {
         </Alert>
       )}
 
-       <h1>Create an account</h1>
+       <h1>Create account</h1>
         
         <input type="text" 
         placeholder="Username"
