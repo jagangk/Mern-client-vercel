@@ -1,6 +1,6 @@
 import { useState, useContext, useEffect } from "react";
 import { useNavigate, Navigate, Link } from "react-router-dom"; 
-import { Alert, AlertIcon, AlertDescription, useDisclosure, Checkbox} from "@chakra-ui/react";
+import { Alert, AlertIcon, AlertDescription, useDisclosure, Checkbox } from "@chakra-ui/react";
 import { UserContext } from "../userContext"; 
 import { Helmet } from 'react-helmet';
 
@@ -11,6 +11,7 @@ export default function LoginPage() {
     const [password, setPassword] = useState('');
     const [redirect, setRedirect] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
+    const [rememberMe, setRememberMe] = useState(false);
     const { setUserInfo } = useContext(UserContext);
 
     const { isOpen: isErrorOpen, onOpen: onOpenError, onClose: onCloseError } = useDisclosure();
@@ -42,19 +43,23 @@ export default function LoginPage() {
 
         if (!response.ok) {
           const errorData = await response.json();
-          if (errorData.error == "401") {
+          if (errorData.error === "401") {
             setErrorMessage("Account not found");
-          } else if (errorData.error == "402") {
+          } else if (errorData.error === "402") {
             setErrorMessage ("Wrong password");
           } else {
             setErrorMessage("Server error, sorry it's our fault");
           }
           onOpenError();
+        } else {
+          const userInfo = await response.json();
+          if (rememberMe) {
+            localStorage.setItem('token', userInfo.token);
           } else {
-            const userInfo = await response.json();
             document.cookie = `token=${userInfo.token}; path=/`;
-            setUserInfo(userInfo);
-            setRedirect(true);
+          }
+          setUserInfo(userInfo);
+          setRedirect(true);
         }
     }
 
@@ -89,7 +94,6 @@ export default function LoginPage() {
 
         <Helmet>
                 <title>Login</title>
-                <meta name="description" content="Welcome back to Blogstera! your ultimate destination for all things blogging! From tips and tricks to guides and inspiration, we've got you covered. Join our community of passionate bloggers and take your blog to the next level."/>
         </Helmet>
 
             <form className="login" onSubmit={login}>
@@ -113,12 +117,20 @@ export default function LoginPage() {
                 <Link to='/ResetPassword'>Forgot password?</Link>
 
                 <button type="submit">Login</button>
-                <Checkbox>Click to Remember</Checkbox>
+                <Checkbox 
+                  style={{paddingTop:'8px'}} 
+                  isInvalid
+                  isChecked={rememberMe}
+                  onChange={(e) => setRememberMe(e.target.checked)}
+                >
+                  Remember Me
+                </Checkbox>
                 <h4>New to Blogstera?</h4>
-                <button onClick={navigateToRegister}>Create account</button>
+                <button type="button" onClick={navigateToRegister}>Create account</button>
             </form>
             <div className="contact-div">
              <p>You'll be able to access our platform's features after successful login. If you encounter any issues during the login process, please reach us out <Link to='/contact'>click here to contact.</Link></p>
-            </div></>
+            </div>
+        </>
     );
 }
