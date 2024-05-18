@@ -27,7 +27,6 @@ export default function ChangePassword() {
         } else {
             const errorMessage = await response.text();
             console.log(errorMessage); 
-
         }
     };
 
@@ -100,12 +99,7 @@ export default function ChangePassword() {
                 <button type="submit">Submit</button>
             </form>
             <div className='report-div'>
-                <h3>Creating a Strong Password:</h3>
-                <p>Use a combination of uppercase and lowercase letters, numbers, and special characters (e.g., @, #, $, %). 
-                    Aim for a password that is at least 8 characters long. All passwords are encrypted in our system to ensure security.</p>
-                
-                <h3>Contact Support:</h3>
-                <p>If you encounter any issues during the login process, please reach us out <Link to='/contact'>click here to contact.</Link></p>
+                <p>If you encounter any issues during the process, please reach us out <Link to='/contact'>click here to contact.</Link></p>
             </div>
         </>
     );

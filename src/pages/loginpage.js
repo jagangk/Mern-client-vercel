@@ -1,6 +1,6 @@
 import { useState, useContext, useEffect } from "react";
 import { useNavigate, Navigate, Link } from "react-router-dom"; 
-import { Alert, AlertIcon, AlertDescription, useDisclosure} from "@chakra-ui/react";
+import { Alert, AlertIcon, AlertDescription, useDisclosure, Checkbox} from "@chakra-ui/react";
 import { UserContext } from "../userContext"; 
 import { Helmet } from 'react-helmet';
 
@@ -90,9 +90,10 @@ export default function LoginPage() {
                 <h1>Welcome Back!</h1>
                 <input
                     type="text"
-                    placeholder="Enter username"
+                    placeholder="Email or Username"
                     value={username}
                     required
+                    autoComplete="username"
                     onChange={ev => setUsername(ev.target.value)}
                 />
 
@@ -106,6 +107,7 @@ export default function LoginPage() {
                 <Link to='/ResetPassword'>Forgot password?</Link>
 
                 <button type="submit">Login</button>
+                <Checkbox>Click to Remember</Checkbox>
                 <h4>New to Blogstera?</h4>
                 <button onClick={navigateToRegister}>Create account</button>
             </form>

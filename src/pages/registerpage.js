@@ -1,14 +1,16 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Alert, AlertIcon, AlertTitle, useDisclosure } from "@chakra-ui/react";
-import { useNavigate, Link } from 'react-router-dom';
+import { Navigate, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
-
+import { UserContext } from "../userContext"; 
 
 export default function RegisterPage() {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [interestType, setInterestType] = useState('');
     const [password, setPassword] = useState('');
+    const { setUserInfo } = useContext(UserContext);
+    const [redirect, setRedirect] = useState(false);
     const [successMessage, setSuccessMessage] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
 
@@ -36,7 +38,30 @@ export default function RegisterPage() {
 
     }, [isSuccessOpen, isErrorOpen]);
 
-    const navigate = useNavigate();
+    const handleLogin = async (username, password) => {
+      const url = `${process.env.REACT_APP_API_URL}/login`;
+      const response = await fetch(url, {
+          method: 'POST',
+          body: JSON.stringify({ username, password }),
+          headers: { 'Content-Type': 'application/json' },
+          credentials: 'include',
+      });
+
+      if (response.ok) {
+          const userInfo = await response.json();
+          document.cookie = `token=${userInfo.token}; path=/`;
+          setUserInfo(userInfo);
+          setRedirect(true);
+      } else {
+          const errorMessage = await response.text();
+          console.log(errorMessage); 
+      }
+  };
+
+  if (redirect) {
+    return <Navigate to={'/'} />;
+}
+
     async function register(ev) {
 
         ev.preventDefault();
@@ -52,7 +77,7 @@ export default function RegisterPage() {
             } else {
                 setSuccessMessage('Account created!');
                 onOpenSuccess();
-                navigate('/login');
+                await handleLogin( username, password );
             }       
     }
 
