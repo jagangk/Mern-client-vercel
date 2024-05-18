@@ -100,7 +100,7 @@ export default function LoginPage() {
                     value={username}
                     required
                     autoComplete="username"
-                    onChange={ev => setUsername(ev.target.value.replace(/\s/g, ''))}
+                    onChange={ev => setUsername(ev.target.value)}
                 />
 
                 <input
