@@ -71,14 +71,25 @@ export default function RegisterPage() {
                 body: JSON.stringify({username,password, email, interestType}),
                 headers: {'Content-Type':'application/json'},
             });
-            if (response.ok === false ) {
-                setErrorMessage('Minimum Username and password length : 4');
-                onOpenError();
-            } else {
-                setSuccessMessage('Account created!');
-                onOpenSuccess();
-                await handleLogin( username, password );
-            }       
+            
+            if (!response.ok) {
+              const errorData = await response.json();
+              if (errorData.error === "401") {
+                  setErrorMessage("Password must be at least 4 characters long");
+              } else if (errorData.error === "402") {
+                  setErrorMessage("Username already exists");
+              }
+              else if (errorData.error === "403") {
+                setErrorMessage("Email already exists")
+              } else {
+                  setErrorMessage("Failed to create account");
+              }
+              onOpenError();
+          } else {
+              setSuccessMessage('Account created!');
+              onOpenSuccess();
+              await handleLogin(username, password);
+          }
     }
 
     return (
@@ -137,7 +148,7 @@ export default function RegisterPage() {
         placeholder="Username"
         value={username}
         required
-        onChange={ev => setUsername(ev.target.value)}
+        onChange={ev => setUsername(ev.target.value.replace(/\s/g, ''))}
         />
 
         <input type="email"

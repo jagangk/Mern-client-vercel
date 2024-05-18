@@ -40,15 +40,21 @@ export default function LoginPage() {
             credentials: 'include',
         });
 
-        if (response.ok) {
+        if (!response.ok) {
+          const errorData = await response.json();
+          if (errorData.error == "401") {
+            setErrorMessage("Account not found");
+          } else if (errorData.error == "402") {
+            setErrorMessage ("Wrong password");
+          } else {
+            setErrorMessage("Server error, sorry it's our fault");
+          }
+          onOpenError();
+          } else {
             const userInfo = await response.json();
             document.cookie = `token=${userInfo.token}; path=/`;
             setUserInfo(userInfo);
             setRedirect(true);
-        } else {
-            const errorMessage = await response.text();
-            setErrorMessage(errorMessage); 
-            onOpenError();
         }
     }
 
@@ -76,7 +82,7 @@ export default function LoginPage() {
           >
               <AlertIcon boxSize='30px' mr={0} />
               <AlertDescription maxWidth='sm'>
-                Incorrect password or username.
+                {errorMessage}
               </AlertDescription>
             </Alert>
             )}
@@ -94,7 +100,7 @@ export default function LoginPage() {
                     value={username}
                     required
                     autoComplete="username"
-                    onChange={ev => setUsername(ev.target.value)}
+                    onChange={ev => setUsername(ev.target.value.replace(/\s/g, ''))}
                 />
 
                 <input
