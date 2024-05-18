@@ -203,14 +203,13 @@ form.contact h1{
 
 .contact-div {
   margin: 0;
-  padding-top: 25px;
   text-align: justify;
   width: 100%;
+  padding-top: 25px;
 }
 
 .contact-div h3, .contact-div p {
   margin: 0;
-  padding: 0;
 }
 
 .contact-div a{
@@ -399,6 +398,11 @@ p{
 .report-div h3, .report-div p {
   margin: 0;
   padding-bottom: 8px;
+}
+
+.report-div a {
+  color: #98bdf7;
+  text-decoration: none;
 }
 
 li{

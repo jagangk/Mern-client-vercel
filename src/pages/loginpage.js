@@ -7,7 +7,6 @@ import { Helmet } from 'react-helmet';
 export default function LoginPage() {
     const navigate = useNavigate();
     const navigateToRegister = () => navigate('/register');
-
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [redirect, setRedirect] = useState(false);
@@ -104,7 +103,7 @@ export default function LoginPage() {
                     value={password}
                     onChange={ev => setPassword(ev.target.value)}
                 />
-                <Link to=''>Forgot password?</Link>
+                <Link to='/ResetPassword'>Forgot password?</Link>
 
                 <button type="submit">Login</button>
                 <h4>New to Blogstera?</h4>

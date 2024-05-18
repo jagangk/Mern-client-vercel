@@ -10,6 +10,7 @@ import PostPage from './pages/postpage';
 import ContactPage from './pages/contactpage';
 import EditPost from './pages/editpost';
 import ReportPost from './pages/reportpage';
+import ChangePassword from './pages/reset-password';
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
          <Route index element = {<IndexPage />} />
          <Route path = "/login" element = {<LoginPage />} />
          <Route path = "/register" element = {<RegisterPage />} />
+         <Route path = "/ResetPassword" element = {<ChangePassword />} />
          <Route path='/create' element = {<CreatePost />} />
          <Route path = "/post/:id" element = {<PostPage />}/>
          <Route path = "/contact" element = {<ContactPage />} />
