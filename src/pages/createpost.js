@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Navigate } from 'react-router-dom';
+import { Helmet } from "react-helmet";
 import ReactQuill from "react-quill";
 import { Alert, AlertIcon, AlertTitle, useDisclosure } from "@chakra-ui/react";
 import 'react-quill/dist/quill.snow.css';
@@ -23,21 +24,31 @@ export default function CreatePost() {
   const [files, setFiles] = useState('');
   const [redirect, setRedirect] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
   const { isOpen: isSuccessOpen, onOpen: onOpenSuccess, onClose: onCloseSuccess } = useDisclosure();
+  const { isOpen: isErrorOpen, onOpen: onOpenError, onClose: onCloseError } = useDisclosure();
 
   useEffect(() => {
     let timer;
 
     if (isSuccessOpen) {
-      timer = setTimeout(() => {
-        onCloseSuccess();
-        setSuccessMessage('');
-      }, 3000);
+        timer = setTimeout(() => {
+            onCloseSuccess();
+            setSuccessMessage('');
+        },3000);
     }
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [isSuccessOpen]);
+
+    if (isErrorOpen) {
+        timer = setTimeout(() => {
+          onCloseError();
+          setErrorMessage('');
+        }, 3000);
+      }
+      return () => {
+        clearTimeout(timer);
+      };
+
+}, [isSuccessOpen, isErrorOpen]);
   
   const updateSummary = (ev) => {
     const inputSummary = ev.target.value;
@@ -71,39 +82,87 @@ export default function CreatePost() {
     });
     if (response.ok) {
       setRedirect(true);
+      setSuccessMessage("Post created");
+      onOpenSuccess();
     }
+
     else{
-      alert('Failed to post');
+      setErrorMessage("Failed to create post");
+      onOpenError();
     }
   };
 
   if (redirect) {
-    alert('Post created🤩');
     <Navigate to='/' replace />;  
     window.location.href = '/';  
     window.scrollTo(0, 0);
   }
 
   return (
+    <>
+    <Helmet>
+      <title>Create Post</title>
+    </Helmet>
     <form onSubmit={createNewPost}>
-      <input
-        type="title"
-        placeholder={'Title'}
-        required
-        value={title}
-        onChange={(ev) => setTitle(ev.target.value)}
-      />
 
-      <input
-        type="summary"
-        placeholder={'Brief'}
-        required 
-        value={summary}
-        onChange={updateSummary}
-        onKeyDown={handleKeyDown}
-      />
+    {isSuccessOpen && (
+        <Alert
+          status='success'
+          variant='subtle'
+          flexDirection='column'
+          alignItems='center'
+          justifyContent='center'
+          textAlign='center'
+          height='80px'
+          colorScheme="red"
+          bg='#6dcaae'
+          borderRadius='10px'
+          fontSize='small'
+        >
+          <AlertIcon boxSize='30px' mr={0} />
+          <AlertTitle mt={4} mb={1} fontSize='lg'>
+            {successMessage}
+          </AlertTitle>
+        </Alert>
+      )}
 
-    <select id="PostType" value={PostType} onChange={(ev) => {setPostType(ev.target.value)}} required>
+      {isErrorOpen && (
+        <Alert
+          status='error'
+          variant='subtle'
+          flexDirection='column'
+          alignItems='center'
+          justifyContent='center'
+          textAlign='center'
+          height='80px'
+          colorScheme="red"
+          bg='#d83030'
+          borderRadius='10px'
+          fontSize='small'
+        >
+          <AlertIcon boxSize='30px' mr={0} />
+          <AlertTitle mt={4} mb={1} fontSize='lg'>
+            {errorMessage}
+          </AlertTitle>
+        </Alert>
+      )}
+      
+        <input
+          type="title"
+          placeholder={'Title'}
+          required
+          value={title}
+          onChange={(ev) => setTitle(ev.target.value)} />
+
+        <input
+          type="summary"
+          placeholder={'Brief'}
+          required
+          value={summary}
+          onChange={updateSummary}
+          onKeyDown={handleKeyDown} />
+
+        <select id="PostType" value={PostType} onChange={(ev) => { setPostType(ev.target.value); } } required>
           <optgroup>
             <option disabled value="">Catagory</option>
             <option>Business</option>
@@ -118,20 +177,19 @@ export default function CreatePost() {
             <option>Food</option>
             <option>Opinions</option>
           </optgroup>
-      </select>
+        </select>
 
-      <input required type="file" onChange={(ev) => setFiles(ev.target.files)} />
+        <input required type="file" onChange={(ev) => setFiles(ev.target.files)} />
 
-      <ReactQuill
-        value={content}
-        onChange={(newValue) => setContent(newValue)}
-        modules={modules}
-        formats={formats}
-      />
-      <button style={{ marginTop: '5px' }}>Post</button>
-      <div className="contact-div">
-        <p>Create respectful content - no explicit or offensive material, support for illegal activities, or piracy links. Respect user privacy, engage in civil communication, and report violations for a positive community. Violations may lead to content removal or account actions.</p>
-    </div>
-        </form>
+        <ReactQuill
+          value={content}
+          onChange={(newValue) => setContent(newValue)}
+          modules={modules}
+          formats={formats} />
+        <button style={{ marginTop: '5px' }}>Post</button>
+        <div className="contact-div">
+          <p>Create respectful content - no explicit or offensive material, support for illegal activities, or piracy links. Respect user privacy, engage in civil communication, and report violations for a positive community. Violations may lead to content removal or account actions.</p>
+        </div>
+      </form></>
   );
 }
