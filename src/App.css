@@ -19,6 +19,11 @@
   background: #6dcaae; 
 }
 
+div.home-index h1 , div.loader-div {
+  margin: 0;
+  padding: 0;
+}
+
 body{
   padding-top: 15px;
   padding-bottom: 15px;
@@ -248,7 +253,6 @@ input:-webkit-autofill:focus {
   background-color: rgba(129, 129, 129, 0.723) !important;
 }
 
-
 textarea{
   display: block;
   margin-bottom: 5px;
@@ -411,6 +415,7 @@ li{
   color: #c7c7c7;
   line-height: 1.6rem;
 }
+
 div.post-page div.post-info{
   display: flex;
   gap: 10px;
