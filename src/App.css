@@ -22,6 +22,7 @@
 div.home-index h1 , div.loader-div {
   margin: 0;
   padding: 0;
+  padding-bottom: 5px;
 }
 
 body{
