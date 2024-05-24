@@ -2,8 +2,6 @@ import { useContext, useEffect, useState, useRef, useCallback } from "react";
 import { UserContext } from "../userContext";
 import Post from "../post";
 import Footer from "../footer";
-import { XlviLoader } from "react-awesome-loaders";
-
 
 export default function IndexPage() {
     const { posts, setPosts } = useContext(UserContext);
@@ -64,9 +62,7 @@ export default function IndexPage() {
                     }
                 })
             ) : (
-                <div className="loader-div" style={{ margin: 0, padding: 0 }}>
-  <XlviLoader boxColors={["#EF4444", "#F59E0B", "#6366F1"]} desktopSize={"50px"} mobileSize={"50px"} /></div>
-
+                <p style={{ color: '#6dacaae' }}>Loading posts...</p>
             )}
             {loading && page > 1 && <p style={{ color: '#6dacaae' }}>Loading more posts...</p>}
             <Footer />
