@@ -67,7 +67,7 @@ export default function IndexPage() {
     ) : (
         <Box sx={{ display: 'flex', justifyContent: 'center' }}><CircularProgress /></Box>
     )}
-    <Box sx={{ display: 'flex', justifyContent: 'center' }}><CircularProgress /></Box>
+    {loading && page > 1 && <Box sx={{ display: 'flex', justifyContent: 'center' }}><CircularProgress /></Box>}
     <Footer />
     </>
     );

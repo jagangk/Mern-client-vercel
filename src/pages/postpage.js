@@ -4,6 +4,9 @@ import { format } from 'date-fns';
 import { UserContext } from "../userContext";
 import Footer from "../footer";
 import { Helmet } from 'react-helmet';
+import * as React from 'react';
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
 
 export default function PostPage() {
     const [postInfo, setPostInfo] = useState(null);
@@ -32,7 +35,7 @@ export default function PostPage() {
         fetchPost();
     }, [id]);
 
-    if (loading)  return <p>Loading posts...</p>; 
+    if (loading)  return <Box sx={{ display: 'flex', justifyContent: 'center' }}><CircularProgress /></Box> 
     if (!postInfo) return null;
     const url_photo = `${postInfo.cover}`;
 
