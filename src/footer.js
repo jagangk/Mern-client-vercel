@@ -4,7 +4,7 @@ export default function Footer() {
         <><footer>
             <div className='footer-div'>
                 <h2>Sign up to our newsletter to receive updates!</h2>
-                <p>Don't miss out on the latest news, offers, and exciting developments. Subscribe now for a front-row seat to all things new and noteworthy!</p>
+                <p>Don't miss out on the latest news and exciting developments. Subscribe now to receive newsletter!</p>
             </div>
             <div class='newsletter'>
                 <input type="email" class='f-input' placeholder="Email" />
@@ -16,7 +16,7 @@ export default function Footer() {
                     <li><Link to='/register'>Register</Link></li>
                     <li><Link to='/contact'>Contact</Link></li>
                     <div className='home-index'>
-                    <li><Link target='_blank' to='https://www.api.blogstera.site/rss'>Rss feed</Link></li>
+                    <li><Link target='_blank' to='https://www.api.blogstera.site/rss'>Rss</Link></li>
                     <span class="material-symbols-outlined">rss_feed</span>
                     </div>
                 </ul>

@@ -2,6 +2,9 @@ import { useContext, useEffect, useState, useRef, useCallback } from "react";
 import { UserContext } from "../userContext";
 import Post from "../post";
 import Footer from "../footer";
+import * as React from 'react';
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
 
 export default function IndexPage() {
     const { posts, setPosts } = useContext(UserContext);
@@ -50,22 +53,22 @@ export default function IndexPage() {
 
     return (
         <>
-            <div className='home-index'>
-                <h1>Feeds</h1>
-            </div>
-            {posts.length > 0 ? (
-                posts.map((post, index) => {
-                    if (posts.length === index + 1) {
-                        return <Post ref={lastPostElementRef} key={post._id} {...post} />;
-                    } else {
-                        return <Post key={post._id} {...post} />;
-                    }
-                })
-            ) : (
-                <p style={{ color: '#6dacaae' }}>Loading posts...</p>
-            )}
-            {loading && page > 1 && <p style={{ color: '#6dacaae' }}>Loading more posts...</p>}
-            <Footer />
-        </>
+    {posts.length > 0 && (
+        <div className='home-index'><h1>Feeds</h1></div>
+    )}
+    {posts.length > 0 ? (
+        posts.map((post, index) => {
+            if (posts.length === index + 1) {
+                return <Post ref={lastPostElementRef} key={post._id} {...post} />;
+            } else {
+                return <Post key={post._id} {...post} />;
+            }
+        })
+    ) : (
+        <Box sx={{ display: 'flex', justifyContent: 'center' }}><CircularProgress /></Box>
+    )}
+    {loading && page > 1 && <p style={{ color: '#6dacaae' }}>Loading more posts...</p>}
+    <Footer />
+    </>
     );
 }
