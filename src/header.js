@@ -75,11 +75,11 @@ export default function Header() {
         {username ? (
           <>
             <div className="dropdown">
-              <span>
+              <div className='home-index'>
                 <Link className="dropbtn">Hello {username}</Link>
-              </span>
+              </div>
               <div className="dropdown-content">
-                <Link to="/create">Create post</Link>
+                <Link to="/create">Create Post</Link>
                 <Link to="/">Feeds</Link>
                 <Link to="/contact">Contact</Link>
                 <Link onClick={logout}>Logout</Link>

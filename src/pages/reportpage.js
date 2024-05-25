@@ -153,7 +153,7 @@ export default function ReportPost() {
         </Alert>
       )}
 
-        <h1>Help Center</h1>
+        <h1>Report Content</h1>
         <input
           style={{ color: '#98bdf7', cursor: "not-allowed" }}
           className="disabled-input"

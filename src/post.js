@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react';
 import { format } from 'date-fns';
 import { Link } from 'react-router-dom';
 
-const Post = forwardRef(({ _id, author, createdAt, title, summary, cover }, ref) => {
+const Post = forwardRef(({ _id, author, createdAt, title, summary, cover}, ref) => {
     return (
         <div ref={ref} key={_id} className="post">
             <div className="image">
