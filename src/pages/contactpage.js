@@ -144,11 +144,13 @@ export default function ContactPage() {
       <input
         type="text"
         placeholder="Name"
+        required
         value={name}
         onChange={(ev) => setName(ev.target.value)} />
 
       <input
         type="email"
+        required
         placeholder="Email"
         value={email}
         onChange={(ev) => setEmail(ev.target.value)} />

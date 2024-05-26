@@ -79,6 +79,7 @@ export default function Header() {
                 <Link className="dropbtn">Hello {username}</Link>
               </div>
               <div className="dropdown-content">
+                <Link to={`/user/${username}`}>Account</Link>
                 <Link to="/create">Create Post</Link>
                 <Link to="/">Feeds</Link>
                 <Link to="/contact">Contact</Link>

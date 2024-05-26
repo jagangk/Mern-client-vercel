@@ -11,6 +11,7 @@ import ContactPage from './pages/contactpage';
 import EditPost from './pages/editpost';
 import ReportPost from './pages/reportpage';
 import ChangePassword from './pages/reset-password';
+import UserProfile from './pages/UserProfile';
 
 function App() {
 
@@ -27,6 +28,7 @@ function App() {
          <Route path = "/contact" element = {<ContactPage />} />
          <Route path = "/edit/:id" element = {<EditPost />} />
          <Route path = "/report" element = {<ReportPost />} />
+         <Route path= "/user/:username" element = {<UserProfile />} />
         </Route>
       </Routes>
     </UserContextProvider>

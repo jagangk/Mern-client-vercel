@@ -648,3 +648,65 @@ footer{
   background-color: rgba(204, 204, 204, 0.723);
   border-radius: 1px;
 }
+
+
+/*---------------------------user profile -----------------------------------------------------------------------*/
+div.user-profile-edit {
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  margin: 8px;
+  justify-content: space-between;
+  background-color: #535353;
+}
+
+div.user-data-update {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+div.user-data-update h2 {
+  margin: 0px;
+  text-align: center;
+}
+
+div.user-profile-edit p, span {
+  margin: 10px;
+  font-size: small;
+}
+
+/*------------------------------post data section---------------*/
+div.post-data-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+div.post-container {
+  display: flex;
+  align-items:flex-start;
+  margin: 10px;
+  text-align: left;
+  gap: 5px;
+  background-color: #535353;
+  border-radius: 10px;
+  max-width: 100%;
+}
+
+.text-container {
+  display: flex;
+  justify-content: space-between;
+  flex: 1;
+  align-items:flex-start;
+}
+
+.post-title {
+  margin: 1px;
+  font-size: small;
+}
+
+div.post-container img{
+  width: 100px;
+  height: 60px;
+  margin: 5px;
+}
