@@ -15,10 +15,7 @@ export default function Footer() {
                     <li><Link to='/login'>Login</Link></li>
                     <li><Link to='/register'>Register</Link></li>
                     <li><Link to='/contact'>Contact</Link></li>
-                    <div className='home-index'>
-                    <li><Link target='_blank' to='https://www.api.blogstera.site/rss'>Rss</Link></li>
-                    <span class="material-symbols-outlined">rss_feed</span>
-                    </div>
+                    <li><Link target='_blank' to='https://www.api.blogstera.site/rss'>Rss feed</Link></li>
                 </ul>
             </div>
 

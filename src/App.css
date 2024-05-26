@@ -28,7 +28,7 @@ div.home-index {
 
 .material-symbols-outlined {
   font-size: large;
-  color: orange;
+  color: #007bff;
   font-variation-settings:
   'FILL' 0,
   'wght' 400,
@@ -657,7 +657,7 @@ div.user-profile-edit {
   border-radius: 10px;
   margin: 8px;
   justify-content: space-between;
-  background-color: #535353;
+  background: #2F2F2F;
 }
 
 div.user-data-update {
@@ -688,7 +688,7 @@ div.post-container {
   margin: 10px;
   text-align: left;
   gap: 5px;
-  background-color: #535353;
+  background: #2F2F2F;
   border-radius: 10px;
   max-width: 100%;
 }
@@ -702,8 +702,9 @@ div.post-container {
 
 .post-title {
   margin: 1px;
-  font-size: small;
+  font-size:small;
 }
+
 
 div.post-container img{
   width: 100px;

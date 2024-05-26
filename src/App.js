@@ -12,6 +12,7 @@ import EditPost from './pages/editpost';
 import ReportPost from './pages/reportpage';
 import ChangePassword from './pages/reset-password';
 import UserProfile from './pages/UserProfile';
+import UpdateProfile from './pages/updateProfile';
 
 function App() {
 
@@ -29,6 +30,7 @@ function App() {
          <Route path = "/edit/:id" element = {<EditPost />} />
          <Route path = "/report" element = {<ReportPost />} />
          <Route path= "/user/:username" element = {<UserProfile />} />
+         <Route path= "/updateProfile" element = {<UpdateProfile />} />
         </Route>
       </Routes>
     </UserContextProvider>

@@ -122,8 +122,7 @@ export default function LoginPage() {
                   isInvalid
                   isChecked={rememberMe}
                   onChange={(e) => setRememberMe(e.target.checked)}
-                >
-                  Remember Me
+                >Remember Me
                 </Checkbox>
                 <h4>New to Blogstera?</h4>
                 <button type="button" onClick={navigateToRegister}>Create account</button>

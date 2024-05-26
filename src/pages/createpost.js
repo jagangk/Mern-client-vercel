@@ -92,11 +92,17 @@ export default function CreatePost() {
     }
   };
 
-  if (redirect) {
-    <Navigate to='/' replace />;  
-    window.location.href = '/';  
-    window.scrollTo(0, 0);
-  }
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      if (redirect) {
+        <Navigate to='/' replace />;  
+        window.location.href = '/';  
+        window.scrollTo(0, 0);
+      }
+    }, 3000); 
+  
+    return () => clearTimeout(timeoutId);
+  }, [redirect]); 
 
   return (
     <>

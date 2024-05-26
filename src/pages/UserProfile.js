@@ -1,16 +1,19 @@
 import { Link, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { UserContext } from '../userContext';
-import { useContext } from 'react';
+import * as React from 'react';
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
+
 
 function UserProfile() {
   const { username } = useParams();
   const [userData, setUserData] = useState(null);
   const [userPosts, setUserPosts] = useState([]);
-  const { userInfo } = useContext(UserContext);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true);
       try {
         const response = await fetch(`${process.env.REACT_APP_API_URL}/users/${username}`);
         const fetchedUser = await response.json();
@@ -21,12 +24,33 @@ function UserProfile() {
         setUserPosts(fetchedPosts);
       } catch (error) {
         console.error('Error fetching user data:', error);
+      } finally{
+        setLoading(false);
       }
     };
 
     fetchData();
   }, [username]);
 
+
+  const handleDelete = async (postId) => {
+    const confirmDelete = window.confirm('Are you sure you want to delete this post?');
+    if (confirmDelete) {
+      try {
+        await fetch(`${process.env.REACT_APP_API_URL}/post/${postId}`, {
+          method: 'DELETE',
+        });
+        setUserPosts((prevPosts) => prevPosts.filter((post) => post._id !== postId));
+      } catch (error) {
+        console.error('Error deleting post:', error);
+      }
+    }
+  };
+  
+
+  if (loading) {
+    return  <Box sx={{ display: 'flex', justifyContent: 'center' }}><CircularProgress /></Box>
+  }
 
   return (
     <div className="user-profile">
@@ -35,7 +59,7 @@ function UserProfile() {
         <div className='user-data'>
             <div className='user-data-update'>
                <h2>{userData?.username}</h2>
-               <Link to = "/ResetPassword"><span class="material-symbols-outlined">edit</span></Link>
+               <Link to = "/UpdateProfile"><span class="material-symbols-outlined">edit</span></Link>
             </div>
              <div className='user-profile-edit'>
                  <p>Email: {userData.email}</p>
@@ -52,13 +76,15 @@ function UserProfile() {
         <h2>Posts Uploaded</h2>
         <span class="material-symbols-outlined">cloud</span>
       </div>
-      
       {userPosts.map((post) => (
         <div className='post-container' key={post._id}>
             <img src={post.cover}></img>
         <div className='text-container'>
             <p className='post-title'>{post.title}</p>
-             <Link to="/delete"><span className="material-symbols-outlined">delete</span></Link>
+            <div className='user-icons'>
+               <Link to={`/edit/${post._id}`}><span className="material-symbols-outlined">edit</span></Link>
+               <a href="#" onClick={(e) => { e.preventDefault(); handleDelete(post._id); }}><span className="material-symbols-outlined">delete</span></a>
+            </div>
           </div>    
         </div>
       ))}

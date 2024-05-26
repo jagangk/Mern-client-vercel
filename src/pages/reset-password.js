@@ -1,7 +1,8 @@
 import { Helmet } from 'react-helmet';
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { Link, Navigate } from 'react-router-dom';
 import { UserContext } from "../userContext"; 
+import { Alert, AlertIcon, AlertTitle, useDisclosure } from "@chakra-ui/react";
 
 export default function ChangePassword() {
     const [identifier, setIdentifier] = useState('');
@@ -9,6 +10,32 @@ export default function ChangePassword() {
     const [confirmPassword, setConfrimPassword] = useState('');
     const { setUserInfo } = useContext(UserContext);
     const [redirect, setRedirect] = useState(false);
+    const [successMessage, setSuccessMessage] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
+    const { isOpen: isSuccessOpen, onOpen: onOpenSuccess, onClose: onCloseSuccess } = useDisclosure();
+    const { isOpen: isErrorOpen, onOpen: onOpenError, onClose: onCloseError } = useDisclosure();
+
+    useEffect(() => {
+        let timer;
+    
+        if (isSuccessOpen) {
+            timer = setTimeout(() => {
+                onCloseSuccess();
+                setSuccessMessage('');
+            },3000);
+        }
+    
+        if (isErrorOpen) {
+            timer = setTimeout(() => {
+              onCloseError();
+              setErrorMessage('');
+            }, 3000);
+          }
+          return () => {
+            clearTimeout(timer);
+          };
+    
+    }, [isSuccessOpen, isErrorOpen]);
 
     const handleLogin = async (username, password) => {
         const url = `${process.env.REACT_APP_API_URL}/login`;
@@ -23,22 +50,27 @@ export default function ChangePassword() {
             const userInfo = await response.json();
             document.cookie = `token=${userInfo.token}; path=/`;
             setUserInfo(userInfo);
+            setSuccessMessage("Password updated")
+            onOpenSuccess();
             setRedirect(true);
         } else {
             const errorMessage = await response.text();
-            console.log(errorMessage); 
+            console.log(errorMessage);
+            setErrorMessage("Failed to update");
+            onOpenError(); 
         }
     };
 
     if (redirect) {
         return <Navigate to={'/'} />;
     }
-
+    
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         if (newPassword !== confirmPassword) {
-            alert('Passwords do not match.');
+            setErrorMessage('Passwords do not match.');
+            onOpenError();
             return;
         }
 
@@ -55,17 +87,21 @@ export default function ChangePassword() {
             const data = await response.json();
 
             if (!response.ok) {
-                throw new Error(data.error || 'Failed to update password');
+                setErrorMessage('Failed to update password');
+                onOpenError();
             }
             else {
-                alert('Password successfully updated.');
+                setSuccessMessage('Password successfully updated.');
+                onOpenSuccess();
                 await handleLogin(identifier, newPassword);
             }
 
         } catch (error) {
-            alert(error.message);
+            setErrorMessage(error.message);
+            onOpenError();
         }
     };
+
 
     return (
         <>
@@ -74,6 +110,49 @@ export default function ChangePassword() {
         </Helmet>
         
             <form className="login" onSubmit={handleSubmit}>
+
+            {isSuccessOpen && (
+        <Alert
+          status='success'
+          variant='subtle'
+          flexDirection='column'
+          alignItems='center'
+          justifyContent='center'
+          textAlign='center'
+          height='80px'
+          colorScheme="red"
+          bg='#6dcaae'
+          borderRadius='10px'
+          fontSize='small'
+        >
+          <AlertIcon boxSize='30px' mr={0} />
+          <AlertTitle mt={4} mb={1} fontSize='lg'>
+            {successMessage}
+          </AlertTitle>
+        </Alert>
+      )}
+
+      {isErrorOpen && (
+        <Alert
+          status='error'
+          variant='subtle'
+          flexDirection='column'
+          alignItems='center'
+          justifyContent='center'
+          textAlign='center'
+          height='80px'
+          colorScheme="red"
+          bg='#d83030'
+          borderRadius='10px'
+          fontSize='small'
+        >
+          <AlertIcon boxSize='30px' mr={0} />
+          <AlertTitle mt={4} mb={1} fontSize='lg'>
+            {errorMessage}
+          </AlertTitle>
+        </Alert>
+      )}
+
                 <h1>Reset Password</h1>
                 <input
                     type="text"
