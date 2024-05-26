@@ -51,8 +51,6 @@ body{
   background:#212121;
 }
 
-@media screen and (max-width: 768px) {
-}
 
 img{
   max-width: 100%;
@@ -662,29 +660,39 @@ div.user-profile-edit {
 
 div.user-data-update {
   display: flex;
-  justify-content: center;
   align-items: center;
 }
 
 div.user-data-update h2 {
   margin: 0px;
-  text-align: center;
+  margin-left: 12px;
 }
 
 div.user-profile-edit p, span {
   margin: 10px;
   font-size: small;
+  text-decoration: none;
+  color: #e4e4e4;
+
 }
 
 /*------------------------------post data section---------------*/
 div.post-data-header {
   display: flex;
-  justify-content: center;
+  justify-content: left;
   align-items: center;
+  padding-top: 15px;
 }
+
+div.post-data-header h2 {
+  margin: 0px;
+  margin-left: 12px;
+}
+
+
 div.post-container {
   display: flex;
-  align-items:flex-start;
+  align-items:center;
   margin: 10px;
   text-align: left;
   gap: 5px;
@@ -695,9 +703,18 @@ div.post-container {
 
 .text-container {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  flex: 1;
-  align-items:flex-start;
+}
+
+.user-icons {
+  margin-left: auto;
+  display: flex;
+}
+
+.user-icons .material-symbols-outlined {
+  margin: 0;
+  padding: 5px;
 }
 
 .post-title {
@@ -705,9 +722,10 @@ div.post-container {
   font-size:small;
 }
 
-
 div.post-container img{
   width: 100px;
   height: 60px;
   margin: 5px;
+  align-items: flex-start;
+  align-self: baseline;
 }

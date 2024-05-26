@@ -1,9 +1,9 @@
 import { Link, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet';
 import * as React from 'react';
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
-
 
 function UserProfile() {
   const { username } = useParams();
@@ -53,23 +53,29 @@ function UserProfile() {
   }
 
   return (
+    <>
+    <Helmet><title>Profile {userData.username}</title></Helmet>
     <div className="user-profile">
       {userData && (
         <>
-        <div className='user-data'>
+          <div className='user-data'>
             <div className='user-data-update'>
-               <h2>{userData?.username}</h2>
-               <Link to = "/UpdateProfile"><span class="material-symbols-outlined">edit</span></Link>
+              <h2>Edit Profile</h2>
+              <Link to="/UpdateProfile"><span class="material-symbols-outlined">edit</span></Link>
             </div>
-             <div className='user-profile-edit'>
-                 <p>Email: {userData.email}</p>
-                 <span class="material-symbols-outlined">mail</span>
-             </div>
-             <div className='user-profile-edit'>
-                 <p>Interest: {userData.interestType}</p>
-                 <span class="material-symbols-outlined">interests</span>
-             </div>
-        </div>
+            <div className='user-profile-edit'>
+              <p>{userData.username}</p>
+              <span class="material-symbols-outlined">account_circle</span>
+            </div>
+            <div className='user-profile-edit'>
+              <p>{userData.email}</p>
+              <span class="material-symbols-outlined">mail</span>
+            </div>
+            <div className='user-profile-edit'>
+              <p>{userData.interestType}</p>
+              <span class="material-symbols-outlined">interests</span>
+            </div>
+          </div>
         </>
       )}
       <div className='post-data-header'>
@@ -78,17 +84,22 @@ function UserProfile() {
       </div>
       {userPosts.map((post) => (
         <div className='post-container' key={post._id}>
-            <img src={post.cover}></img>
+        <img alt='cover' src={post.cover}></img>
         <div className='text-container'>
-            <p className='post-title'>{post.title}</p>
-            <div className='user-icons'>
-               <Link to={`/edit/${post._id}`}><span className="material-symbols-outlined">edit</span></Link>
-               <a href="#" onClick={(e) => { e.preventDefault(); handleDelete(post._id); }}><span className="material-symbols-outlined">delete</span></a>
-            </div>
-          </div>    
+          <p className='post-title'>{post.title}</p>
         </div>
+        <div className='user-icons'>
+          <Link to={`/edit/${post._id}`}>
+            <span className="material-symbols-outlined">edit</span></Link>
+          <Link 
+            to="#"
+            onClick={(e) => { e.preventDefault(); handleDelete(post._id); }}>
+            <span className="material-symbols-outlined">delete</span>
+          </Link>
+        </div>
+      </div>
       ))}
-    </div>
+    </div></>
   );
 }
 
