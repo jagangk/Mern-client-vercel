@@ -25,7 +25,7 @@ function App() {
          <Route path = "/login" element = {<LoginPage />} />
          <Route path = "/register" element = {<RegisterPage />} />
          <Route path = "/ResetPassword" element = {<ChangePassword />} />
-         <Route path='/create' element = {<ProtectedRoute><CreatePost /></ProtectedRoute>} />
+         <Route path='/create' element = {<CreatePost />} />
          <Route path = "/post/:id" element = {<PostPage />}/>
          <Route path = "/contact" element = {<ContactPage />} />
          <Route path = "/edit/:id" element = {<ProtectedRoute><EditPost /></ProtectedRoute>} />
