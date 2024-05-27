@@ -13,6 +13,7 @@ import ReportPost from './pages/reportpage';
 import ChangePassword from './pages/reset-password';
 import UserProfile from './pages/UserProfile';
 import UpdateProfile from './pages/updateProfile';
+import ProtectedRoute from './ProtectedRoute';
 
 function App() {
 
@@ -24,13 +25,13 @@ function App() {
          <Route path = "/login" element = {<LoginPage />} />
          <Route path = "/register" element = {<RegisterPage />} />
          <Route path = "/ResetPassword" element = {<ChangePassword />} />
-         <Route path='/create' element = {<CreatePost />} />
+         <Route path='/create' element = {<ProtectedRoute><CreatePost /></ProtectedRoute>} />
          <Route path = "/post/:id" element = {<PostPage />}/>
          <Route path = "/contact" element = {<ContactPage />} />
-         <Route path = "/edit/:id" element = {<EditPost />} />
+         <Route path = "/edit/:id" element = {<ProtectedRoute><EditPost /></ProtectedRoute>} />
          <Route path = "/report" element = {<ReportPost />} />
-         <Route path= "/user/:username" element = {<UserProfile />} />
-         <Route path= "/updateProfile" element = {<UpdateProfile />} />
+         <Route path= "/user/:username" element = {<ProtectedRoute><UserProfile /></ProtectedRoute>} />
+         <Route path= "/updateProfile" element = {<ProtectedRoute><UpdateProfile /></ProtectedRoute>} />
         </Route>
       </Routes>
     </UserContextProvider>

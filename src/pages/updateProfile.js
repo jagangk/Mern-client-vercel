@@ -122,21 +122,21 @@ export default function UpdateProfile() {
             <h1>Update Profile</h1>
             <input
                     type="text"
-                    placeholder="UserName"
+                    placeholder="Username"
                     value={identifier}
                     onChange={(e) => setIdentifier(e.target.value)}
                     required />
 
             <input
                 type="text"
-                placeholder="Email"
+                placeholder="New Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required />
 
      <select id="PostType" value={interestType} onChange={(ev) => {setInterestType(ev.target.value)}} required>
           <optgroup>
-          <option disabled value="">Select your favourite topic</option>
+          <option disabled value="">Select your new favourite topic</option>
             <option>Business</option>
             <option>News</option>
             <option>Science</option>

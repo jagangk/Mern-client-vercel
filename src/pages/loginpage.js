@@ -1,8 +1,11 @@
 import { useState, useContext, useEffect } from "react";
 import { useNavigate, Navigate, Link } from "react-router-dom"; 
-import { Alert, AlertIcon, AlertDescription, useDisclosure, Checkbox } from "@chakra-ui/react";
+import { Alert, AlertIcon, AlertDescription, useDisclosure} from "@chakra-ui/react";
 import { UserContext } from "../userContext"; 
 import { Helmet } from 'react-helmet';
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
 
 export default function LoginPage() {
     const navigate = useNavigate();
@@ -117,13 +120,7 @@ export default function LoginPage() {
                 <Link to='/ResetPassword'>Forgot password?</Link>
 
                 <button type="submit">Login</button>
-                <Checkbox 
-                  style={{paddingTop:'8px'}} 
-                  isInvalid
-                  isChecked={rememberMe}
-                  onChange={(e) => setRememberMe(e.target.checked)}
-                >Remember Me
-                </Checkbox>
+                <FormControlLabel isInvalid onChange={(e) => setRememberMe(e.target.checked)} isChecked={rememberMe} control={<Checkbox defaultChecked sx={{ fontSize: "small" }} />} label="Remember me" />
                 <h4>New to Blogstera?</h4>
                 <button type="button" onClick={navigateToRegister}>Create account</button>
             </form>

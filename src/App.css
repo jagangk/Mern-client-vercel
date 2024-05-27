@@ -352,6 +352,10 @@ button{
   outline: none;
 }
 
+.checkbox{
+  font-size: small;
+}
+
 button:hover{
   box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5); 
 }
@@ -652,7 +656,7 @@ footer{
 div.user-profile-edit {
   display: flex;
   align-items: center;
-  border-radius: 10px;
+  border-radius: 8px;
   margin: 8px;
   justify-content: space-between;
   background: #2F2F2F;
@@ -697,7 +701,7 @@ div.post-container {
   text-align: left;
   gap: 5px;
   background: #2F2F2F;
-  border-radius: 10px;
+  border-radius: 5px;
   max-width: 100%;
 }
 
@@ -706,6 +710,29 @@ div.post-container {
   flex-direction: column;
   justify-content: space-between;
 }
+
+.no-post-ack {
+  text-align: center;
+  padding-top: 10px;
+}
+
+.no-post-ack p {
+  margin: auto;
+}
+
+.create-post-ack {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.create-post-ack a{
+  text-decoration: none;
+  font-weight: 500;
+  color: #c7c7c7;
+  line-height: 1.6rem;
+}
+
 
 .user-icons {
   margin-left: auto;
@@ -726,6 +753,7 @@ div.post-container img{
   width: 100px;
   height: 60px;
   margin: 5px;
+  border-radius: 0px;
   align-items: flex-start;
   align-self: baseline;
 }
