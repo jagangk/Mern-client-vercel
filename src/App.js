@@ -28,7 +28,7 @@ function App() {
          <Route path='/create' element = {<ProtectedRoute><CreatePost /></ProtectedRoute>} />
          <Route path = "/post/:id" element = {<PostPage />}/>
          <Route path = "/contact" element = {<ContactPage />} />
-         <Route path = "/edit/:id" element = {<ProtectedRoute><EditPost /></ProtectedRoute>} />
+         <Route path = "/edit/:id" element = {<EditPost />} />
          <Route path = "/report" element = {<ReportPost />} />
          <Route path= "/user/:username" element = {<ProtectedRoute><UserProfile /></ProtectedRoute>} />
          <Route path= "/updateProfile" element = {<ProtectedRoute><UpdateProfile /></ProtectedRoute>} />
