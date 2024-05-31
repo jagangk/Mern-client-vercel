@@ -59,7 +59,7 @@ export default function LoginPage() {
           if (rememberMe) {
             localStorage.setItem('token', userInfo.token);
           } else {
-            document.cookie = `token=${userInfo.token}; path=/`;
+            localStorage.setItem('token', userInfo.token);
           }
           setUserInfo(userInfo);
           setRedirect(true);
