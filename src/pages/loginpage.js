@@ -3,7 +3,6 @@ import { useNavigate, Navigate, Link } from "react-router-dom";
 import { Alert, AlertIcon, AlertDescription, useDisclosure} from "@chakra-ui/react";
 import { UserContext } from "../userContext"; 
 import { Helmet } from 'react-helmet';
-import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 

@@ -87,24 +87,24 @@ export default function Header() {
                 </div>
                 <div className="dropdown-content">
                   <div className="dropdown-option">
+                  <span class="material-symbols-outlined">account_circle</span>
                     <Link to={`/user/${username}`}>Account</Link>
-                    <span class="material-symbols-outlined">account_circle</span>
                   </div>
                   <div className="dropdown-option">
+                  <span class="material-symbols-outlined">add_circle</span>
                     <Link to="/create">Create Post</Link>
-                    <span class="material-symbols-outlined">add_circle</span>
                   </div>
                   <div className="dropdown-option">
+                  <span class="material-symbols-outlined">rss_feed</span>
                      <Link to="/">Feeds</Link>
-                     <span class="material-symbols-outlined">rss_feed</span>
                   </div>
                   <div className="dropdown-option">
+                  <span class="material-symbols-outlined">help</span>
                      <Link to="/contact">Contact</Link>
-                     <span class="material-symbols-outlined">help</span>
                   </div>
                   <div className="dropdown-option">
+                  <span class="material-symbols-outlined">logout</span>
                      <Link onClick={logout}>Logout</Link>
-                     <span class="material-symbols-outlined">logout</span>
                   </div>
                 </div>
               </div>
