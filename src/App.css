@@ -48,7 +48,7 @@ body{
   padding-left: 5px;
   padding-right: 5px;
   color: #d5d5d5;
-  background:#0b0c10;
+  background:#0b132b;
 }
 
 img{
@@ -141,7 +141,7 @@ div.post{
   grid-template-columns: 1fr;
   gap:5px;
   margin-bottom: 25px;
-  background: #1c1e26;
+  background: #1c2541;
   border-radius: 5px;
 }
 
@@ -192,13 +192,17 @@ div.post p.summary{
 }
 
 /*-----------------------------form component css------------------*/
+form.login h1,form.register h1{
+  text-align: center;
+ }
+
 form.login, form.register{
   max-width: 400px;
   margin: 0 auto;
 }
 
 form.login a{
-  color: #98bdf7;
+  color: #6fffe9;
   text-decoration: none;
   margin-top: 5px;
   font-size: small;
@@ -212,9 +216,16 @@ form.login h4{
   margin-bottom: 5px;
 }
 
+/*-----------------------------------------------------------contact form-------------------------------------------------------*/
+
 form.contact{
   max-width: 500px;
   margin: 0 auto;
+}
+
+
+form.contact button{
+  margin-top: 8px;
 }
 
 form.contact h1{
@@ -233,9 +244,11 @@ form.contact h1{
 }
 
 .contact-div a{
-  color: #98bdf7;
+  color: #6fffe9;
   text-decoration: none;
 }
+
+/*---------------------------------------------------------------------------form report-----------------------------------------------*/
 
 form.report{
   max-width: 500px;
@@ -246,13 +259,14 @@ form.report h1{
   text-align: center;
 }
 
+/* ------------------------------------------------------------input buttons---------------------------------------*/
 input {
   display: block;
   margin-bottom: 5px;
   width: 100%;
   padding: 7px 10px;
   border: 0;
-  background-color: #2F2F2F;
+  background-color: #3a506b;
   border-radius: 5px;
   color: white; 
 }
@@ -277,7 +291,7 @@ textarea{
   margin-top: 5px;
   border: 0;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  background-color:#2F2F2F;
+  background-color: #3a506b;
   border-radius: 5px;
 }
 
@@ -289,9 +303,9 @@ textarea::placeholder{
 select{
   margin-bottom: 5px;
   width: 100%;
-  padding: 7px 5px;
+  padding: 7px 10px;
   border: 0;
-  background-color:#2F2F2F;
+  background-color: #3a506b;
   border-radius: 5px;
   margin-bottom: 0;
 }
@@ -322,14 +336,11 @@ label{
 }
 
 input::file-selector-button {
-  font-weight: bold;
   color:  rgb(255, 255, 255);
   background-color:#6b96c5;
-  padding: 0.3em;
   border: 0;
   border-radius: 2px;
   cursor: pointer;
-  font-weight:bold;
 }
 
 input,select,textarea{
@@ -342,7 +353,7 @@ input,select,textarea{
 button{
   width: 100%;
   display: block;
-  background-color:  #000000;
+  background: #1c2541;
   border: 0;
   border-radius: 5px;
   padding: 7px 0;
@@ -357,12 +368,9 @@ button{
 }
 
 button:hover{
-  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5); 
+  box-shadow: 0 0 0 2px #ffffff ;
 }
 
-form.login h1,form.register h1{
-  text-align: center;
- }
 
 .dropdown-content {
   display: none;
@@ -603,9 +611,8 @@ footer{
 }
 
 .social-menu a{
-  background-color: #1c1e26;
+  background-color: #1c2541;
   color:#ffffff;
-  font-size:px;
   display:inline-block;
   line-height:35px;
   width:35px;
@@ -624,7 +631,7 @@ footer{
 .social-menu a:active,.social-menu a:focus,.social-menu a:hover
 {
   color:#fff;
-  background-color: #175341;
+  background-color: #545454;
 }
 
 .social-menu.size-sm a
@@ -659,15 +666,23 @@ footer{
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
+
+/*----------------------------------------------------editor toolbar ------------------------------*/
+
 .ql-toolbar {
-  background-color: #2F2F2F;
-  border-radius: 1px;
-    border-top-left-radius: 5px; /* Optional: Add rounded corners */
-    border-top-right-radius: 5px; /* Optional: Add rounded corners */
-    padding: 5px; /* Optional: Add padding */
-    box-sizing: border-box; /* Ensures padding doesn't affect height */
+  border: none; /* Remove border from the toolbar */
+  border-bottom: 1px solid #ccc; /* Optional: Add bottom border */
+  border-top-left-radius: 5px; /* Optional: Add rounded corners */
+  border-top-right-radius: 5px; /* Optional: Add rounded corners */
+  background: none;
+  padding: 5px; /* Optional: Add padding */
+  box-sizing: border-box; /* Ensures padding doesn't affect height */
 }
 
+.ql-toolbar button {
+  box-shadow: 0 0 0 1.5px #2F2F2F;
+  margin: 5px;
+}
 
 .ql-editor {
   min-height: 200px; /* Adjust the minimum height of the editor */
@@ -685,7 +700,7 @@ div.user-profile-edit {
   border-radius: 8px;
   margin: 8px;
   justify-content: space-between;
-  background: #2F2F2F;
+  background: #1c2541;
 }
 
 div.user-data-update {
@@ -726,7 +741,7 @@ div.post-container {
   margin: 10px;
   text-align: left;
   gap: 5px;
-  background: #2F2F2F;
+  background: #1c2541;
   border-radius: 5px;
   max-width: 100%;
 }
@@ -780,7 +795,7 @@ div.post-container img{
   width: 100px;
   height: 60px;
   margin: 5px;
-  border-radius: 0px;
+  border-radius: 5px;
   align-items: flex-start;
   align-self: baseline;
 }

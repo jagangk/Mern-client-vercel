@@ -1,8 +1,10 @@
 import React, { forwardRef } from 'react';
-import { format } from 'date-fns';
+import { formatDistanceToNow } from 'date-fns';
 import { Link } from 'react-router-dom';
 
-const Post = forwardRef(({ _id, author, createdAt, title, summary, cover}, ref) => {
+const Post = forwardRef(({ _id, author, createdAt, title, summary, cover }, ref) => {
+    const relativeTime = formatDistanceToNow(new Date(createdAt), { addSuffix: true });
+
     return (
         <div ref={ref} key={_id} className="post">
             <div className="image">
@@ -20,7 +22,7 @@ const Post = forwardRef(({ _id, author, createdAt, title, summary, cover}, ref) 
                 </p>
                 <p className="info">
                     <Link className="author">{author.username}</Link>
-                    <time>{format(new Date(createdAt), 'dd-LL-yyyy')}</time>
+                    <time>• {relativeTime}</time>
                 </p>
             </div>
         </div>

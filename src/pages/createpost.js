@@ -109,7 +109,7 @@ export default function CreatePost() {
     <Helmet>
       <title>Create Post</title>
     </Helmet>
-    <form onSubmit={createNewPost}>
+    <form className="create" onSubmit={createNewPost}>
 
     {isSuccessOpen && (
         <Alert
@@ -168,7 +168,7 @@ export default function CreatePost() {
           onChange={updateSummary}
           onKeyDown={handleKeyDown} />
 
-        <select id="PostType" value={PostType} onChange={(ev) => { setPostType(ev.target.value); } } required>
+          <select id="PostType" value={PostType} onChange={(ev) => { setPostType(ev.target.value); } } required>
           <optgroup>
             <option disabled value="">Catagory</option>
             <option>Business</option>
@@ -184,15 +184,17 @@ export default function CreatePost() {
             <option>Opinions</option>
           </optgroup>
         </select>
-
+        
         <input required type="file" onChange={(ev) => setFiles(ev.target.files)} />
 
         <ReactQuill
           value={content}
+          theme="snow"
           onChange={(newValue) => setContent(newValue)}
           modules={modules}
           formats={formats} />
-        <button style={{ marginTop: '5px' }}>Post</button>
+          
+        <button style={{ marginTop: '10px' }}>Post</button>
         <div className="contact-div">
           <p>Create respectful content - no explicit or offensive material, support for illegal activities, or piracy links. Respect user privacy, engage in civil communication, and report violations for a positive community. Violations may lead to content removal or account actions.</p>
         </div>
