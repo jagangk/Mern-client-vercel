@@ -1,19 +1,40 @@
-/* eslint-disable jsx-a11y/alt-text */
+import { Helmet } from "react-helmet";
+import { useEffect } from "react";
 import React, { useState } from 'react';
+import { Alert, AlertIcon, AlertTitle, Flex, useDisclosure } from "@chakra-ui/react";
 
-export default function PlagiarismChecker(){
+export default function PlagiarismChecker() {
   const [text, setText] = useState('');
   const [rewrittenText, setRewrittenText] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [successMessage, setSuccessMessage] = useState('');
+  const { isOpen: isSuccessOpen, onOpen: onOpenSuccess, onClose: onCloseSuccess } = useDisclosure();
 
-  const handleTextChange = (event) => {
+  useEffect(() => {
+    let timer;
+
+    if (isSuccessOpen) {
+        timer = setTimeout(() => {
+            onCloseSuccess();
+            setSuccessMessage('');
+        },3000);
+    }
+
+      return () => {
+        clearTimeout(timer);
+      };
+
+}, [isSuccessOpen]);
+
+
+  function handleTextChange(event) {
     setText(event.target.value);
-  };
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-  
+
     try {
       const url = `${process.env.REACT_APP_API_URL}/api/plagiarism-check`;
       const response = await fetch(url, {
@@ -23,9 +44,9 @@ export default function PlagiarismChecker(){
         },
         body: JSON.stringify({ text })
       });
-  
-      if (response.ok) { 
-        const data = await response.json(); 
+
+      if (response.ok) {
+        const data = await response.json();
         setRewrittenText(data.rewrittenText);
       } else {
         console.error(`API call failed with status: ${response.status}`);
@@ -36,49 +57,86 @@ export default function PlagiarismChecker(){
       setIsLoading(false);
     }
   };
-  
-    return (
-        <form className="plag-remover">
-            
-            <div className="gemini-icon-container">
-              
-              <div className="gicon-title">
-                <img className="blogAI-icon" src = "blog-ai.png"></img>
-                <h1>PlagGuard AI</h1>
-              </div>
-              
-              <div className="gicon-powered">
-                <img className="gemini-icon" src="google-gemini-icon.png"></img>
-                <p>Gemini Powered</p>
-              </div>
-            </div>
-            
-            <p>PlagAi Guard is an advanced AI-driven tool designed to help you create plagiarism-free content. By leveraging the powerful capabilities of Gemini, PlagAi Guard not only detects potential plagiarism in your text but also provides intelligent suggestions and edits to ensure your work is original and authentic.</p>
-            
-            <div class="search-container">
-              <input value={text} onChange={handleTextChange} type="text" placeholder="Enter the text" class="search-input"></input>
-              <button onClick={handleSubmit} type="submit" class="search-button"><i class="fa fa-search"></i></button>
-            </div>
 
-            {rewrittenText && (
-              <div class="plagGuard-results">
-                <div className='plag-toolbar'>
-                  <img className="toolbar-icon" src = "blog-ai.png"></img>
-                  <button className='copy-btn' onClick={(e) => {
-                    e.preventDefault();
-                    navigator.clipboard.writeText(rewrittenText)
-                    .then(() => {
-                      alert('Text copied to clipboard!');
-                     })
-                     .catch(err => {
-                      console.error('Failed to copy text:', err);
-                    });
-                    }}><span class="material-symbols-outlined">content_copy</span></button>
-                </div>
-                <p>{rewrittenText}</p>
-              </div>
+  return (
+    <>
+      <Helmet>
+        <title>PlagGuard - AI Plagiarism Remover</title>
+        <meta name="description" content="PlagGuard AI is an advanced Gemini 1.5 powered tool designed to help you create plagiarism-free content. PlagGuard not only detects potential plagiarism in your text but also provides intelligent suggestions and edits to ensure your work is original and authentic." />
+      </Helmet>
+      <form className="plag-remover">
+      {isSuccessOpen && (
+        <Alert
+          status='success'
+          variant='subtle'
+          display='flex'
+          flexDirection='row'
+          alignItems='center'
+          justifyContent='center'
+          gap='10px'
+          textAlign='center'
+          height='80px'
+          colorScheme="red"
+          bg='#2E8B57'
+          borderRadius='10px'
+          fontSize='small'
+          margin='20px'
+          maxWidth= '70%'
+        >
+          <AlertIcon boxSize='30px' mr={0} />
+          <AlertTitle mt={4} mb={1} fontSize='lg'>
+            {successMessage}
+          </AlertTitle>
+        </Alert>
+      )}
+
+        <div className="gemini-icon-container">
+
+          <div className="gicon-title">
+            <img alt="ai logo" className="blogAI-icon" src="blog-ai.png" />
+            <h1>PlagGuard AI</h1>
+          </div>
+
+          <div className="gicon-powered">
+            <img alt="gemini logo" className="gemini-icon" src="google-gemini-icon.png" />
+            <p>Gemini 1.5 Powered</p>
+          </div>
+        </div>
+
+        <p>PlagGuard AI is an advanced Gemini 1.5 powered tool designed to help you create plagiarism free content. PlagGuard not only detects potential plagiarism in your text but also provides intelligent suggestions and edits to ensure your work is authentic.</p>
+
+        <div className="search-container">
+          <input value={text} onChange={handleTextChange} type="text" placeholder="Enter a text" className="search-input" />
+          <button onClick={handleSubmit} type="submit" className="search-button" disabled={isLoading}>
+            {isLoading ? (
+              <span className="loading-text">Checking...</span>
+            ) : (
+              <i className="fa fa-search"></i>
             )}
+          </button>
+        </div>
 
-        </form>
-    );
+        {rewrittenText && (
+          <div className="plagGuard-results">
+            <div className='plag-toolbar'>
+              <img alt="ai" className="toolbar-icon" src="blog-ai.png" />
+              <button className='copy-btn' onClick={(e) => {
+                e.preventDefault();
+                navigator.clipboard.writeText(rewrittenText)
+                  .then(() => {
+                    setSuccessMessage("Copied to clipboard");
+                    onOpenSuccess(); 
+                  })
+                  .catch(err => {
+                    console.error('Failed to copy text:', err);
+                  });
+              }}><span className="material-symbols-outlined">content_copy</span></button>
+            </div>
+            <p>{rewrittenText}</p>
+          </div>
+        )}
+
+      </form>
+    </>
+  );
 }

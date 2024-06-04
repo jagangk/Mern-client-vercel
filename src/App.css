@@ -898,6 +898,7 @@ div.plagGuard-results {
   box-shadow: 0 0 0 1.5px rgb(197, 197, 197);
   border-radius: 8px;
   padding: 10px;
+  width: 100%;
 }
 
 div.plag-toolbar {

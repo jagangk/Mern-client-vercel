@@ -30,7 +30,7 @@ function App() {
          <Route path = "/post/:id" element = {<PostPage />}/>
          <Route path = "/contact" element = {<ContactPage />} />
          <Route path = "/edit/:id" element = {<EditPost />} />
-         <Route path = "/Gemini-plagiarism-remover" element = {<PlagiarismChecker />} />
+         <Route path = "/PlagGuard" element = {<PlagiarismChecker />} />
          <Route path = "/report" element = {<ReportPost />} />
          <Route path= "/user/:username" element = {<ProtectedRoute><UserProfile /></ProtectedRoute>} />
          <Route path= "/updateProfile" element = {<ProtectedRoute><UpdateProfile /></ProtectedRoute>} />
