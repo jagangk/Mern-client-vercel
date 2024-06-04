@@ -103,7 +103,7 @@ export default function PlagiarismChecker() {
           </div>
         </div>
 
-        <p>PlagGuard AI is an advanced Gemini 1.5 powered tool designed to help you create plagiarism free content. PlagGuard not only detects potential plagiarism in your text but also provides intelligent suggestions and edits to ensure your work is authentic.</p>
+        <p>PlagGuard is an advanced Gemini 1.5 powered tool designed to help you create plagiarism free content. PlagGuard not only detects potential plagiarism in your text but also provides intelligent suggestions and edits to ensure your work is authentic.</p>
 
         <div className="search-container">
           <input value={text} onChange={handleTextChange} type="text" placeholder="Enter a text" className="search-input" />
