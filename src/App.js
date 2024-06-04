@@ -14,6 +14,7 @@ import ChangePassword from './pages/reset-password';
 import UserProfile from './pages/UserProfile';
 import UpdateProfile from './pages/updateProfile';
 import ProtectedRoute from './ProtectedRoute';
+import PlagiarismChecker from './pages/plagiarism-checker';
 
 function App() {
 
@@ -29,6 +30,7 @@ function App() {
          <Route path = "/post/:id" element = {<PostPage />}/>
          <Route path = "/contact" element = {<ContactPage />} />
          <Route path = "/edit/:id" element = {<EditPost />} />
+         <Route path = "/Gemini-plagiarism-remover" element = {<PlagiarismChecker />} />
          <Route path = "/report" element = {<ReportPost />} />
          <Route path= "/user/:username" element = {<ProtectedRoute><UserProfile /></ProtectedRoute>} />
          <Route path= "/updateProfile" element = {<ProtectedRoute><UpdateProfile /></ProtectedRoute>} />

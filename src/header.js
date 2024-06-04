@@ -91,6 +91,10 @@ export default function Header() {
                     <Link to={`/user/${username}`}>Account</Link>
                   </div>
                   <div className="dropdown-option">
+                  <span class="material-symbols-outlined">all_inclusive</span>
+                    <Link to="/Gemini-plagiarism-remover">PlagGuard AI</Link>
+                  </div>
+                  <div className="dropdown-option">
                   <span class="material-symbols-outlined">add_circle</span>
                     <Link to="/create">Create Post</Link>
                   </div>

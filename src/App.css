@@ -269,6 +269,11 @@ input {
   background-color: #3a506b;
   border-radius: 5px;
   color: white; 
+  outline: 0;
+  transition: box-shadow 0.3s;
+  &:focus {
+    box-shadow: 0 0 0 1.5px #ffffff/* Gradient shadow on focus */
+  }
 }
 
 input:-webkit-autofill {
@@ -284,15 +289,21 @@ input:-webkit-autofill:focus {
 
 textarea{
   display: block;
+  resize: none;
   margin-bottom: 5px;
   width: 100%;
   height: 100px ;
   padding: 5px 10px;
   margin-top: 5px;
   border: 0;
+  outline: 0;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   background-color: #3a506b;
   border-radius: 5px;
+  transition: box-shadow 0.3s;
+  &:focus {
+    box-shadow: 0 0 0 1.5px #fefefe/* Gradient shadow on focus */
+  }
 }
 
 textarea::placeholder{
@@ -361,15 +372,17 @@ button{
   color: #ffffff;
   cursor: pointer;
   outline: none;
+  transition: box-shadow 0.3s;
 }
 
 .checkbox{
   font-size: small;
 }
 
-button:hover{
-  box-shadow: 0 0 0 2px #ffffff ;
+button:hover {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
+
 
 
 .dropdown-content {
@@ -670,11 +683,10 @@ footer{
 /*----------------------------------------------------editor toolbar ------------------------------*/
 
 .ql-toolbar {
-  border: none; /* Remove border from the toolbar */
   border-bottom: 1px solid #ccc; /* Optional: Add bottom border */
   border-top-left-radius: 5px; /* Optional: Add rounded corners */
   border-top-right-radius: 5px; /* Optional: Add rounded corners */
-  background: none;
+  background:none;
   padding: 5px; /* Optional: Add padding */
   box-sizing: border-box; /* Ensures padding doesn't affect height */
 }
@@ -798,4 +810,114 @@ div.post-container img{
   border-radius: 5px;
   align-items: flex-start;
   align-self: baseline;
+}
+
+/*----------------------------------------------plagiarism remover ------------------------------------------------------------------*/
+form.plag-remover {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  text-align: justify;
+}
+
+.gemini-icon {
+  width: 15px;
+}
+
+.blogAI-icon {
+  width: 40px;
+  background: linear-gradient(to right, #007bff, #ff00aa , #ffc107);
+  padding: 5px;
+}
+
+div.gemini-icon-container {
+  max-width: fit-content;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 20px;
+  max-height: fit-content;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+div.gicon-powered p{
+  font-weight: 400;
+  font-size: small;
+}
+
+div.gicon-powered img,p , div.gicon-title h1{
+  margin: 0;
+  padding-bottom: 5px;
+  padding: 0;
+}
+
+div.gicon-powered {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  justify-content: right;
+}
+
+div.gicon-title {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+div.search-container {
+  display: flex;
+  width: 80%;
+  margin: 20px;
+  align-items: center;
+  gap: 5px;
+}
+
+.search-input {
+  background: none;
+  box-shadow: 0 0 0 1.5px white;
+  height: 33px;
+  padding: 8px;
+  border: 0;
+  outline: 0;
+  resize: none;
+  transition: box-shadow 0.3s;
+
+  &:focus {
+    box-shadow: 0 0 0 1.5px #6fffe9/* Gradient shadow on focus */
+  }
+}
+
+.search-button {
+  max-width:20%;
+  padding: 10px 5px;
+}
+
+/*-----------------------------plag ai results ------------------------*/
+div.plagGuard-results {
+  box-shadow: 0 0 0 1.5px rgb(197, 197, 197);
+  border-radius: 8px;
+  padding: 10px;
+}
+
+div.plag-toolbar {
+  display:flex;
+  align-items: center;
+  justify-content:space-between;
+  margin: 0;
+  padding: 0;
+}
+
+.toolbar-icon{
+  width: 20px;
+  margin: 10px;
+}
+
+.copy-btn {
+  background: none;
+  max-width: fit-content;
+}
+
+.copy-btn:hover{
+  box-shadow: none;
 }
