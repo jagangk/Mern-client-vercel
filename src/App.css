@@ -388,13 +388,13 @@ button:hover {
 .dropdown-content {
   display: none;
   position:absolute;
-  background-color: #212121;
+  background-color: #1c2541;
   min-width: 150px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   border-radius: 15px;
   z-index:1;
   right: 1px;
-  top: 42px;
+  top: 40px;
 }
 
 .dropdown-content a {
@@ -425,7 +425,7 @@ button:hover {
   font-weight:700;
 }
 
-.dropdown-content .dropdown-option:hover {background-color: #282828;
+.dropdown-content .dropdown-option:hover {background-color: #3a506b39;
 border-radius: 15px;}
 
 

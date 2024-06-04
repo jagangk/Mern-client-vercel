@@ -14,8 +14,9 @@ export default function Footer() {
                 <ul class='footer-menu'>
                     <li><Link to='/login'>Login</Link></li>
                     <li><Link to='/register'>Register</Link></li>
+                    <li><Link to='/PlagGuard'>PlagGuard</Link></li>
+                    <li><Link target='_blank' to='https://www.api.blogstera.site/rss'>Feeds</Link></li>
                     <li><Link to='/contact'>Contact</Link></li>
-                    <li><Link target='_blank' to='https://www.api.blogstera.site/rss'>Rss feed</Link></li>
                 </ul>
             </div>
 
