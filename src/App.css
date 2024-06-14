@@ -326,8 +326,9 @@ select{
   border-width: 2px;
 }
 
-optgroup,option{
+optgroup{
   text-align:justify;
+  background: #1c2541;
 }
 
 h5,input{
@@ -383,8 +384,6 @@ button:hover {
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
-
-
 .dropdown-content {
   display: none;
   position:absolute;
@@ -436,6 +435,7 @@ nav:hover .dropdown-content {
 div.post-page div.image{
   max-height: 300px;
   display:flex;
+  margin-bottom: 10px;
   overflow: hidden;
 }
 
@@ -700,7 +700,7 @@ footer{
   min-height: 200px; /* Adjust the minimum height of the editor */
   border-radius: 5px; /* Optional: Adds rounded corners */
   font-family: Arial, sans-serif; /* Optional: Set font family */
-  font-size: 16px; /* Optional: Set font size */
+  font-size: 16px;
   padding: 10px; /* Optional: Add padding inside the editor */
   box-sizing: border-box; /* Ensures padding doesn't affect height */
 }
@@ -873,6 +873,18 @@ div.search-container {
   gap: 5px;
 }
 
+div.search-container select{
+  background: none;
+  box-shadow: 0 0 0 1.5px white;
+  margin: 5px;
+  height: 33px;
+  padding: 8px;
+  width: 30%;
+  outline: none;
+  resize: none;
+  transition: box-shadow 0.3s;
+}
+
 .search-input {
   background: none;
   box-shadow: 0 0 0 1.5px white;
@@ -884,7 +896,7 @@ div.search-container {
   transition: box-shadow 0.3s;
 
   &:focus {
-    box-shadow: 0 0 0 1.5px #6fffe9/* Gradient shadow on focus */
+    box-shadow: 0 0 0 1.5px #6fffe9
   }
 }
 
@@ -922,3 +934,26 @@ div.plag-toolbar {
 .copy-btn:hover{
   box-shadow: none;
 }
+
+/*------------------------------------------------safe content AI---------------------------*/
+form.safe-content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  text-align: justify;
+}
+
+.safeAI-icon {
+  width: 40px;
+  background: linear-gradient(to right, #05fc57, #2090a9fd);
+  padding: 5px;
+}
+
+.content-select {
+  min-width: 90px;
+  max-width: fit-content;
+}
+
+

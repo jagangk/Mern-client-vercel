@@ -95,6 +95,10 @@ export default function Header() {
                     <Link to="/PlagGuard">PlagGuard AI</Link>
                   </div>
                   <div className="dropdown-option">
+                  <span class="material-symbols-outlined">spellcheck</span>
+                    <Link to="/safecontent">Safe content AI</Link>
+                  </div>
+                  <div className="dropdown-option">
                   <span class="material-symbols-outlined">add_circle</span>
                     <Link to="/create">Create Post</Link>
                   </div>

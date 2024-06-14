@@ -91,7 +91,7 @@ export default function PlagiarismChecker() {
       )}
 
         <div className="gemini-icon-container">
-
+          
           <div className="gicon-title">
             <img alt="ai logo" className="blogAI-icon" src="blog-ai.png" />
             <h1>PlagGuard AI</h1>
