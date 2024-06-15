@@ -1,12 +1,15 @@
 import { Helmet } from "react-helmet";
 import { useEffect } from "react";
 import React, { useState } from 'react';
-import { Alert, AlertIcon, AlertTitle, Flex, useDisclosure } from "@chakra-ui/react";
+import { Alert, AlertIcon, AlertTitle, useDisclosure } from "@chakra-ui/react";
+import Skeleton from '@mui/material/Skeleton';
+import Box from '@mui/material/Box';
 
 export default function PlagiarismChecker() {
   const [text, setText] = useState('');
   const [rewrittenText, setRewrittenText] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
   const { isOpen: isSuccessOpen, onOpen: onOpenSuccess, onClose: onCloseSuccess } = useDisclosure();
 
@@ -25,7 +28,12 @@ export default function PlagiarismChecker() {
       };
 
 }, [isSuccessOpen]);
-
+  
+useEffect(() => {
+  if (rewrittenText) {
+    setIsLoaded(true);
+  }
+}, [rewrittenText]);
 
   function handleTextChange(event) {
     setText(event.target.value);
@@ -116,7 +124,18 @@ export default function PlagiarismChecker() {
           </button>
         </div>
 
-        {rewrittenText && (
+        {isLoading && (
+          <div className="plagGuard-results" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '150px' }}>
+            <Box width='90%'>
+              <Skeleton  variant="rectangular" width="100%" height={20} style={{ marginBottom: 8 }} />
+              <Skeleton  variant="rectangular" width="100%" height={20} style={{ marginBottom: 8 }} />
+              <Skeleton  variant="rectangular" width="100%" height={20} />
+            </Box>
+          </div>
+        )}
+
+
+        {isLoaded && rewrittenText && (
           <div className="plagGuard-results">
             <div className='plag-toolbar'>
               <img alt="ai" className="toolbar-icon" src="blog-ai.png" />

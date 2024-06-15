@@ -873,6 +873,13 @@ div.search-container {
   gap: 5px;
 }
 
+@media screen and (max-width: 700px) { 
+  div.search-container {
+    width: 100%;
+  }
+  
+}
+
 div.search-container select{
   background: none;
   box-shadow: 0 0 0 1.5px white;
@@ -901,9 +908,9 @@ div.search-container select{
 }
 
 .search-button {
-  min-width:10%;
+  min-width:15%;
   max-width: fit-content;
-  padding: 10px 5px;
+  padding: 11px 5px;
 }
 /*-----------------------------plag ai results ------------------------*/
 div.plagGuard-results {
@@ -955,5 +962,3 @@ form.safe-content {
   min-width: 90px;
   max-width: fit-content;
 }
-
-
