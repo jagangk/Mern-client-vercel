@@ -316,9 +316,15 @@ select{
   width: 100%;
   padding: 7px 10px;
   border: 0;
+  outline: 0;
+  border: 0;
   background-color: #3a506b;
   border-radius: 5px;
   margin-bottom: 0;
+  transition: box-shadow 0.3s;
+  &:focus {
+    box-shadow: 0 0 0 1.5px #ffffff/* Gradient shadow on focus */
+  }
 }
 
 .select-error{
@@ -326,7 +332,7 @@ select{
   border-width: 2px;
 }
 
-optgroup{
+option{
   text-align:justify;
   background: #1c2541;
 }
@@ -912,6 +918,11 @@ div.search-container select{
   max-width: fit-content;
   padding: 11px 5px;
 }
+
+.search-button i:hover, span {
+  color: #05fc57;
+}
+
 /*-----------------------------plag ai results ------------------------*/
 div.plagGuard-results {
   box-shadow: 0 0 0 1.5px rgb(197, 197, 197);
@@ -961,4 +972,5 @@ form.safe-content {
 .content-select {
   min-width: 90px;
   max-width: fit-content;
+  background: #1c2541;
 }
