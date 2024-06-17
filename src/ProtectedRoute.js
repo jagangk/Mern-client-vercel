@@ -1,60 +1,62 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Navigate } from 'react-router-dom';
 import { UserContext } from './userContext';
-import { Alert, AlertIcon, AlertDescription, useDisclosure } from "@chakra-ui/react";
+
+// Function to get JWT token from cookies
+const getCookie = (name) => {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(';').shift();
+  return null;
+};
 
 const ProtectedRoute = ({ children }) => {
-  const { userInfo } = useContext(UserContext);
-  const [errorMessage, setErrorMessage] = useState('');
-  const { isOpen: isErrorOpen, onOpen: onOpenError, onClose: onCloseError } = useDisclosure();
+  const {  setUserInfo } = useContext(UserContext);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
-    let timer;
-
-    if (!userInfo || !userInfo.username) {
-      setErrorMessage("Please log in to access this feature");
-      onOpenError();
-
-      timer = setTimeout(() => {
-        onCloseError();
-        setErrorMessage('');
-      }, 3000);
+    const token = localStorage.getItem('token') || getCookie('token');
+    if (token) {
+      const url = `${process.env.REACT_APP_API_URL}/profile`;
+      fetch(url, {
+        credentials: "include",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(`Failed to fetch profile: ${response.statusText}`);
+          }
+          return response.json();
+        })
+        .then((userInfo) => {
+          setUserInfo(userInfo);
+          setIsAuthenticated(true);
+        })
+        .catch((error) => {
+          console.error("Error fetching profile:", error.message);
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
+    } else {
+      setIsLoading(false);
     }
+  }, [setUserInfo]);
 
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [userInfo, onCloseError, onOpenError]);
+  if (isLoading) {
+    return <div>Loading...</div>; 
+  }
 
-  if (!userInfo || !userInfo.username) {
+  if (!isAuthenticated) {
     return <Navigate to="/login" />;
   }
 
   return (
     <>
       {children}
-      {isErrorOpen && (
-        <Alert
-          status='error'
-          variant='subtle'
-          flexDirection='column'
-          alignItems='center'
-          justifyContent='center'
-          textAlign='center'
-          height='100px'
-          colorScheme="red"
-          bg='#d83030'
-          borderRadius='10px'
-          maxW='400px'
-          mx='auto'
-          fontSize='small'
-        >
-          <AlertIcon boxSize='30px' mr={0} />
-          <AlertDescription maxWidth='sm'>
-            {errorMessage}
-          </AlertDescription>
-        </Alert>
-      )}
     </>
   );
 };

@@ -26,13 +26,13 @@ function App() {
          <Route path = "/login" element = {<LoginPage />} />
          <Route path = "/register" element = {<RegisterPage />} />
          <Route path = "/ResetPassword" element = {<ChangePassword />} />
-         <Route path='/create' element = {<CreatePost />} />
+         <Route path='/create' element = {<ProtectedRoute><CreatePost /></ProtectedRoute>} />
          <Route path = "/post/:id" element = {<PostPage />}/>
          <Route path = "/contact" element = {<ContactPage />} />
-         <Route path = "/edit/:id" element = {<EditPost />} />
+         <Route path = "/edit/:id" element = {<ProtectedRoute><EditPost /></ProtectedRoute>} />
          <Route path = "/PlagGuard" element = {<PlagiarismChecker />} />
          <Route path = "/safecontent" element = {<ContentChecker />} />
-         <Route path = "/report" element = {<ReportPost />} />
+         <Route path = "/report" element = {<ProtectedRoute><ReportPost /></ProtectedRoute>} />
          <Route path= "/user/:username" element = {<ProtectedRoute><UserProfile /></ProtectedRoute>} />
         </Route>
       </Routes>

@@ -10,14 +10,13 @@ export default function PlagiarismChecker() {
   const [isLoading, setIsLoading] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
-  const { isOpen: isSuccessOpen, onOpen: onOpenSuccess, onClose: onCloseSuccess } = useDisclosure();
+  const { isOpen: isSuccessOpen, onOpen: onOpenSuccess } = useDisclosure();
 
   useEffect(() => {
     let timer;
 
     if (isSuccessOpen) {
       timer = setTimeout(() => {
-        onCloseSuccess();
         setSuccessMessage('');
       }, 3000);
     }

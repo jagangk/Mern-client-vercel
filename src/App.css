@@ -395,7 +395,6 @@ button:hover {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-weight:700;
-  padding: 10px 16px; 
   font-size: 16px;
   display: flex;
   align-items: center;
@@ -711,7 +710,6 @@ footer{
   box-sizing: border-box; 
 }
 
-
 /*----------------------------------user profile css---------------------------*/
 .user-data-update {
   display: flex;
@@ -783,7 +781,6 @@ footer{
     width: 100%;
   }
 }
-
 
 /*------------------------------post data section---------------*/
 div.post-data-header {
