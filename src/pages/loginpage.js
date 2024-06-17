@@ -119,7 +119,7 @@ export default function LoginPage() {
                 <Link to='/ResetPassword'>Forgot password?</Link>
 
                 <button type="submit">Login</button>
-                <FormControlLabel isInvalid onChange={(e) => setRememberMe(e.target.checked)} isChecked={rememberMe} control={<Checkbox defaultChecked sx={{ fontSize: "small" }} />} label="Remember me" />
+                <FormControlLabel isInvalid onChange={(e) => setRememberMe(e.target.checked)} isChecked={rememberMe} control={<Checkbox defaultChecked sx={{ fontSize: "small", color: 'white' }} />} label="Remember me" />
                 <h4>New to Blogstera?</h4>
                 <button type="button" onClick={navigateToRegister}>Create account</button>
             </form>

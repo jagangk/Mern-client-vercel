@@ -29,11 +29,6 @@ div.home-index {
 .material-symbols-outlined {
   font-size: large;
   color: #007bff;
-  font-variation-settings:
-  'FILL' 0,
-  'wght' 400,
-  'GRAD' 0,
-  'opsz' 24
 }
 
 div.home-index h1 , div.loader-div {
@@ -272,7 +267,7 @@ input {
   outline: 0;
   transition: box-shadow 0.3s;
   &:focus {
-    box-shadow: 0 0 0 1.5px #ffffff/* Gradient shadow on focus */
+    box-shadow: 0 0 0 1.5px #ffffff;
   }
 }
 
@@ -302,7 +297,7 @@ textarea{
   border-radius: 5px;
   transition: box-shadow 0.3s;
   &:focus {
-    box-shadow: 0 0 0 1.5px #fefefe/* Gradient shadow on focus */
+    box-shadow: 0 0 0 1.5px #fefefe;
   }
 }
 
@@ -323,7 +318,7 @@ select{
   margin-bottom: 0;
   transition: box-shadow 0.3s;
   &:focus {
-    box-shadow: 0 0 0 1.5px #ffffff/* Gradient shadow on focus */
+    box-shadow: 0 0 0 1.5px #ffffff
   }
 }
 
@@ -355,9 +350,11 @@ label{
 
 input::file-selector-button {
   color:  rgb(255, 255, 255);
-  background-color:#6b96c5;
+  background-color:#007bff;
   border: 0;
-  border-radius: 2px;
+  border-radius: 10px;
+  font-size: small;
+  padding: auto;
   cursor: pointer;
 }
 
@@ -390,6 +387,21 @@ button:hover {
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
+
+/*--------------------------------------------------------------dropdown----------------------------------------*/
+
+.dropbtn {
+  background: linear-gradient(to right, #6b96c5, #c14999 , #b39847);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight:700;
+  padding: 10px 16px; 
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 5px; 
+}
+
 .dropdown-content {
   display: none;
   position:absolute;
@@ -403,8 +415,8 @@ button:hover {
 }
 
 .dropdown-content a {
-  color: rgb(255, 255, 255);
-  padding: 12px 16px;
+  color: rgb(228, 228, 228);
+  padding: 10px 10px;
   font-size: small;
   font-family: sans-serif;
   text-decoration: none;
@@ -416,27 +428,15 @@ button:hover {
   display: flex;
   align-items: center;
   align-self: baseline;
-}
-
-.dropdown-option a{
-  margin: 0;
-  padding: 0;
-}
-
-.dropbtn{
-  background: linear-gradient(to right, #6b96c5, #c14999 , #b39847);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-weight:700;
+  margin: 5px;
 }
 
 .dropdown-content .dropdown-option:hover {background-color: #3a506b39;
-border-radius: 15px;}
+  border-radius: 15px;}
 
-
-nav:hover .dropdown-content {
-  display:inline-block;
-}
+  nav:hover .dropdown-content {
+    display:inline-block;
+  }
 
 div.post-page div.image{
   max-height: 300px;
@@ -689,12 +689,12 @@ footer{
 /*----------------------------------------------------editor toolbar ------------------------------*/
 
 .ql-toolbar {
-  border-bottom: 1px solid #ccc; /* Optional: Add bottom border */
-  border-top-left-radius: 5px; /* Optional: Add rounded corners */
-  border-top-right-radius: 5px; /* Optional: Add rounded corners */
+  border-bottom: 1px solid #ccc; 
+  border-top-left-radius: 5px; 
+  border-top-right-radius: 5px; 
   background:none;
-  padding: 5px; /* Optional: Add padding */
-  box-sizing: border-box; /* Ensures padding doesn't affect height */
+  padding: 5px; 
+  box-sizing: border-box; 
 }
 
 .ql-toolbar button {
@@ -703,55 +703,113 @@ footer{
 }
 
 .ql-editor {
-  min-height: 200px; /* Adjust the minimum height of the editor */
-  border-radius: 5px; /* Optional: Adds rounded corners */
-  font-family: Arial, sans-serif; /* Optional: Set font family */
+  min-height: 200px; 
+  border-radius: 5px; 
+  font-family: Arial, sans-serif; 
   font-size: 16px;
-  padding: 10px; /* Optional: Add padding inside the editor */
-  box-sizing: border-box; /* Ensures padding doesn't affect height */
+  padding: 10px; 
+  box-sizing: border-box; 
 }
 
-/*---------------------------user profile -----------------------------------------------------------------------*/
-div.user-profile-edit {
+
+/*----------------------------------user profile css---------------------------*/
+.user-data-update {
   display: flex;
+  flex-direction: column; 
+  align-items: center;
+  justify-content: center; 
+  margin: 10px;
+  padding: 0;
+}
+
+.user-data-box input{
+  margin: 10px;
+  height: 30px;
+}
+
+.user-profile-edit {
+  display: flex; 
+  flex-wrap: wrap; 
+  font-size: small;
   align-items: center;
   border-radius: 8px;
-  margin: 8px;
-  justify-content: space-between;
   background: #1c2541;
+  margin: 10px; 
 }
 
-div.user-data-update {
-  display: flex;
-  align-items: center;
-}
-
-div.user-data-update h2 {
-  margin: 0px;
-  margin-left: 12px;
-}
-
-div.user-profile-edit p, span {
+.cover-box {
+  width: 25px;
+  height: 25px;
   margin: 10px;
-  font-size: small;
-  text-decoration: none;
-  color: #e4e4e4;
-
+  margin-left: 10px;
+  border-radius: 50%;
+  overflow: hidden;
+  background-position: center;
+  background-size: cover;
 }
+
+.user-cover {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+}
+
+.user-data-box,
+.edit-box {
+  display: flex; 
+  flex-wrap: wrap; 
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.user-data-update h2,
+.user-profile-edit p,
+.user-profile-edit span {
+  margin: 10px; 
+  text-decoration: none;
+}
+
+@media (max-width: 768px) {
+  .user-profile-edit {
+    flex-direction: column; 
+    align-items: center; 
+  }
+  .user-profile-edit,
+  .user-data-box,
+  .edit-box {
+    width: 100%;
+  }
+}
+
 
 /*------------------------------post data section---------------*/
 div.post-data-header {
   display: flex;
-  justify-content: left;
   align-items: center;
-  padding-top: 15px;
-}
-
-div.post-data-header h2 {
-  margin: 0px;
+  gap: 5px;
+  padding: 0;
+  justify-content: left;
   margin-left: 12px;
 }
 
+div.post-data-header p  {
+  margin: 0;
+  padding: 0;
+  padding: 5px;
+  align-items: center;
+}
+
+div.post-data-header button {
+  padding: 5px;
+  width: max-content;
+  background: rgba(255, 0, 0, 0.494);
+  align-items: center;
+  font-size: small;
+  font-weight: 400;
+}
 
 div.post-container {
   display: flex;
@@ -782,7 +840,7 @@ div.post-container {
 .create-post-ack {
   display: flex;
   align-items: center;
-  align-self: baseline;
+  gap: 5px;
   justify-content: center;
 }
 
@@ -792,7 +850,6 @@ div.post-container {
   color: #c7c7c7;
   line-height: 1.6rem;
 }
-
 
 .user-icons {
   margin-left: auto;
@@ -810,8 +867,8 @@ div.post-container {
 }
 
 div.post-container img{
-  width: 100px;
-  height: 60px;
+  width: 90px;
+  height: 50px;
   margin: 5px;
   border-radius: 5px;
   align-items: flex-start;
@@ -919,7 +976,7 @@ div.search-container select{
   padding: 11px 5px;
 }
 
-.search-button i:hover, span {
+.search-button i:hover{
   color: #05fc57;
 }
 

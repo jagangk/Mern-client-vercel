@@ -20,10 +20,12 @@ const Post = forwardRef(({ _id, author, createdAt, title, summary, cover }, ref)
                     {summary}
                     <Link to={`/post/${_id}`}>...more</Link>
                 </p>
+
                 <p className="info">
                     <Link className="author">{author.username}</Link>
                     <time>• {relativeTime}</time>
                 </p>
+
             </div>
         </div>
     );
