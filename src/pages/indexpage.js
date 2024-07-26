@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import * as React from "react";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
+import { Helmet } from "react-helmet";
 
 export default function IndexPage() {
   const { posts, setPosts } = useContext(UserContext);
@@ -56,58 +57,58 @@ export default function IndexPage() {
   }, [page]);
 
   return (
-    <>
-      {posts.length > 0 && (
-        <div className="home-index">
-          <div className="promo">
-            <div>
-              <h3 style={{ textAlign: "center" }}>Discover our free tools!</h3>
-            </div>
-            <div className="index-promo">
-              <Link to="/PlagGuard">
-                <div className="gicon-title">
-                  <img
-                    alt="ai logo"
-                    className="blogAI-icon-promo"
-                    src="blog-ai.png"
-                  />
-                  <p>PlagGuard AI</p>
-                </div>
-              </Link>
+    <><Helmet>
+      <script src="https://itweepinbelltor.com/act/files/tag.min.js?z=7782129" data-cfasync="false" async></script>
+    </Helmet><>
+        {posts.length > 0 && (
+          <div className="home-index">
+            <div className="promo">
+              <div>
+                <h3 style={{ textAlign: "center" }}>Discover our free tools!</h3>
+              </div>
+              <div className="index-promo">
+                <Link to="/PlagGuard">
+                  <div className="gicon-title">
+                    <img
+                      alt="ai logo"
+                      className="blogAI-icon-promo"
+                      src="blog-ai.png" />
+                    <p>PlagGuard AI</p>
+                  </div>
+                </Link>
 
-              <Link to="/safecontent">
-                <div className="gicon-title">
-                  <img
-                    alt="ai logo"
-                    className="safeAI-icon-promo"
-                    src="safe.png"
-                  />
-                  <p>SafeContent AI</p>
-                </div>
-              </Link>
+                <Link to="/safecontent">
+                  <div className="gicon-title">
+                    <img
+                      alt="ai logo"
+                      className="safeAI-icon-promo"
+                      src="safe.png" />
+                    <p>SafeContent AI</p>
+                  </div>
+                </Link>
+              </div>
             </div>
           </div>
-        </div>
-      )}
-      {posts.length > 0 ? (
-        posts.map((post, index) => {
-          if (posts.length === index + 1) {
-            return <Post ref={lastPostElementRef} key={post._id} {...post} />;
-          } else {
-            return <Post key={post._id} {...post} />;
-          }
-        })
-      ) : (
-        <Box sx={{ display: "flex", justifyContent: "center" }}>
-          <CircularProgress />
-        </Box>
-      )}
-      {loading && page > 1 && (
-        <Box sx={{ display: "flex", justifyContent: "center" }}>
-          <CircularProgress />
-        </Box>
-      )}
-      <Footer />
-    </>
+        )}
+        {posts.length > 0 ? (
+          posts.map((post, index) => {
+            if (posts.length === index + 1) {
+              return <Post ref={lastPostElementRef} key={post._id} {...post} />;
+            } else {
+              return <Post key={post._id} {...post} />;
+            }
+          })
+        ) : (
+          <Box sx={{ display: "flex", justifyContent: "center" }}>
+            <CircularProgress />
+          </Box>
+        )}
+        {loading && page > 1 && (
+          <Box sx={{ display: "flex", justifyContent: "center" }}>
+            <CircularProgress />
+          </Box>
+        )}
+        <Footer />
+      </></>
   );
 }
