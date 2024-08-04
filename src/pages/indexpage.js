@@ -60,9 +60,7 @@ export default function IndexPage() {
       {posts.length > 0 && (
         <div className="home-index">
           <div className="promo">
-            <div>
-              <h3 style={{ textAlign: "center" }}>Discover our free tools!</h3>
-            </div>
+            <h1>Feeds</h1>
             <div className="index-promo">
               <Link to="/PlagGuard">
                 <div className="gicon-title">
