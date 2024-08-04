@@ -58,34 +58,63 @@ export default function IndexPage() {
   return (
     <>
       {posts.length > 0 && (
-        <div className="home-index">
-          <div className="promo">
-            <h1>Feeds</h1>
-            <div className="index-promo">
-              <Link to="/PlagGuard">
-                <div className="gicon-title">
-                  <img
-                    alt="ai logo"
-                    className="blogAI-icon-promo"
-                    src="blog-ai.png"
-                  />
-                  <p>PlagGuard AI</p>
-                </div>
-              </Link>
+        <>
+          <div className="home-index">
+            <div className="promo-ai">
+              <div>
+                <h3>Discover our Free Tools!</h3>
+              </div>
+              <div className="index-promo">
+                <Link to="/PlagGuard">
+                  <div className="gicon-title">
+                    <img
+                      alt="ai logo"
+                      className="blogAI-icon-promo"
+                      src="blog-ai.png"
+                    />
+                    <p>PlagGuard AI</p>
+                  </div>
+                </Link>
 
-              <Link to="/safecontent">
-                <div className="gicon-title">
-                  <img
-                    alt="ai logo"
-                    className="safeAI-icon-promo"
-                    src="safe.png"
-                  />
-                  <p>SafeContent AI</p>
-                </div>
-              </Link>
+                <Link to="/safecontent">
+                  <div className="gicon-title">
+                    <img
+                      alt="ai logo"
+                      className="safeAI-icon-promo"
+                      src="safe.png"
+                    />
+                    <p>SafeContent AI</p>
+                  </div>
+                </Link>
+              </div>
             </div>
           </div>
-        </div>
+
+          <div className="home-index">
+            <div className="promo">
+              <h1>Feeds</h1>
+              <div className="index-promo">
+                <Link to="/create">
+                  <div className="gicon-title">
+                    <img
+                      alt="ai logo"
+                      className="promo-icon"
+                      src="create.png"
+                    />
+                    <p>Post</p>
+                  </div>
+                </Link>
+
+                <Link to="/contact">
+                  <div className="gicon-title">
+                    <img alt="ai logo" className="promo-icon" src="mail.png" />
+                    <p>contact</p>
+                  </div>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </>
       )}
       {posts.length > 0 ? (
         posts.map((post, index) => {

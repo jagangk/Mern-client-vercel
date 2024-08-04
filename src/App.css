@@ -19,6 +19,16 @@
   background: #6dcaae; 
 }
 
+div.promo-ai{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 0 2px white;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
 div.promo{
   display: flex;
   flex-direction: row;
@@ -28,9 +38,6 @@ div.promo{
 div.home-index {
   display: flex;
   flex-direction: column;
-  align-items: left;
-  justify-content: baseline;
-  gap: 5px;
 }
 
 div.index-promo {
@@ -38,7 +45,6 @@ div.index-promo {
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 15px;
 }
 
 div.index-promo a{
@@ -47,10 +53,6 @@ div.index-promo a{
   font-size: medium;
   padding: 8px;
   border-radius: 10px;
-}
-
-div.index-promo a:hover{
-  background-color: #1c2541;
 }
 
 .material-symbols-outlined {
@@ -928,6 +930,10 @@ form.plag-remover {
   padding: 5px;
 }
 
+.promo-icon{
+   width: 25px;
+}
+
 
 div.gemini-icon-container {
   max-width: fit-content;
@@ -965,6 +971,8 @@ div.gicon-title {
   align-items: center;
   gap: 5px;
 }
+
+
 
 div.search-container {
   display: flex;

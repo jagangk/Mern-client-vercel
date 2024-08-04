@@ -119,8 +119,16 @@ export default function Header() {
             </>
           ) : (
             <>
-              <Link to="/login">Sign in</Link>
-              <Link to="/contact">Contact</Link>
+              <Link to="/login">
+                <div className="gicon-title">
+                  <img
+                    alt="ai logo"
+                    className="promo-icon"
+                    src="user.png"
+                  />
+                  <p>Sign in</p>
+                </div>
+              </Link>
             </>
           )}
         </nav>
