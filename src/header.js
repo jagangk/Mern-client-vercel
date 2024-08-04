@@ -87,48 +87,44 @@ export default function Header() {
                 </div>
                 <div className="dropdown-content">
                   <div className="dropdown-option">
-                  <span class="material-symbols-outlined">account_circle</span>
+                    <span class="material-symbols-outlined">
+                      account_circle
+                    </span>
                     <Link to={`/user/${username}`}>Account</Link>
                   </div>
                   <div className="dropdown-option">
-                  <span class="material-symbols-outlined">all_inclusive</span>
+                    <span class="material-symbols-outlined">all_inclusive</span>
                     <Link to="/PlagGuard">PlagGuard AI</Link>
                   </div>
                   <div className="dropdown-option">
-                  <span class="material-symbols-outlined">spellcheck</span>
+                    <span class="material-symbols-outlined">spellcheck</span>
                     <Link to="/safecontent">Safe content AI</Link>
                   </div>
                   <div className="dropdown-option">
-                  <span class="material-symbols-outlined">add_circle</span>
+                    <span class="material-symbols-outlined">add_circle</span>
                     <Link to="/create">Create Post</Link>
                   </div>
                   <div className="dropdown-option">
-                  <span class="material-symbols-outlined">rss_feed</span>
-                     <Link to="/">Feeds</Link>
+                    <span class="material-symbols-outlined">rss_feed</span>
+                    <Link to="/">Feeds</Link>
                   </div>
                   <div className="dropdown-option">
-                  <span class="material-symbols-outlined">help</span>
-                     <Link to="/contact">Contact</Link>
+                    <span class="material-symbols-outlined">help</span>
+                    <Link to="/contact">Contact</Link>
                   </div>
                   <div className="dropdown-option">
-                  <span class="material-symbols-outlined">logout</span>
-                     <Link onClick={logout}>Logout</Link>
+                    <span class="material-symbols-outlined">logout</span>
+                    <Link onClick={logout}>Logout</Link>
                   </div>
                 </div>
               </div>
             </>
           ) : (
             <>
-              <Link to="/login">
-                <div className="gicon-title">
-                  <img
-                    alt="ai logo"
-                    className="promo-icon"
-                    src="user.png"
-                  />
-                  <p>Sign in</p>
-                </div>
-              </Link>
+ 
+                <Link  to="/login">
+                  Sign in
+                </Link>
             </>
           )}
         </nav>
