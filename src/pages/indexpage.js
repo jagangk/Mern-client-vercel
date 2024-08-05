@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import * as React from "react";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
+import Navbar from "../Navbar";
 
 export default function IndexPage() {
   const { posts, setPosts } = useContext(UserContext);
@@ -59,33 +60,7 @@ export default function IndexPage() {
     <>
       {posts.length > 0 && (
         <>
-          <div className="home-index">
-            <div className="promo">
-              <div className="index-promo">
-                <h2>Feeds</h2>
-              </div>
-
-              <div className="index-promo">
-                <Link to="/create">
-                  <div className="gicon-title">
-                    <img
-                      alt="ai logo"
-                      className="promo-icon"
-                      src="create.png"
-                    />
-                    <p>Post</p>
-                  </div>
-                </Link>
-
-                <Link to="/contact">
-                  <div className="gicon-title">
-                    <img alt="ai logo" className="promo-icon" src="mail.png" />
-                    <p>Contact</p>
-                  </div>
-                </Link>
-              </div>
-            </div>
-          </div>
+          <Navbar />
         </>
       )}
       {posts.length > 0 ? (

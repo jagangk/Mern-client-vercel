@@ -86,13 +86,12 @@ export default function PlagiarismChecker() {
             textAlign='center'
             height='80px'
             colorScheme="red"
-            bg='#2E8B57'
             borderRadius='10px'
             fontSize='small'
             margin='20px'
             maxWidth='70%'
           >
-            <AlertIcon boxSize='30px' mr={0} />
+            <AlertIcon color={"#6dcaae"} boxSize='30px' mr={0} />
             <AlertTitle mt={4} mb={1} fontSize='lg'>
               {successMessage}
             </AlertTitle>

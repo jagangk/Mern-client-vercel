@@ -93,22 +93,6 @@ export default function Header() {
                     <Link to={`/user/${username}`}>Account</Link>
                   </div>
                   <div className="dropdown-option">
-                    <span class="material-symbols-outlined">all_inclusive</span>
-                    <Link to="/PlagGuard">PlagGuard AI</Link>
-                  </div>
-                  <div className="dropdown-option">
-                    <span class="material-symbols-outlined">spellcheck</span>
-                    <Link to="/safecontent">Safe content AI</Link>
-                  </div>
-                  <div className="dropdown-option">
-                    <span class="material-symbols-outlined">add_circle</span>
-                    <Link to="/create">Create Post</Link>
-                  </div>
-                  <div className="dropdown-option">
-                    <span class="material-symbols-outlined">rss_feed</span>
-                    <Link to="/">Feeds</Link>
-                  </div>
-                  <div className="dropdown-option">
                     <span class="material-symbols-outlined">help</span>
                     <Link to="/contact">Contact</Link>
                   </div>
@@ -140,12 +124,11 @@ export default function Header() {
           textAlign="center"
           height="80px"
           colorScheme="red"
-          bg="#6dcaae"
           borderRadius="10px"
           fontSize="small"
           className="alert-box"
         >
-          <AlertIcon boxSize="30px" mr={0} />
+          <AlertIcon color={"#6dcaae"} boxSize="30px" mr={0} />
           <AlertTitle mt={4} mb={1} fontSize="lg">
             {successMessage}
           </AlertTitle>

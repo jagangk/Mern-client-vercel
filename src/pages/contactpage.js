@@ -80,17 +80,18 @@ export default function ContactPage() {
         <Alert
           status='success'
           variant='subtle'
-          flexDirection='column'
+          display='flex'
+          flexDirection='row'
           alignItems='center'
           justifyContent='center'
           textAlign='center'
           height='80px'
           colorScheme="red"
-          bg='#6dcaae'
           borderRadius='10px'
           fontSize='small'
+          gap={'5px'}
         >
-          <AlertIcon boxSize='30px' mr={0} />
+          <AlertIcon color={"#6dcaae"} boxSize='30px' mr={0} />
           <AlertTitle mt={4} mb={1} fontSize='lg'>
             {successMessage}
           </AlertTitle>
@@ -101,17 +102,18 @@ export default function ContactPage() {
         <Alert
           status='error'
           variant='subtle'
-          flexDirection='column'
+          display='flex'
+          flexDirection='row'
           alignItems='center'
           justifyContent='center'
           textAlign='center'
           height='80px'
           colorScheme="red"
-          bg='#d83030'
           borderRadius='10px'
           fontSize='small'
+          gap={'5px'}
         >
-          <AlertIcon boxSize='30px' mr={0} />
+          <AlertIcon color={'#d83030'} boxSize='30px' mr={0} />
           <AlertTitle mt={4} mb={1} fontSize='lg'>
             {errorMessage}
           </AlertTitle>
@@ -122,17 +124,18 @@ export default function ContactPage() {
         <Alert
           status='error'
           variant='subtle'
-          flexDirection='column'
+          display='flex'
+          flexDirection='row'
           alignItems='center'
           justifyContent='center'
           textAlign='center'
           height='80px'
           colorScheme="red"
-          bg='#d83030'
           borderRadius='10px'
           fontSize='small'
+          gap={'5px'}
         >
-          <AlertIcon boxSize='30px' mr={0} />
+          <AlertIcon color={'#d83030'} boxSize='30px' mr={0} />
           <AlertTitle mt={4} mb={1} fontSize='lg'>
             {catchMessage}
           </AlertTitle>
