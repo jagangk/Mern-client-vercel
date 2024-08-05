@@ -813,20 +813,23 @@ footer {
   background: none;
   padding: 5px;
   box-sizing: border-box;
+  background: white;
 }
 
 .ql-toolbar button {
-  box-shadow: 0 0 0 1.5px #2f2f2f;
   margin: 5px;
+  color: #ffffff;
+  margin: 5px;
+  border-radius: 5px;
 }
 
 .ql-editor {
   min-height: 200px;
   border-radius: 5px;
-  font-family: Arial, sans-serif;
   font-size: 16px;
   padding: 10px;
   box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
 }
 
 /*----------------------------------user profile css---------------------------*/
@@ -1232,3 +1235,5 @@ div.Product-container a {
   text-align: center;
   border-radius: 15px;
 }
+
+

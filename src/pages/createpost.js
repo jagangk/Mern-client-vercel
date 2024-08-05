@@ -4,6 +4,7 @@ import { Helmet } from "react-helmet";
 import ReactQuill from "react-quill";
 import { Alert, AlertIcon, AlertTitle, useDisclosure } from "@chakra-ui/react";
 import 'react-quill/dist/quill.snow.css';
+import Editor from "../Editor";
 
 const formats = ['header', 'bold', 'italic', 'underline', 'strike', 'blockquote', 'list', 'bullet', 'indent', 'link', 'image'];
 
@@ -190,7 +191,7 @@ export default function CreatePost() {
         
         <input required type="file" onChange={(ev) => setFiles(ev.target.files)} />
 
-        <ReactQuill
+        <Editor
           value={content}
           theme="snow"
           onChange={(newValue) => setContent(newValue)}
