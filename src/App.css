@@ -72,6 +72,20 @@ div.index-promo a {
   border-radius: 10px;
 }
 
+div.index-promo a::after {
+  content: "";
+  width: 0%;
+  height: 3px;
+  background: #05fcb28e;
+  display: block;
+  margin: auto;
+  transition: 0.5s;
+}
+
+div.index-promo a:hover::after {
+  width: 100%;
+}
+
 /* Mobile styles */
 @media (max-width: 768px) {
   div.navbar-toggle {
@@ -171,14 +185,26 @@ body {
   font-optical-sizing: auto;
 }
 
-img {
+div.image {
+  overflow: hidden;
+  border-radius: 5px;
+}
+
+.banner-img {
   max-width: 100%;
   height: 100%;
-  border-radius: 5px;
+  transition: transform 0.6s ease, opacity 0.6s ease;
+  backface-visibility: hidden;
+}
+
+.banner-img:hover {
+  transform: scale(1.08);
+  opacity: 0.8;
 }
 
 .icon {
   width: 50px;
+  border-radius: 5px;
 }
 
 .icon-footer {
@@ -286,6 +312,12 @@ div.post div.text a {
   text-decoration: none;
   color: inherit;
 }
+
+div.post div.text a:hover {
+  text-decoration: underline;
+
+}
+
 
 div.post p.info {
   margin: 6px 0;
@@ -532,7 +564,7 @@ button:hover {
   background: linear-gradient(to right, #009dffc9, #c14999, #b39847);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  font-size: small;
+  font-size: medium;
   font-weight: 700;
   align-items: center;
 }
@@ -896,7 +928,6 @@ footer {
   font-size: 13px;
 }
 
-
 @media (max-width: 768px) {
   .user-profile-edit {
     flex-direction: column;
@@ -1193,7 +1224,7 @@ form.safe-content {
   padding: 5px;
 }
 
-.content-select option{
+.content-select option {
   min-width: 90px;
   max-width: fit-content;
   background: #004e92;
@@ -1235,5 +1266,3 @@ div.Product-container a {
   text-align: center;
   border-radius: 15px;
 }
-
-

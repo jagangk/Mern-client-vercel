@@ -1,6 +1,12 @@
 import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Alert, AlertIcon, AlertTitle, Flex, useDisclosure } from "@chakra-ui/react";
+import {
+  Alert,
+  AlertIcon,
+  AlertTitle,
+  Flex,
+  useDisclosure,
+} from "@chakra-ui/react";
 import { UserContext } from "./userContext";
 
 export default function Header() {
@@ -81,11 +87,10 @@ export default function Header() {
         <nav>
           {username ? (
             <>
+              <Link className="dropbtn" to={`/user/${username}`}>
+                Hello {username}
+              </Link>
               <div className="index-promo">
-                <Link className="dropbtn" to={`/user/${username}`}>
-                  Hello {username}
-                </Link>
-
                 <Link onClick={logout}>
                   <div className="gicon-title">
                     <img
@@ -110,9 +115,9 @@ export default function Header() {
         <Alert
           status="success"
           variant="subtle"
-          display='flex'
+          display="flex"
           flexDirection="row"
-          gap='10px'
+          gap="10px"
           alignItems="center"
           justifyContent="center"
           textAlign="center"
