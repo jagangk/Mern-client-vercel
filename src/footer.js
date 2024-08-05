@@ -7,19 +7,17 @@ export default function Footer() {
                 <p>Don't miss out on the latest news and exciting developments. Subscribe now to receive newsletter!</p>
             </div>
             <div class='newsletter'>
-                <input type="email" class='f-input' placeholder="Email" />
-                <button class='f-btn'>Subscribe</button>
+                <input type="email" className='f-input' placeholder="Email" />
+                <button className='f-btn'>Subscribe</button>
             </div>
             <div class='footer-route'>
                 <ul class='footer-menu'>
                     <li><Link to='/login'>Login</Link></li>
                     <li><Link to='/register'>Register</Link></li>
-                    <li><Link to='/PlagGuard'>PlagGuard</Link></li>
                     <li><Link target='_blank' to='https://www.api.blogstera.site/rss'>Feeds</Link></li>
                     <li><Link to='/contact'>Contact</Link></li>
                 </ul>
             </div>
-
             <div class='social-route'>
                 <ul class="social-menu">
                     <li><a class='facebook' href="/"><i class="fa fa-facebook"></i></a></li>

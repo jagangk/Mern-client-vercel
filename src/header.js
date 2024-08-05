@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Alert, AlertIcon, AlertTitle, useDisclosure } from "@chakra-ui/react";
+import { Alert, AlertIcon, AlertTitle, Flex, useDisclosure } from "@chakra-ui/react";
 import { UserContext } from "./userContext";
 
 export default function Header() {
@@ -81,34 +81,26 @@ export default function Header() {
         <nav>
           {username ? (
             <>
-              <div className="dropdown">
-                <div className="home-index">
-                  <Link className="dropbtn">Hello {username}</Link>
-                </div>
-                <div className="dropdown-content">
-                  <div className="dropdown-option">
-                    <span class="material-symbols-outlined">
-                      account_circle
-                    </span>
-                    <Link to={`/user/${username}`}>Account</Link>
+              <div className="index-promo">
+                <Link className="dropbtn" to={`/user/${username}`}>
+                  Hello {username}
+                </Link>
+
+                <Link onClick={logout}>
+                  <div className="gicon-title">
+                    <img
+                      alt="ai logo"
+                      className="promo-icon"
+                      src="logout.png"
+                    />
+                    <p className="logout">Logout</p>
                   </div>
-                  <div className="dropdown-option">
-                    <span class="material-symbols-outlined">help</span>
-                    <Link to="/contact">Contact</Link>
-                  </div>
-                  <div className="dropdown-option">
-                    <span class="material-symbols-outlined">logout</span>
-                    <Link onClick={logout}>Logout</Link>
-                  </div>
-                </div>
+                </Link>
               </div>
             </>
           ) : (
             <>
- 
-                <Link  to="/login">
-                  Sign in
-                </Link>
+              <Link to="/login">Sign in</Link>
             </>
           )}
         </nav>
@@ -118,7 +110,9 @@ export default function Header() {
         <Alert
           status="success"
           variant="subtle"
-          flexDirection="column"
+          display='flex'
+          flexDirection="row"
+          gap='10px'
           alignItems="center"
           justifyContent="center"
           textAlign="center"

@@ -160,6 +160,7 @@ export default function ContactPage() {
       <textarea
         type="text"
         value={query}
+        placeholder="your message here"
         onChange={(ev) => setQuery(ev.target.value)} />
       <button>Submit</button>
   

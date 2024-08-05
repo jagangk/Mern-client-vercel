@@ -232,7 +232,7 @@ function UserProfile() {
                       />
                     </div>
                     <div className='user-data-box'>
-                      <button type='submit'><span className="material-symbols-outlined">arrow_forward</span></button>
+                      <button className="profile-btn" type='submit'><span className="material-symbols-outlined">arrow_forward</span></button>
                     </div>
                   </div>
                 </div>
