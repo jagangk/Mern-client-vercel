@@ -10,14 +10,28 @@ import Navbar from "../Navbar";
 
 export default function IndexPage() {
   const { posts, setPosts } = useContext(UserContext);
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(() => {
+    const savedPage = localStorage.getItem("currentPage");
+    return savedPage ? JSON.parse(savedPage) : 1;
+  });
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
   const observer = useRef();
 
   useEffect(() => {
-    fetchPosts(1);
-  }, []);
+    const savedPosts = localStorage.getItem("savedPosts");
+    if (savedPosts) {
+      setPosts(JSON.parse(savedPosts));
+    } else {
+      fetchPosts(1);
+    }
+  }, [setPosts]);
+
+  useEffect(() => {
+    if (page > 1) {
+      fetchPosts(page);
+    }
+  }, [page]);
 
   const fetchPosts = async (page) => {
     setLoading(true);
@@ -28,7 +42,11 @@ export default function IndexPage() {
       if (data.length < 10) {
         setHasMore(false);
       }
-      setPosts((prevPosts) => (page === 1 ? data : [...prevPosts, ...data]));
+      setPosts((prevPosts) => {
+        const newPosts = page === 1 ? data : [...prevPosts, ...data];
+        localStorage.setItem("savedPosts", JSON.stringify(newPosts));
+        return newPosts;
+      });
       setLoading(false);
     } catch (error) {
       console.error("Error fetching posts:", error);
@@ -42,7 +60,11 @@ export default function IndexPage() {
       if (observer.current) observer.current.disconnect();
       observer.current = new IntersectionObserver((entries) => {
         if (entries[0].isIntersecting && hasMore) {
-          setPage((prevPage) => prevPage + 1);
+          setPage((prevPage) => {
+            const newPage = prevPage + 1;
+            localStorage.setItem("currentPage", JSON.stringify(newPage));
+            return newPage;
+          });
         }
       });
       if (node) observer.current.observe(node);
@@ -50,15 +72,9 @@ export default function IndexPage() {
     [loading, hasMore]
   );
 
-  useEffect(() => {
-    if (page > 1) {
-      fetchPosts(page);
-    }
-  }, [page]);
-
   return (
     <>
-      {posts.length > 0 && (
+      {posts.length >= 0 && (
         <>
           <Navbar />
         </>
