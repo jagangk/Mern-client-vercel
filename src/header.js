@@ -123,14 +123,14 @@ export default function Header() {
                   {username}
               </Link>
 
-                <Link className="logout" onClick={logout}>
+                <Link onClick={logout}>
                   <div className="gicon-title">
                     <img
                       alt="ai logo"
                       className="promo-icon"
                       src="../logout.png"
                     />
-                    Logout
+                    <Link className="logout" onClick={logout}>Logout</Link>
                   </div>
                 </Link>
 
