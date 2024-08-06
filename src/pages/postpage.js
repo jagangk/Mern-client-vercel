@@ -105,7 +105,10 @@ export default function PostPage() {
                   <option value="delete">Delete</option>
                 </>
               )}
-              <option value="report">Report</option>
+
+              {userInfo.id === postInfo.author.id && (
+                <option value="report">Report</option>
+              )}
             </select>
           </div>
 

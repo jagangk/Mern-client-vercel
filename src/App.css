@@ -189,6 +189,10 @@ div.image {
   overflow: hidden;
   border-radius: 5px;
 }
+img {
+  max-width: 100%;
+  height: 100%;
+}
 
 .banner-img {
   max-width: 100%;
@@ -315,7 +319,6 @@ div.post div.text a {
 
 div.post div.text a:hover {
   text-decoration: underline;
-
 }
 
 
@@ -422,12 +425,12 @@ input {
   padding: 10px 10px;
   background: #386696;
   border: 0;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(5.4px);
   -webkit-backdrop-filter: blur(5.4px);
   border-radius: 5px;
   color: white;
   outline: 0;
+  transition: 0.7s;
   font-family: "Montserrat", sans-serif;
   &:focus {
     box-shadow: 0 0 0 1.5px #ffffff;
@@ -456,9 +459,9 @@ textarea {
   border: 0;
   outline: 0;
   background: #386696;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(5.4px);
   -webkit-backdrop-filter: blur(5.4px);
+  transition: 0.7s;
   border-radius: 5px;
   &:focus {
     box-shadow: 0 0 0 1.5px #fefefe;
@@ -478,7 +481,7 @@ select {
   outline: 0;
   border: 0;
   background: #386696;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+  transition: 0.7s;
   backdrop-filter: blur(5.4px);
   -webkit-backdrop-filter: blur(5.4px);
   border-radius: 5px;
@@ -567,6 +570,12 @@ button:hover {
   font-size: medium;
   font-weight: 700;
   align-items: center;
+  transition: 0.5s;
+}
+
+.dropbtn:hover {
+  font-size: 17px;
+
 }
 
 .dropdown-option {
@@ -862,6 +871,10 @@ footer {
   padding: 10px;
   box-sizing: border-box;
   font-family: "Montserrat", sans-serif;
+}
+
+.ql-editor a{
+  color: #00eaff;
 }
 
 /*----------------------------------user profile css---------------------------*/

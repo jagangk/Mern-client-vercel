@@ -96,7 +96,7 @@ export default function Header() {
                     <img
                       alt="ai logo"
                       className="promo-icon"
-                      src="logout.png"
+                      src="../logout.png"
                     />
                     <p className="logout">Logout</p>
                   </div>
