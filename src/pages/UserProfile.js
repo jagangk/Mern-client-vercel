@@ -1,22 +1,30 @@
-import { Link, useParams } from 'react-router-dom';
-import { useState, useEffect } from 'react';
-import { Helmet } from 'react-helmet';
+import { Link, useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Helmet } from "react-helmet";
 import { Alert, AlertIcon, AlertTitle, useDisclosure } from "@chakra-ui/react";
-import CircularProgress from '@mui/material/CircularProgress';
-import Box from '@mui/material/Box';
+import CircularProgress from "@mui/material/CircularProgress";
+import Box from "@mui/material/Box";
 
 function UserProfile() {
   const { username } = useParams();
   const [userData, setUserData] = useState(null);
   const [userPosts, setUserPosts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [files, setFiles] = useState('');
-  const [email, setEmail] = useState('');
+  const [files, setFiles] = useState("");
+  const [email, setEmail] = useState("");
   const [redirect, setRedirect] = useState(false);
-  const [successMessage, setSuccessMessage] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
-  const { isOpen: isSuccessOpen, onOpen: onOpenSuccess, onClose: onCloseSuccess } = useDisclosure();
-  const { isOpen: isErrorOpen, onOpen: onOpenError, onClose: onCloseError } = useDisclosure();
+  const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const {
+    isOpen: isSuccessOpen,
+    onOpen: onOpenSuccess,
+    onClose: onCloseSuccess,
+  } = useDisclosure();
+  const {
+    isOpen: isErrorOpen,
+    onOpen: onOpenError,
+    onClose: onCloseError,
+  } = useDisclosure();
   const [editMode, setEditMode] = useState(false);
 
   // Local storage key for user data
@@ -32,18 +40,25 @@ function UserProfile() {
           setUserData(parsedData.userData);
           setUserPosts(parsedData.userPosts);
         } else {
-          const response = await fetch(`${process.env.REACT_APP_API_URL}/users/${username}`);
+          const response = await fetch(
+            `${process.env.REACT_APP_API_URL}/users/${username}`
+          );
           const fetchedUser = await response.json();
           setUserData(fetchedUser);
 
-          const postResponse = await fetch(`${process.env.REACT_APP_API_URL}/posts/user/${fetchedUser._id}`);
+          const postResponse = await fetch(
+            `${process.env.REACT_APP_API_URL}/posts/user/${fetchedUser._id}`
+          );
           const fetchedPosts = await postResponse.json();
           setUserPosts(fetchedPosts);
 
-          localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify({ userData: fetchedUser, userPosts: fetchedPosts }));
+          localStorage.setItem(
+            LOCAL_STORAGE_KEY,
+            JSON.stringify({ userData: fetchedUser, userPosts: fetchedPosts })
+          );
         }
       } catch (error) {
-        console.error('Error fetching user data:', error);
+        console.error("Error fetching user data:", error);
       } finally {
         setLoading(false);
       }
@@ -58,14 +73,14 @@ function UserProfile() {
     if (isSuccessOpen) {
       timer = setTimeout(() => {
         onCloseSuccess();
-        setSuccessMessage('');
+        setSuccessMessage("");
       }, 3000);
     }
 
     if (isErrorOpen) {
       timer = setTimeout(() => {
         onCloseError();
-        setErrorMessage('');
+        setErrorMessage("");
       }, 3000);
     }
 
@@ -86,16 +101,16 @@ function UserProfile() {
     ev.preventDefault();
 
     const data = new FormData();
-    data.set('file', files[0]);
-    data.set('email', email);
-    data.set('username', userData.username);
+    data.set("file", files[0]);
+    data.set("email", email);
+    data.set("username", userData.username);
     console.log(files);
 
     const url = `${process.env.REACT_APP_API_URL}/updateUser`;
     const response = await fetch(url, {
-      method: 'PUT',
+      method: "PUT",
       body: data,
-      credentials: 'include',
+      credentials: "include",
     });
 
     if (response.ok) {
@@ -120,44 +135,53 @@ function UserProfile() {
   }, [redirect]);
 
   const handleDelete = async (postId) => {
-    const confirmDelete = window.confirm('Are you sure you want to delete this post?');
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this post?"
+    );
     if (confirmDelete) {
       try {
         await fetch(`${process.env.REACT_APP_API_URL}/post/${postId}`, {
-          method: 'DELETE',
+          method: "DELETE",
         });
-        setUserPosts((prevPosts) => prevPosts.filter((post) => post._id !== postId));
+        setUserPosts((prevPosts) =>
+          prevPosts.filter((post) => post._id !== postId)
+        );
       } catch (error) {
-        console.error('Error deleting post:', error);
+        console.error("Error deleting post:", error);
       }
     }
   };
 
   if (loading) {
-    return <Box sx={{ display: 'flex', justifyContent: 'center' }}><CircularProgress /></Box>;
+    return (
+      <Box sx={{ display: "flex", justifyContent: "center" }}>
+        <CircularProgress />
+      </Box>
+    );
   }
 
   return (
     <>
-      <Helmet><title>Profile {userData.username}</title></Helmet>
+      <Helmet>
+        <title>Profile {userData.username}</title>
+      </Helmet>
       <div className="user-profile">
-
         {isSuccessOpen && (
           <Alert
-            status='success'
-            flexDirection='row'
-            alignItems='center'
-            justifyContent='center'
-            textAlign='center'
+            status="success"
+            flexDirection="row"
+            alignItems="center"
+            justifyContent="center"
+            textAlign="center"
             colorScheme="red"
-            height={'40px'}
-            borderRadius='10px'
-            fontSize='small'
-            fontWeight={'600'}
-            gap={'5px'}
+            height={"40px"}
+            borderRadius="10px"
+            fontSize="small"
+            fontWeight={"600"}
+            gap={"5px"}
           >
-            <AlertIcon color={'#6dcaae'} boxSize='20px' mr={0} />
-            <AlertTitle mt={4} mb={1} fontSize='lg'>
+            <AlertIcon color={"#6dcaae"} boxSize="20px" mr={0} />
+            <AlertTitle mt={4} mb={1} fontSize="lg">
               {successMessage}
             </AlertTitle>
           </Alert>
@@ -165,20 +189,20 @@ function UserProfile() {
 
         {isErrorOpen && (
           <Alert
-            status='error'
-            flexDirection='row'
-            alignItems='center'
-            justifyContent='center'
-            textAlign='center'
+            status="error"
+            flexDirection="row"
+            alignItems="center"
+            justifyContent="center"
+            textAlign="center"
             colorScheme="red"
-            height={'80px'}
-            borderRadius='10px'
-            fontSize='small'
-            fontWeight={'600'}
-            gap={'5px'}
+            height={"80px"}
+            borderRadius="10px"
+            fontSize="small"
+            fontWeight={"600"}
+            gap={"5px"}
           >
-            <AlertIcon color={'red'} boxSize='20px' mr={0} />
-            <AlertTitle mt={4} mb={1} fontSize='lg'>
+            <AlertIcon color={"red"} boxSize="20px" mr={0} />
+            <AlertTitle mt={4} mb={1} fontSize="lg">
               {errorMessage}
             </AlertTitle>
           </Alert>
@@ -187,59 +211,86 @@ function UserProfile() {
         {userData && (
           <>
             {!editMode ? (
-              <div className='user-data-update'>
-                <div className='user-profile-edit'>
-                  <div className='user-data-box'>
-                    <div className='cover-box'>
-                      <img className='user-cover' src={userData.icon} alt='user_image' />
+              <div className="user-data-update">
+                <div className="user-profile-edit">
+                  <div className="user-data-box">
+                    <div className="cover-box">
+                      {userData.icon ? (
+                        <img
+                          className="user-cover"
+                          src={userData.icon}
+                          alt="user_image"
+                        />
+                      ) : (
+                        <img
+                          className="user-cover"
+                          src="/user.png"
+                          alt="user_image"
+                        />
+                      )}
                     </div>
                     <p>{userData.username}</p>
                   </div>
-                  <div className='user-data-box'>
+                  <div className="user-data-box">
                     <span className="material-symbols-outlined">mail</span>
                     <p>{userData.email}</p>
                   </div>
-                  <div className='user-data-box'>
+                  <div className="user-data-box">
                     <span className="material-symbols-outlined">interests</span>
                     <p>{userData.interestType}</p>
                   </div>
-                  <div className='user-data-box'>
-                    <Link onClick={toggleEditMode}><span className="material-symbols-outlined">edit</span></Link>
-                    <Link onClick={toggleEditMode} style={{ textDecoration: 'none' }}><p>Edit Profile</p></Link>
+                  <div className="user-data-box">
+                    <Link onClick={toggleEditMode}>
+                      <span className="material-symbols-outlined">edit</span>
+                    </Link>
+                    <Link
+                      onClick={toggleEditMode}
+                      style={{ textDecoration: "none" }}
+                    >
+                      <p>Edit Profile</p>
+                    </Link>
                   </div>
                 </div>
               </div>
             ) : (
               <form onSubmit={handleFormSubmit}>
-                <div className='user-data-update'>
-                  <div className='post-data-header'>
+                <div className="user-data-update">
+                  <div className="post-data-header">
                     <p>Update Profile</p>
                     <button onClick={toggleViewMode}>Cancel</button>
                   </div>
-                  <div className='user-profile-edit'>
-                    <div className='user-data-box'>
-                      <div className='cover-box'>
-                        <img className='user-cover' src={userData.icon} alt='user_image' />
+                  <div className="user-profile-edit">
+                    <div className="user-data-box">
+                      <div className="cover-box">
+                        <img
+                          className="user-cover"
+                          src={userData.icon}
+                          alt="user_image"
+                        />
                       </div>
                     </div>
-                    <div className='user-data-box'>
+                    <div className="user-data-box">
                       <input
-                        type='email'
-                        name='email'
+                        type="email"
+                        name="email"
                         value={email}
                         onChange={(ev) => setEmail(ev.target.value)}
-                        placeholder='New Email'
+                        placeholder="New Email"
                         required
                       />
                     </div>
-                    <div className='user-data-box'>
+                    <div className="user-data-box">
                       <input
-                        type='file'
+                        type="file"
                         onChange={(ev) => setFiles(ev.target.files)}
                       />
                     </div>
-                    <div className='user-data-box'>
-                      <button className="profile-btn" type='submit'><span className="material-symbols-outlined">arrow_forward</span></button>
+                    <div className="user-data-box">
+                      <button className="profile-btn" type="submit">
+                        <span className="material-symbols-outlined">
+                          arrow_forward
+                        </span>
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -249,34 +300,38 @@ function UserProfile() {
         )}
 
         {userPosts.length > 0 && (
-          <div className='post-data-header'>
+          <div className="post-data-header">
             <p>Posts Uploaded</p>
             <span className="material-symbols-outlined">cloud</span>
           </div>
         )}
 
         {userPosts.length === 0 ? (
-          <div className='no-post-ack'>
+          <div className="no-post-ack">
             <p>You haven't posted anything yet.</p>
-            <div className='create-post-ack'>
-              <Link to='/create'>Create post</Link>
+            <div className="create-post-ack">
+              <Link to="/create">Create post</Link>
               <span className="material-symbols-outlined">add_circle</span>
             </div>
           </div>
         ) : (
           userPosts.map((post) => (
-            <div className='post-container' key={post._id}>
-              <img alt='cover' src={post.cover}></img>
-              <div className='text-container'>
-                <p className='post-title'>{post.title}</p>
+            <div className="post-container" key={post._id}>
+              <img alt="cover" src={post.cover}></img>
+              <div className="text-container">
+                <p className="post-title">{post.title}</p>
               </div>
-              <div className='user-icons'>
+              <div className="user-icons">
                 <Link to={`/edit/${post._id}`}>
                   <span className="material-symbols-outlined">edit</span>
                 </Link>
-                <Link 
+                <Link
                   to="#"
-                  onClick={(e) => { e.preventDefault(); handleDelete(post._id); }}>
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleDelete(post._id);
+                  }}
+                >
                   <span className="material-symbols-outlined">delete</span>
                 </Link>
               </div>

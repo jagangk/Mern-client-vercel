@@ -18,7 +18,7 @@ export default function Header() {
     onOpen: onOpenSuccess,
     onClose: onCloseSuccess,
   } = useDisclosure();
-
+  
   useEffect(() => {
     let timer;
 
@@ -110,33 +110,33 @@ export default function Header() {
         </div>
         <nav>
           {username ? (
-            <>
-              {userData?.icon ? (
-                <div className="icon-header">
+            <Flex align="center" gap="10px">
+              <Link className="dropbtn" to={`/user/${username}`} style={{ display: 'flex', alignItems: 'center' }}>
+                {userData?.icon ? (
                   <img
                     className="user-cover"
                     src={userData.icon}
                     alt="User Icon"
+                    style={{ width: "25px", height: "25px", borderRadius: "50%", marginRight:"8px" }}
                   />
-                  <Link className="dropbtn" to={`/user/${username}`}>
-                    {username}
-                  </Link>
-                </div>
-              ) : (
-                <span>Hello {username}</span>
-              )}
+                ) : null}
+                  {username}
+              </Link>
 
-              <div className="icon-header">
-                <img alt="ai logo" className="promo-icon" src="../logout.png" />
-                <Link  className="logoutbtn" onClick={logout}>
-                  Logout
+                <Link className="logout" onClick={logout}>
+                  <div className="gicon-title">
+                    <img
+                      alt="ai logo"
+                      className="promo-icon"
+                      src="../logout.png"
+                    />
+                    Logout
+                  </div>
                 </Link>
-              </div>
-            </>
+
+            </Flex>
           ) : (
-            <>
-              <Link to="/login">Sign in</Link>
-            </>
+            <Link to="/login">Sign in</Link>
           )}
         </nav>
       </header>

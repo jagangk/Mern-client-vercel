@@ -105,7 +105,7 @@ div.index-promo a:hover::after {
     margin-bottom: 10px;
   }
 
-  .logoutbtn {
+  .logout{
     display: none;
   }
 
@@ -565,7 +565,7 @@ button:hover {
   background: linear-gradient(to right, #009dffc9, #cb6ce6);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  font-size: medium;
+  font-size: 14px;
   font-weight: 700;
   align-items: center;
   transition: 0.7s;
@@ -577,17 +577,17 @@ button:hover {
   -webkit-text-fill-color: transparent;
 }
 
-.logoutbtn {
+.logout {
   background: linear-gradient(to right, #009dffc9, #cb6ce6);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  font-size: medium;
+  font-size: 14px;
   font-weight: 700;
   align-items: center;
-  transition: 0.5s;
+  transition: 0.7s;
 }
 
-.logoutbtn:hover {
+.logout:hover {
   background:#ffffff;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -964,11 +964,13 @@ div.content p a{
 }
 
 .user-cover {
-  width: 25px;
-  height: 25px;
+  width: 22px;
+  height: 22px;
   border-radius: 50%;
   object-fit: cover;
   display: block;
+  margin: 0;
+  padding: 0;
 }
 
 .user-data-box,
@@ -1139,7 +1141,7 @@ form.plag-remover {
 }
 
 .promo-icon {
-  width: 20px;
+  width: 22px;
 }
 
 div.gemini-icon-container {
