@@ -855,6 +855,11 @@ footer {
   padding: 5px;
   box-sizing: border-box;
   background: white;
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
 }
 
 .ql-toolbar button {
