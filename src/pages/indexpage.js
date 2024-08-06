@@ -2,36 +2,22 @@ import { useContext, useEffect, useState, useRef, useCallback } from "react";
 import { UserContext } from "../userContext";
 import Post from "../post";
 import Footer from "../footer";
-import { Link } from "react-router-dom";
 import * as React from "react";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 import Navbar from "../Navbar";
 
 export default function IndexPage() {
-  const { posts, setPosts } = useContext(UserContext);
-  const [page, setPage] = useState(() => {
-    const savedPage = localStorage.getItem("currentPage");
-    return savedPage ? JSON.parse(savedPage) : 1;
-  });
+  const { posts, setPosts, page, setPage, hasMore, setHasMore } = useContext(UserContext);
   const [loading, setLoading] = useState(false);
-  const [hasMore, setHasMore] = useState(true);
   const observer = useRef();
 
   useEffect(() => {
-    const savedPosts = localStorage.getItem("savedPosts");
-    if (savedPosts) {
-      setPosts(JSON.parse(savedPosts));
-    } else {
+    // Fetch posts if not already fetching
+    if (page === 1 && posts.length === 0) {
       fetchPosts(1);
     }
-  }, [setPosts]);
-
-  useEffect(() => {
-    if (page > 1) {
-      fetchPosts(page);
-    }
-  }, [page]);
+  }, [page, posts.length]);
 
   const fetchPosts = async (page) => {
     setLoading(true);
@@ -40,12 +26,12 @@ export default function IndexPage() {
       const response = await fetch(url);
       const data = await response.json();
       if (data.length < 10) {
-        setHasMore(false);
+        setHasMore(false); // No more posts to fetch
       }
       setPosts((prevPosts) => {
-        const newPosts = page === 1 ? data : [...prevPosts, ...data];
-        localStorage.setItem("savedPosts", JSON.stringify(newPosts));
-        return newPosts;
+        const existingIds = new Set(prevPosts.map(post => post._id));
+        const newPosts = data.filter(post => !existingIds.has(post._id));
+        return [...prevPosts, ...newPosts];
       });
       setLoading(false);
     } catch (error) {
@@ -56,15 +42,11 @@ export default function IndexPage() {
 
   const lastPostElementRef = useCallback(
     (node) => {
-      if (loading) return;
+      if (loading || !hasMore) return;
       if (observer.current) observer.current.disconnect();
       observer.current = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting && hasMore) {
-          setPage((prevPage) => {
-            const newPage = prevPage + 1;
-            localStorage.setItem("currentPage", JSON.stringify(newPage));
-            return newPage;
-          });
+        if (entries[0].isIntersecting) {
+          setPage((prevPage) => prevPage + 1);
         }
       });
       if (node) observer.current.observe(node);
@@ -72,13 +54,15 @@ export default function IndexPage() {
     [loading, hasMore]
   );
 
+  useEffect(() => {
+    if (page > 1) {
+      fetchPosts(page);
+    }
+  }, [page]);
+
   return (
     <>
-      {posts.length >= 0 && (
-        <>
-          <Navbar />
-        </>
-      )}
+      <Navbar />
       {posts.length > 0 ? (
         posts.map((post, index) => {
           if (posts.length === index + 1) {
@@ -92,7 +76,7 @@ export default function IndexPage() {
           <CircularProgress />
         </Box>
       )}
-      {loading && page > 1 && (
+      {loading && (
         <Box sx={{ display: "flex", justifyContent: "center" }}>
           <CircularProgress />
         </Box>

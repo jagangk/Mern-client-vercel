@@ -4,6 +4,9 @@ export const UserContext = createContext({});
 export function UserContextProvider({children}) {
     const [userInfo,setUserInfo] = useState({});
     const [posts, setPosts] = useState([]);
+    const [page, setPage] = useState(1);
+    const [hasMore, setHasMore] = useState(true);
+
     useEffect(() => {
         const url = `${process.env.REACT_APP_API_URL}/post`;
         fetch(url)
@@ -13,7 +16,7 @@ export function UserContextProvider({children}) {
     }, []);
 
     return(
-        <UserContext.Provider value={{userInfo,setUserInfo,posts,setPosts}}>
+        <UserContext.Provider value={{userInfo,setUserInfo,posts,setPosts,page,setPage,hasMore,setHasMore}}>
              {children}
         </UserContext.Provider> 
     );
