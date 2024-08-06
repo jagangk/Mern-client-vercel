@@ -15,6 +15,7 @@ import UserProfile from './pages/UserProfile';
 import ProtectedRoute from './ProtectedRoute';
 import PlagiarismChecker from './pages/plagiarism-checker';
 import ContentChecker from './pages/contentChecker';
+import About from './pages/about';
 
 function App() {
 
@@ -29,6 +30,7 @@ function App() {
          <Route path='/create' element = {<ProtectedRoute><CreatePost /></ProtectedRoute>} />
          <Route path = "/post/:id" element = {<PostPage />}/>
          <Route path = "/contact" element = {<ContactPage />} />
+         <Route path = "/about" element = {<About />} />
          <Route path = "/edit/:id" element = {<EditPost />} />
          <Route path = "/PlagGuard" element = {<PlagiarismChecker />} />
          <Route path = "/safecontent" element = {<ContentChecker />} />

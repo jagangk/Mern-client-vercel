@@ -25,9 +25,18 @@ export default function Navbar() {
           >
             <div className="gicon-title">
               <img alt="ai logo" className="promo-icon" src="google.png" />
-              <p>Follow us on Google News</p>
+              <p>Follow on Google</p>
             </div>
           </Link>
+
+          <Link to="/create">
+            <div className="gicon-title">
+              <img alt="ai logo" className="promo-icon" src="create.png" />
+              <p>New Post</p>
+            </div>
+          </Link>
+
+         
         </div>
 
         <div className="index-promo">
@@ -47,17 +56,20 @@ export default function Navbar() {
         </div>
 
         <div className="index-promo">
-          <Link to="https://www.api.blogstera.site/rss">
+    
+          <Link
+            to="/about"
+          >
             <div className="gicon-title">
-              <img alt="ai logo" className="promo-icon" src="rss.png" />
-              <p>Feeds</p>
+              <img alt="ai logo" className="promo-icon" src="policy.png" />
+              <p>Privacy Policy</p>
             </div>
           </Link>
 
-          <Link to="/create">
+          <Link to="/about">
             <div className="gicon-title">
-              <img alt="ai logo" className="promo-icon" src="create.png" />
-              <p>New Post</p>
+              <img alt="ai logo" className="promo-icon" src="about.png" />
+              <p>About</p>
             </div>
           </Link>
 

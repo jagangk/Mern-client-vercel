@@ -122,15 +122,12 @@ export default function PostPage() {
           <div className="dropdown-container">
             <select onChange={handleDropdownChange}>
               <option disabled="">Options</option>
+              <option value="report">Report</option>
               {userInfo.id === postInfo.author._id && (
                 <>
                   <option value={`edit/${postInfo._id}`}>Edit</option>
                   <option value="delete">Delete</option>
                 </>
-              )}
-
-              {userInfo.id !== postInfo.author.id && (
-                <option value="report">Report</option>
               )}
             </select>
           </div>
