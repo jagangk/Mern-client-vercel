@@ -12,8 +12,9 @@ export default function Footer() {
             </div>
             <div class='footer-route'>
                 <ul class='footer-menu'>
-                    <li><Link to='/login'>Login</Link></li>
-                    <li><Link to='/register'>Register</Link></li>
+                    <li><Link to='/login'>login</Link></li>
+                    <li><Link to='https://www.api.blogstera.site/sitemap.xml'>Sitemap</Link></li>
+                    <li><Link to='/about'>Policies</Link></li>
                     <li><Link target='_blank' to='https://www.api.blogstera.site/rss'>Feeds</Link></li>
                     <li><Link to='/contact'>Contact</Link></li>
                 </ul>
