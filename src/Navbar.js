@@ -10,7 +10,7 @@ export default function Navbar() {
 
   return (
     <div className="home-index">
-      <div className="navbar-toggle" >
+      <div className="navbar-toggle">
         <h2>Feeds</h2>
         <button className="navbar-btn" onClick={toggleNavbar}>
           ☰
@@ -19,7 +19,7 @@ export default function Navbar() {
 
       <div className={`promo ${isNavbarVisible ? "show" : ""}`}>
         <div className="index-promo">
-          <Link
+        <Link
             target="_blank"
             to="https://news.google.com/publications/CAAqBwgKMILszQswsoflAw?ceid=IN:en&oc=3"
           >
@@ -35,34 +35,29 @@ export default function Navbar() {
               <p>New Post</p>
             </div>
           </Link>
-
-         
         </div>
 
         <div className="index-promo">
           <Link to="/PlagGuard">
             <div className="gicon-title">
               <img alt="ai logo" className="promo-icon" src="blog-ai.png" />
-              <p>PlagGuard</p>
+              <p>PlagGuard AI</p>
             </div>
           </Link>
 
           <Link to="/safecontent">
             <div className="gicon-title">
               <img alt="ai logo" className="promo-icon" src="safe.png" />
-              <p>SafeContent</p>
+              <p>SafeContent AI</p>
             </div>
           </Link>
         </div>
 
         <div className="index-promo">
-    
-          <Link
-            to="/about"
-          >
+          <Link to="/about">
             <div className="gicon-title">
               <img alt="ai logo" className="promo-icon" src="policy.png" />
-              <p>Privacy Policy</p>
+              <p>Policies</p>
             </div>
           </Link>
 
