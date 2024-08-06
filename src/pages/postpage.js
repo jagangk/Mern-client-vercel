@@ -16,31 +16,26 @@ export default function PostPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const savedPost = localStorage.getItem(`post_${id}`);
-    if (savedPost) {
-      setPostInfo(JSON.parse(savedPost));
-      setLoading(false);
-    } else {
-      fetchPost();
-    }
-  }, [id]);
-
-  const fetchPost = async () => {
-    try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/post/${id}`);
-      if (response.ok) {
-        const postData = await response.json();
-        setPostInfo(postData);
-        localStorage.setItem(`post_${id}`, JSON.stringify(postData));
-      } else {
-        console.error("Failed to fetch post");
+    const fetchPost = async () => {
+      try {
+        const response = await fetch(
+          `${process.env.REACT_APP_API_URL}/post/${id}`
+        );
+        if (response.ok) {
+          const postData = await response.json();
+          setPostInfo(postData);
+        } else {
+          console.error("Failed to fetch post");
+        }
+      } catch (error) {
+        console.error("Error fetching post:", error);
+      } finally {
+        setLoading(false);
       }
-    } catch (error) {
-      console.error("Error fetching post:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
+    };
+
+    fetchPost();
+  }, [id]);
 
   if (loading)
     return (
@@ -48,9 +43,7 @@ export default function PostPage() {
         <CircularProgress />
       </Box>
     );
-
   if (!postInfo) return null;
-
   const url_photo = `${postInfo.cover}`;
 
   const handleDropdownChange = async (e) => {
@@ -59,16 +52,20 @@ export default function PostPage() {
     if (selectedValue.startsWith("edit")) {
       navigate(`/${selectedValue}`);
     } else if (selectedValue === "delete") {
-      const confirmDelete = window.confirm("Are you sure you want to delete this post?");
+      const confirmDelete = window.confirm(
+        "Are you sure you want to delete this post?"
+      );
       if (confirmDelete) {
         try {
-          const response = await fetch(`${process.env.REACT_APP_API_URL}/post/${postInfo._id}`, {
-            method: "DELETE",
-          });
+          const response = await fetch(
+            `${process.env.REACT_APP_API_URL}/post/${postInfo._id}`,
+            {
+              method: "DELETE",
+            }
+          );
           const data = await response.json();
           if (response.ok) {
             alert("Post Deleted");
-            localStorage.removeItem(`post_${id}`);
             navigate("/", { replace: true });
             window.location.reload();
             window.scrollTo(0, 0);
@@ -95,8 +92,8 @@ export default function PostPage() {
       <div className="post-page">
         <h2>{postInfo.title}</h2>
         <div className="post-info">
-          <div className="author">{postInfo.author.username}</div>
-          <time>{format(new Date(postInfo.createdAt), "dd/LL/yyyy")}</time>
+          <div className="author"><p>{postInfo.author.username}</p></div>•
+          <time><p>{format(new Date(postInfo.createdAt), "dd-L-yyyy")}</p></time>
         </div>
         <div className="action-container">
           <div className="dropdown-container">
@@ -108,6 +105,7 @@ export default function PostPage() {
                   <option value="delete">Delete</option>
                 </>
               )}
+
               {userInfo.id === postInfo.author.id && (
                 <option value="report">Report</option>
               )}
@@ -163,7 +161,7 @@ export default function PostPage() {
         <div className="image">
           <img src={url_photo} alt="Post Cover" />
         </div>
-        <div dangerouslySetInnerHTML={{ __html: postInfo.content }} />
+        <div className="content" dangerouslySetInnerHTML={{ __html: postInfo.content }} />
       </div>
       <Footer />
     </>
