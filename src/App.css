@@ -184,21 +184,6 @@ body {
   font-optical-sizing: auto;
 }
 
-div.image {
-  overflow: hidden;
-  border-radius: 5px;
-}
-img {
-  max-width: 100%;
-  height: 100%;
-  border-radius: 5px;
-}
-
-div.content img{
-  max-width: 100%;
-  height: 100%;
-  border-radius: 5px;
-}
 
 .banner-img {
   max-width: 100%;
@@ -605,11 +590,35 @@ div.post-page div.image {
   display: flex;
   margin-bottom: 10px;
   overflow: hidden;
+  border-radius: 5px;
 }
 
 div.post-page div.image img {
   object-fit: cover;
   object-position: center;
+}
+
+img {
+  max-width: 100%;
+  height: 100%;
+  border-radius: 5px;
+}
+
+div.image{
+  overflow: hidden;
+  border-radius: 5px;
+}
+
+
+div.content img{
+  object-fit: cover;
+  object-position: center;
+  max-height: 400px;
+  width: 100%;
+  display: flex;
+  margin-bottom: 10px;
+  overflow: hidden;
+  border-radius: 5px;
 }
 
 div.post-page h2 {
