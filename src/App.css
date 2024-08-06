@@ -873,8 +873,10 @@ footer {
   font-family: "Montserrat", sans-serif;
 }
 
-.ql-editor a{
-  color: #00eaff;
+
+.ql-editor p a{
+  color:#6dcaae;
+  text-decoration: none !important;
 }
 
 /*----------------------------------user profile css---------------------------*/
