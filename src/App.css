@@ -207,7 +207,7 @@ img {
 }
 
 .icon {
-  width: 50px;
+  width: 40px;
   border-radius: 5px;
 }
 
@@ -564,7 +564,7 @@ button:hover {
 /*--------------------------------------------------------------dropdown----------------------------------------*/
 
 .dropbtn {
-  background: linear-gradient(to right, #009dffc9, #c14999, #b39847);
+  background: linear-gradient(to right, #009dffc9, #cb6ce6);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-size: medium;
