@@ -62,7 +62,11 @@ export default function IndexPage() {
 
   return (
     <>
-      <Navbar />
+      {posts.length >= 0 &&  (
+        <>
+          <Navbar />
+        </>
+      )}
       {posts.length > 0 ? (
         posts.map((post, index) => {
           if (posts.length === index + 1) {
@@ -76,7 +80,7 @@ export default function IndexPage() {
           <CircularProgress />
         </Box>
       )}
-      {loading && (
+      {loading && page > 1 && (
         <Box sx={{ display: "flex", justifyContent: "center" }}>
           <CircularProgress />
         </Box>
