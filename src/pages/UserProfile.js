@@ -19,38 +19,29 @@ function UserProfile() {
   const { isOpen: isErrorOpen, onOpen: onOpenError, onClose: onCloseError } = useDisclosure();
   const [editMode, setEditMode] = useState(false);
 
-  useEffect(() => {
-    let timer;
-    if (isSuccessOpen) {
-      timer = setTimeout(() => {
-        onCloseSuccess();
-        setSuccessMessage('');
-      }, 3000);
-    }
-    if (isErrorOpen) {
-      timer = setTimeout(() => {
-        onCloseError();
-        setErrorMessage('');
-      }, 3000);
-    }
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [isSuccessOpen, isErrorOpen]);
+  // Local storage key for user data
+  const LOCAL_STORAGE_KEY = `userProfile-${username}`;
 
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/users/${username}`);
-        const fetchedUser = await response.json();
-        setUserData(fetchedUser);
-        localStorage.setItem(`user_${username}`, JSON.stringify(fetchedUser));
+        const storedData = localStorage.getItem(LOCAL_STORAGE_KEY);
+        if (storedData) {
+          const parsedData = JSON.parse(storedData);
+          setUserData(parsedData.userData);
+          setUserPosts(parsedData.userPosts);
+        } else {
+          const response = await fetch(`${process.env.REACT_APP_API_URL}/users/${username}`);
+          const fetchedUser = await response.json();
+          setUserData(fetchedUser);
 
-        const postResponse = await fetch(`${process.env.REACT_APP_API_URL}/posts/user/${fetchedUser._id}`);
-        const fetchedPosts = await postResponse.json();
-        setUserPosts(fetchedPosts);
-        localStorage.setItem(`posts_${username}`, JSON.stringify(fetchedPosts));
+          const postResponse = await fetch(`${process.env.REACT_APP_API_URL}/posts/user/${fetchedUser._id}`);
+          const fetchedPosts = await postResponse.json();
+          setUserPosts(fetchedPosts);
+
+          localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify({ userData: fetchedUser, userPosts: fetchedPosts }));
+        }
       } catch (error) {
         console.error('Error fetching user data:', error);
       } finally {
@@ -58,17 +49,30 @@ function UserProfile() {
       }
     };
 
-    const savedUser = localStorage.getItem(`user_${username}`);
-    const savedPosts = localStorage.getItem(`posts_${username}`);
-    
-    if (savedUser && savedPosts) {
-      setUserData(JSON.parse(savedUser));
-      setUserPosts(JSON.parse(savedPosts));
-      setLoading(false);
-    } else {
-      fetchData();
+    fetchData();
+  }, [username, LOCAL_STORAGE_KEY]);
+
+  useEffect(() => {
+    let timer;
+
+    if (isSuccessOpen) {
+      timer = setTimeout(() => {
+        onCloseSuccess();
+        setSuccessMessage('');
+      }, 3000);
     }
-  }, [username]);
+
+    if (isErrorOpen) {
+      timer = setTimeout(() => {
+        onCloseError();
+        setErrorMessage('');
+      }, 3000);
+    }
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [isSuccessOpen, isErrorOpen, onCloseError, onCloseSuccess]);
 
   const toggleEditMode = () => {
     setEditMode(true);
@@ -76,14 +80,16 @@ function UserProfile() {
 
   const toggleViewMode = () => {
     setEditMode(false);
-  }
+  };
 
   const handleFormSubmit = async (ev) => {
     ev.preventDefault();
+
     const data = new FormData();
     data.set('file', files[0]);
     data.set('email', email);
     data.set('username', userData.username);
+    console.log(files);
 
     const url = `${process.env.REACT_APP_API_URL}/updateUser`;
     const response = await fetch(url, {
@@ -96,9 +102,7 @@ function UserProfile() {
       setRedirect(true);
       setSuccessMessage("Profile Updated");
       onOpenSuccess();
-      const updatedUser = await response.json();
-      setUserData(updatedUser);
-      localStorage.setItem(`user_${username}`, JSON.stringify(updatedUser));
+      localStorage.removeItem(LOCAL_STORAGE_KEY); // Clear local storage to fetch updated data
     } else {
       setErrorMessage("Failed to Update");
       onOpenError();
@@ -110,6 +114,7 @@ function UserProfile() {
       const timeoutId = setTimeout(() => {
         window.location.reload();
       }, 3000);
+
       return () => clearTimeout(timeoutId);
     }
   }, [redirect]);
@@ -118,9 +123,10 @@ function UserProfile() {
     const confirmDelete = window.confirm('Are you sure you want to delete this post?');
     if (confirmDelete) {
       try {
-        await fetch(`${process.env.REACT_APP_API_URL}/post/${postId}`, { method: 'DELETE' });
+        await fetch(`${process.env.REACT_APP_API_URL}/post/${postId}`, {
+          method: 'DELETE',
+        });
         setUserPosts((prevPosts) => prevPosts.filter((post) => post._id !== postId));
-        localStorage.setItem(`posts_${username}`, JSON.stringify(userPosts.filter((post) => post._id !== postId)));
       } catch (error) {
         console.error('Error deleting post:', error);
       }
@@ -159,7 +165,7 @@ function UserProfile() {
 
         {isErrorOpen && (
           <Alert
-            status='success'
+            status='error'
             flexDirection='row'
             alignItems='center'
             justifyContent='center'
@@ -199,7 +205,7 @@ function UserProfile() {
                   </div>
                   <div className='user-data-box'>
                     <Link onClick={toggleEditMode}><span className="material-symbols-outlined">edit</span></Link>
-                    <Link onClick={toggleEditMode} style={{textDecoration:'none'}}><p>Edit Profile</p></Link>
+                    <Link onClick={toggleEditMode} style={{ textDecoration: 'none' }}><p>Edit Profile</p></Link>
                   </div>
                 </div>
               </div>
@@ -230,7 +236,6 @@ function UserProfile() {
                       <input
                         type='file'
                         onChange={(ev) => setFiles(ev.target.files)}
-                        required
                       />
                     </div>
                     <div className='user-data-box'>

@@ -11,12 +11,14 @@ import { UserContext } from "./userContext";
 
 export default function Header() {
   const { setUserInfo, userInfo } = useContext(UserContext);
+  const [userData, setUserData] = useState(null);
   const [successMessage, setSuccessMessage] = useState("");
   const {
     isOpen: isSuccessOpen,
     onOpen: onOpenSuccess,
     onClose: onCloseSuccess,
   } = useDisclosure();
+
   useEffect(() => {
     let timer;
 
@@ -56,6 +58,28 @@ export default function Header() {
       });
   }, [setUserInfo]);
 
+  useEffect(() => {
+    if (userInfo?.username) {
+      const fetchUserData = async () => {
+        try {
+          const response = await fetch(
+            `${process.env.REACT_APP_API_URL}/users/${userInfo.username}`
+          );
+          if (response.ok) {
+            const data = await response.json();
+            setUserData(data);
+          } else {
+            console.error("Failed to fetch user data");
+          }
+        } catch (error) {
+          console.error("Error fetching user data:", error);
+        }
+      };
+
+      fetchUserData();
+    }
+  }, [userInfo]);
+
   async function logout() {
     const url = `${process.env.REACT_APP_API_URL}/logout`;
     const response = await fetch(url, {
@@ -87,19 +111,25 @@ export default function Header() {
         <nav>
           {username ? (
             <>
-              <Link className="dropbtn" to={`/user/${username}`}>
-                Hello {username}
-              </Link>
-              <div className="index-promo">
-                <Link onClick={logout}>
-                  <div className="gicon-title">
-                    <img
-                      alt="ai logo"
-                      className="promo-icon"
-                      src="../logout.png"
-                    />
-                    <p className="logout">Logout</p>
-                  </div>
+              {userData?.icon ? (
+                <div className="icon-header">
+                  <img
+                    className="user-cover"
+                    src={userData.icon}
+                    alt="User Icon"
+                  />
+                  <Link className="dropbtn" to={`/user/${username}`}>
+                    {username}
+                  </Link>
+                </div>
+              ) : (
+                <span>Hello {username}</span>
+              )}
+
+              <div className="icon-header">
+                <img alt="ai logo" className="promo-icon" src="../logout.png" />
+                <Link  className="logoutbtn" onClick={logout}>
+                  Logout
                 </Link>
               </div>
             </>

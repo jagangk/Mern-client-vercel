@@ -105,7 +105,7 @@ div.index-promo a:hover::after {
     margin-bottom: 10px;
   }
 
-  .logout {
+  .logoutbtn {
     display: none;
   }
 
@@ -225,6 +225,13 @@ header {
   margin-bottom: 20px;
   align-items: center;
   border-radius: 8px;
+}
+
+div.icon-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
 }
 
 header a {
@@ -561,12 +568,29 @@ button:hover {
   font-size: medium;
   font-weight: 700;
   align-items: center;
-  transition: 0.5s;
+  transition: 0.7s;
 }
 
 .dropbtn:hover {
-  font-size: 17px;
+  background:#ffffff;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 
+.logoutbtn {
+  background: linear-gradient(to right, #009dffc9, #cb6ce6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: medium;
+  font-weight: 700;
+  align-items: center;
+  transition: 0.5s;
+}
+
+.logoutbtn:hover {
+  background:#ffffff;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .dropdown-option {

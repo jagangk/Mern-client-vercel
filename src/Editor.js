@@ -11,8 +11,10 @@ export default function Editor({value,onChange}) {
         { list: 'bullet' },
         { indent: '-1' },
         { indent: '+1' },
+        { script: 'sub' }, 
+        { script: 'super'}
       ],
-      ['link', 'image','code-block'],
+      ['link', 'image','video','code-block'],
       ['clean',],
     ],
   };

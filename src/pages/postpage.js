@@ -15,9 +15,26 @@ export default function PostPage() {
   const { id } = useParams();
   const { userInfo } = useContext(UserContext);
   const navigate = useNavigate();
+  const LOCAL_STORAGE_KEY = `post-${id}`;
 
   useEffect(() => {
-    const fetchPost = async () => {
+    const fetchPostFromStorage = () => {
+      const storedPost = localStorage.getItem(LOCAL_STORAGE_KEY);
+      if (storedPost) {
+        try {
+          const parsedPost = JSON.parse(storedPost);
+          setPostInfo(parsedPost);
+          setLoading(false); // Mark loading complete even from storage
+        } catch (error) {
+          console.error("Error parsing stored post:", error);
+        }
+      }
+    };
+
+    fetchPostFromStorage();
+
+    const fetchPostFromAPI = async () => {
+      setLoading(true);
       try {
         const response = await fetch(
           `${process.env.REACT_APP_API_URL}/post/${id}`
@@ -25,6 +42,7 @@ export default function PostPage() {
         if (response.ok) {
           const postData = await response.json();
           setPostInfo(postData);
+          localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(postData)); // Store fetched post in local storage
         } else {
           console.error("Failed to fetch post");
         }
@@ -35,8 +53,11 @@ export default function PostPage() {
       }
     };
 
-    fetchPost();
-  }, [id]);
+    if (!postInfo) {
+      fetchPostFromAPI();
+    }
+
+  }, [id, postInfo, LOCAL_STORAGE_KEY]);
 
   if (loading)
     return (
@@ -67,6 +88,7 @@ export default function PostPage() {
           const data = await response.json();
           if (response.ok) {
             alert("Post Deleted");
+            localStorage.removeItem(LOCAL_STORAGE_KEY); // Remove the post from local storage
             navigate("/", { replace: true });
             window.location.reload();
             window.scrollTo(0, 0);
@@ -107,7 +129,7 @@ export default function PostPage() {
                 </>
               )}
 
-              {userInfo.id === postInfo.author.id && (
+              {userInfo.id !== postInfo.author.id && (
                 <option value="report">Report</option>
               )}
             </select>

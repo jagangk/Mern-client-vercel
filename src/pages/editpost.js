@@ -1,19 +1,19 @@
-import {useEffect, useState} from "react";
-import {Navigate, useParams} from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Navigate, useParams } from "react-router-dom";
 import Editor from "../Editor";
 
 export default function EditPost() {
-  const {id} = useParams();
-  const [title,setTitle] = useState('');
-  const [summary,setSummary] = useState('');
-  const [content,setContent] = useState('');
+  const { id } = useParams();
+  const [title, setTitle] = useState('');
+  const [summary, setSummary] = useState('');
+  const [content, setContent] = useState('');
   const [PostType, setPostType] = useState('');
   const [files, setFiles] = useState('');
-  const [redirect,setRedirect] = useState(false);
+  const [redirect, setRedirect] = useState(false);
 
   useEffect(() => {
     const url = `${process.env.REACT_APP_API_URL}/post/`;
-    fetch(url+id)
+    fetch(url + id)
       .then(response => {
         response.json().then(postInfo => {
           setTitle(postInfo.title);
@@ -22,7 +22,7 @@ export default function EditPost() {
           setPostType(postInfo.PostType);
         });
       });
-  }, []);
+  }, [id]);
 
   async function updatePost(ev) {
     ev.preventDefault();
@@ -35,22 +35,21 @@ export default function EditPost() {
     if (files?.[0]) {
       data.set('file', files?.[0]);
     }
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/update`,{
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/update`, {
       method: 'PUT',
       body: data,
       credentials: 'include',
     });
 
     if (response.ok) {
+      localStorage.removeItem(`post-${id}`);  // Clear the stored post in local storage
       setRedirect(true);
     }
   }
 
   if (redirect) {
-      <Navigate to={'/post/'+id} />
-      window.location.reload();
-      window.scrollTo(0, 0);
-    }
+    return <Navigate to={'/post/' + id} />;
+  }
 
   return (
     <form onSubmit={updatePost}>
@@ -64,9 +63,9 @@ export default function EditPost() {
              value={summary}
              onChange={ev => setSummary(ev.target.value)} />
 
-      <select type="PostType" value= {PostType} onChange={ev=> setPostType(ev.target.value)}>
+      <select type="PostType" value={PostType} onChange={ev => setPostType(ev.target.value)}>
           <optgroup>
-            <option disabled value="">Catagory</option>
+            <option disabled value="">Category</option>
             <option>Business</option>
             <option>News</option>
             <option>Science and Technology</option>
@@ -81,9 +80,10 @@ export default function EditPost() {
 
       <input type="file"
              onChange={ev => setFiles(ev.target.files)} />
-      <button style={{marginTop:'5px',marginBottom:'5px'}}>Update post</button>
+      <button style={{ marginTop: '5px', marginBottom: '5px' }}>Update post</button>
       <Editor onChange={setContent} value={content} />
-      <button style={{marginTop:'5px'}}>Update post</button>
+      <button style={{ marginTop: '5px' }}>Update post</button>
     </form>
   );
 }
+
