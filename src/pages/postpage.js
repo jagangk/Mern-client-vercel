@@ -7,6 +7,7 @@ import { Helmet } from "react-helmet";
 import * as React from "react";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
+import AmazonAds from "../Ads";
 
 export default function PostPage() {
   const [postInfo, setPostInfo] = useState(null);

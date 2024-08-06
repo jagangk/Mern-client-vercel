@@ -75,8 +75,8 @@ div.index-promo a {
 div.index-promo a::after {
   content: "";
   width: 0%;
-  height: 3px;
-  background: #05fcb28e;
+  height: 2px;
+  background: #ffffff;
   display: block;
   margin: auto;
   transition: 0.5s;
@@ -191,6 +191,7 @@ div.image {
 img {
   max-width: 100%;
   height: 100%;
+  border-radius: 5px;
 }
 
 div.content img{
@@ -1084,6 +1085,7 @@ form.plag-remover {
   justify-content: center;
   align-items: center;
   text-align: justify;
+  margin-top: 50px;
 }
 
 .gemini-icon {
@@ -1240,6 +1242,7 @@ form.safe-content {
   justify-content: center;
   align-items: center;
   text-align: justify;
+  margin-top: 50px;
 }
 
 .safeAI-icon {
