@@ -136,6 +136,7 @@ div.index-promo a:hover::after {
     box-shadow: none;
   }
 
+
   div.promo {
     display: none;
     flex-direction: column;
@@ -1349,8 +1350,8 @@ div.about h3 {
 
 /*------------------------------------------------Explore---------------------------*/
 div.explore-main {
-  padding-top: 10px;
-  margin: 10px;
+  margin-top: 10px;
+  width: 100%;
 }
 
 .flex-div {
@@ -1358,13 +1359,16 @@ div.explore-main {
   align-items: center;
 }
 
+
 .search-box {
-  border: 1px solid #d4d4d4;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(5.4px);
   -webkit-backdrop-filter: blur(5.4px);
-  padding: 0px 15px;
   border-radius: 25px;
+  padding: 1px 10px;
+  margin-top: 10px;
 }
+
 .search-box input {
   border: 0;
   outline: 0;
@@ -1393,7 +1397,7 @@ div.explore-main {
 div.explore-container {
   display: flex;
   width: 100%;
-  gap: 5px;
+  gap: 7px;
   justify-content: space-evenly;
   overflow-x: auto; /* Enable horizontal scrolling */
   overflow-y: hidden; /* Disable vertical scrolling */

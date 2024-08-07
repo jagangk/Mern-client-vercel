@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Navbar from "../Explorebar";
-import Post from "../post"; // Assuming you have a Post component to display individual posts
+import Post from "../post";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 
@@ -40,9 +40,24 @@ export default function Explore() {
     <div className="explore-main">
       <Navbar />
       <div className="explore-container">
-        {["Trending", "News", "Business", "Technology", "Sports", "Entertainment" , "Opinions" , "Science" ,"Health" , "Travel" , "Food"].map((category) => (
+        {[
+          "Trending",
+          "News",
+          "Business",
+          "Technology",
+          "Sports",
+          "Entertainment",
+          "Opinions",
+          "Science",
+          "Health",
+          "Travel",
+          "Food",
+        ].map((category) => (
           <div className="explore-box" key={category}>
-            <button className="explore-button" onClick={() => handleCategoryClick(category)}>
+            <button
+              className="explore-button"
+              onClick={() => handleCategoryClick(category)}
+            >
               <span className="material-symbols-outlined">
                 {category === "Trending" && "trending_up"}
                 {category === "News" && "newspaper"}
@@ -63,7 +78,7 @@ export default function Explore() {
       </div>
 
       {loading ? (
-        <Box sx={{ display: "flex", justifyContent: "center", margin:'10px', }}>
+        <Box sx={{ display: "flex", justifyContent: "center", margin: "10px" }}>
           <CircularProgress />
         </Box>
       ) : (

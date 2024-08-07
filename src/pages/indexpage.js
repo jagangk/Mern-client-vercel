@@ -26,7 +26,7 @@ export default function IndexPage() {
       const response = await fetch(url);
       const data = await response.json();
       if (data.length < 10) {
-        setHasMore(false); // No more posts to fetch
+        setHasMore(false);
       }
       setPosts((prevPosts) => {
         const existingIds = new Set(prevPosts.map(post => post._id));

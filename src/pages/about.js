@@ -43,10 +43,6 @@ export default function About() {
               <p>
                   We do not share, sell, rent, or trade your information with third
                   parties for their promotional purposes.
-              </p>
-
-              <h3>Security of Your Information</h3>
-              <p>
                   We use administrative and technical security measures to help protect
                   your personal information. While we have taken reasonable steps to
                   secure the personal information you provide to us. So please be aware
@@ -55,15 +51,8 @@ export default function About() {
                   against any interception or other type of misuse.
               </p>
 
-              <h3>Policy for Children</h3>
-              <p>
-                  We do not knowingly solicit information from or market to children under
-                  the age of 13. If we learn that we have collected personal information
-                  from a child under age 13 without verification of parental consent, we
-                  will delete that information as quickly as possible.
-              </p>
 
-              <h3>Reporting Guidelines</h3>
+              <h3>Reporting and Community Guidelines</h3>
               <p>
                   If you believe that content on our platform violates our community
                   guidelines, please report it to us. We take reports seriously and will
@@ -73,7 +62,6 @@ export default function About() {
                   everyone.
               </p>
 
-              <h3>Community Guidelines</h3>
               <p>
                   Create respectful content - no explicit or offensive material, support
                   for illegal activities, or piracy links. Respect user privacy, engage in
@@ -81,7 +69,6 @@ export default function About() {
                   Violations may lead to content removal or account actions.
               </p>
 
-              <h3>Action Upon Violation</h3>
               <p>
                   When a report matches our guidelines and we find that a user has
                   violated our community guidelines, we will take appropriate action.
