@@ -34,7 +34,7 @@ div.promo-ai {
 div.promo {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-evenly;
   border-radius: 5px;
   margin-bottom: 10px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
@@ -105,7 +105,7 @@ div.index-promo a:hover::after {
     margin-bottom: 10px;
   }
 
-  .logout{
+  .logout {
     display: none;
   }
 
@@ -114,7 +114,6 @@ div.index-promo a:hover::after {
     margin: 0;
     padding: 0;
   }
-
 
   .navbar-btn {
     width: auto;
@@ -183,7 +182,6 @@ body {
   font-family: "Montserrat", sans-serif;
   font-optical-sizing: auto;
 }
-
 
 .banner-img {
   max-width: 100%;
@@ -318,7 +316,6 @@ div.post div.text a {
 div.post div.text a:hover {
   text-decoration: underline;
 }
-
 
 div.post p.info {
   margin: 6px 0;
@@ -572,7 +569,7 @@ button:hover {
 }
 
 .dropbtn:hover {
-  background:#ffffff;
+  background: #ffffff;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -588,7 +585,7 @@ button:hover {
 }
 
 .logout:hover {
-  background:#ffffff;
+  background: #ffffff;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -628,13 +625,12 @@ img {
   border-radius: 5px;
 }
 
-div.image{
+div.image {
   overflow: hidden;
   border-radius: 5px;
 }
 
-
-div.content img{
+div.content img {
   object-fit: cover;
   object-position: center;
   max-height: 400px;
@@ -915,14 +911,13 @@ footer {
   font-family: "Montserrat", sans-serif;
 }
 
-
-.ql-editor p a{
-  color:#6dcaae;
+.ql-editor p a {
+  color: #6dcaae;
   text-decoration: none !important;
 }
 
-div.content p a{
-  color:#6dcaae;
+div.content p a {
+  color: #6dcaae;
   text-decoration: none !important;
 }
 
@@ -1336,17 +1331,116 @@ div.Product-container a {
   border-radius: 15px;
 }
 
+/*------------------------------------------------About---------------------------*/
+
 div.about {
   margin-top: 30px;
 }
-div.about p{
+div.about p {
   display: block;
   margin-top: 5px;
   text-align: justify;
 }
 
-div.about h3{
+div.about h3 {
   margin: 0;
   margin-top: 20px;
 }
 
+/*------------------------------------------------Explore---------------------------*/
+div.explore-main {
+  padding-top: 10px;
+  margin: 10px;
+}
+
+.flex-div {
+  display: flex;
+  align-items: center;
+}
+
+.search-box {
+  border: 1px solid #d4d4d4;
+  backdrop-filter: blur(5.4px);
+  -webkit-backdrop-filter: blur(5.4px);
+  padding: 0px 15px;
+  border-radius: 25px;
+}
+.search-box input {
+  border: 0;
+  outline: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.search-box input:hover {
+  box-shadow: none;
+}
+
+.search-box img {
+  width: 20px;
+}
+
+.search-box-button {
+  background: transparent;
+  max-width: fit-content;
+}
+
+.search-box-button:hover {
+  box-shadow: none;
+}
+
+
+div.explore-container {
+  display: flex;
+  width: 100%;
+  gap: 5px;
+  justify-content: space-evenly;
+  overflow-x: auto; /* Enable horizontal scrolling */
+  overflow-y: hidden; /* Disable vertical scrolling */
+  flex-direction: row;
+  background: transparent;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(5.4px);
+  -webkit-backdrop-filter: blur(5.4px);
+  border-radius: 5px;
+
+  /* Hide scrollbar for WebKit browsers */
+  -ms-overflow-style: none; /* Internet Explorer and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+div.explore-container::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
+
+
+div.posts-container {
+  padding-top: 15px;
+}
+
+.explore-button {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  justify-content: center;
+  background: none;
+}
+
+button {
+  width: 100%;
+  display: block;
+  background: #00042871;
+  border: 0;
+  border-radius: 5px;
+  padding: 10px 10px;
+  font-weight: 500;
+  color: #ffffff;
+  cursor: pointer;
+  outline: none;
+  transition: box-shadow 0.6s;
+  font-family: "Montserrat", sans-serif;
+}
+
+button:hover {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}

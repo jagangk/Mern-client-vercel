@@ -11,7 +11,7 @@ export default function Navbar() {
   return (
     <div className="home-index">
       <div className="navbar-toggle">
-        <h2>Feeds</h2>
+        <h2>Explore</h2>
         <button className="navbar-btn" onClick={toggleNavbar}>
           ☰
         </button>
@@ -19,10 +19,10 @@ export default function Navbar() {
 
       <div className={`promo ${isNavbarVisible ? "show" : ""}`}>
         <div className="index-promo">
-          <Link to="/Explore">
+          <Link to="https://news.google.com/publications/CAAqBwgKMILszQswsoflAw?hl=en-IN&gl=IN&ceid=IN%3Aen">
             <div className="gicon-title">
-              <img alt="ai logo" className="promo-icon" src="category.png" />
-              <p>Explore</p>
+              <img alt="ai logo" className="promo-icon" src="google.png" />
+              <p>Follow us</p>
             </div>
           </Link>
 

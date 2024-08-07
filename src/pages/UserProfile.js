@@ -34,29 +34,31 @@ function UserProfile() {
     const fetchData = async () => {
       setLoading(true);
       try {
+        const response = await fetch(
+          `${process.env.REACT_APP_API_URL}/users/${username}`
+        );
+        
         const storedData = localStorage.getItem(LOCAL_STORAGE_KEY);
         if (storedData) {
           const parsedData = JSON.parse(storedData);
           setUserData(parsedData.userData);
-          setUserPosts(parsedData.userPosts);
-        } else {
-          const response = await fetch(
-            `${process.env.REACT_APP_API_URL}/users/${username}`
-          );
-          const fetchedUser = await response.json();
-          setUserData(fetchedUser);
-
-          const postResponse = await fetch(
-            `${process.env.REACT_APP_API_URL}/posts/user/${fetchedUser._id}`
-          );
-          const fetchedPosts = await postResponse.json();
-          setUserPosts(fetchedPosts);
-
-          localStorage.setItem(
-            LOCAL_STORAGE_KEY,
-            JSON.stringify({ userData: fetchedUser, userPosts: fetchedPosts })
-          );
         }
+
+        const fetchedUser = await response.json();
+        setUserData(fetchedUser);
+
+        const postResponse = await fetch(
+          `${process.env.REACT_APP_API_URL}/posts/user/${fetchedUser._id}`
+        );
+        const fetchedPosts = await postResponse.json();
+        setUserPosts(fetchedPosts);
+
+        localStorage.setItem(
+          LOCAL_STORAGE_KEY,
+          JSON.stringify({ userData: fetchedUser, userPosts: fetchedPosts })
+        );
+
+        
       } catch (error) {
         console.error("Error fetching user data:", error);
       } finally {
