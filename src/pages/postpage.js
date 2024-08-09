@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, useRef } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { format } from "date-fns";
 import { UserContext } from "../userContext";
@@ -14,8 +14,8 @@ export default function PostPage() {
   const { id } = useParams();
   const { userInfo } = useContext(UserContext);
   const navigate = useNavigate();
-  const keywords = postInfo.keywords.join(", ");
   const LOCAL_STORAGE_KEY = `post-${id}`;
+  const hasFetchedPost = useRef(false);
 
   useEffect(() => {
     const fetchPostFromStorage = () => {
@@ -25,13 +25,12 @@ export default function PostPage() {
           const parsedPost = JSON.parse(storedPost);
           setPostInfo(parsedPost);
           setLoading(false);
+          hasFetchedPost.current = true; // Mark as fetched
         } catch (error) {
           console.error("Error parsing stored post:", error);
         }
       }
     };
-
-    fetchPostFromStorage();
 
     const fetchPostFromAPI = async () => {
       setLoading(true);
@@ -53,10 +52,11 @@ export default function PostPage() {
       }
     };
 
-    if (!postInfo) {
+    if (!hasFetchedPost.current) {
+      fetchPostFromStorage();
       fetchPostFromAPI();
     }
-  }, [id, postInfo, LOCAL_STORAGE_KEY]);
+  }, [id, LOCAL_STORAGE_KEY]);
 
   if (loading)
     return (
@@ -64,14 +64,14 @@ export default function PostPage() {
         <CircularProgress />
       </Box>
     );
-  if (!postInfo) return null;
+  if (!postInfo) return null; // Ensure postInfo is not null before rendering
   const url_photo = `${postInfo.cover}`;
 
   const handleDelete = async () => {
     const confirmDelete = window.confirm(
       "Are you sure you want to delete this post?"
     );
-    if (confirmDelete) {
+    if (confirmDelete && postInfo?.id) { // Check that postInfo and postInfo.id exist
       try {
         const response = await fetch(
           `${process.env.REACT_APP_API_URL}/post/${postInfo._id}`,
@@ -100,14 +100,7 @@ export default function PostPage() {
       <Helmet>
         <title>{postInfo.title}</title>
         <meta name="description" content={postInfo.summary} />
-        <meta
-          name="keywords"
-          content={
-            Array.isArray(postInfo.keywords) ? postInfo.keywords.join(", ") : ""
-          }
-        />
-        <meta property="og:title" content={postInfo.title} />
-        <meta property="og:description" content={postInfo.summary} />
+        <meta name="keywords" content={postInfo.keywords.join(", ")} />
       </Helmet>
 
       <div className="post-page">
