@@ -1,10 +1,9 @@
 import { useContext, useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import { format } from "date-fns";
 import { UserContext } from "../userContext";
 import Footer from "../footer";
 import { Helmet } from "react-helmet";
-import * as React from "react";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 import AmazonAds from "../Ads";
@@ -24,7 +23,7 @@ export default function PostPage() {
         try {
           const parsedPost = JSON.parse(storedPost);
           setPostInfo(parsedPost);
-          setLoading(false); // Mark loading complete even from storage
+          setLoading(false);
         } catch (error) {
           console.error("Error parsing stored post:", error);
         }
@@ -42,7 +41,7 @@ export default function PostPage() {
         if (response.ok) {
           const postData = await response.json();
           setPostInfo(postData);
-          localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(postData)); // Store fetched post in local storage
+          localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(postData));
         } else {
           console.error("Failed to fetch post");
         }
@@ -56,7 +55,6 @@ export default function PostPage() {
     if (!postInfo) {
       fetchPostFromAPI();
     }
-
   }, [id, postInfo, LOCAL_STORAGE_KEY]);
 
   if (loading)
@@ -68,41 +66,31 @@ export default function PostPage() {
   if (!postInfo) return null;
   const url_photo = `${postInfo.cover}`;
 
-  const handleDropdownChange = async (e) => {
-    const selectedValue = e.target.value;
-
-    if (selectedValue.startsWith("edit")) {
-      navigate(`/${selectedValue}`);
-    } else if (selectedValue === "delete") {
-      const confirmDelete = window.confirm(
-        "Are you sure you want to delete this post?"
-      );
-      if (confirmDelete) {
-        try {
-          const response = await fetch(
-            `${process.env.REACT_APP_API_URL}/post/${postInfo._id}`,
-            {
-              method: "DELETE",
-            }
-          );
-          const data = await response.json();
-          if (response.ok) {
-            alert("Post Deleted");
-            localStorage.removeItem(LOCAL_STORAGE_KEY); // Remove the post from local storage
-            navigate("/", { replace: true });
-            window.location.reload();
-            window.scrollTo(0, 0);
-          } else {
-            console.error(data.error);
+  const handleDelete = async () => {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this post?"
+    );
+    if (confirmDelete) {
+      try {
+        const response = await fetch(
+          `${process.env.REACT_APP_API_URL}/post/${postInfo._id}`,
+          {
+            method: "DELETE",
           }
-        } catch (error) {
-          console.error("Failed to delete post", error);
+        );
+        if (response.ok) {
+          alert("Post Deleted");
+          localStorage.removeItem(LOCAL_STORAGE_KEY);
+          navigate("/", { replace: true });
+          window.location.reload();
+          window.scrollTo(0, 0);
+        } else {
+          const data = await response.json();
+          console.error(data.error);
         }
+      } catch (error) {
+        console.error("Failed to delete post", error);
       }
-    } else if (selectedValue === "report") {
-      navigate("/report", {
-        state: { author: postInfo.author.username, postName: postInfo.title },
-      });
     }
   };
 
@@ -111,25 +99,73 @@ export default function PostPage() {
       <Helmet>
         <title>{postInfo.title}</title>
         <meta name="description" content={postInfo.summary} />
+        <meta name="keywords" content={postInfo.keywords.join(", ")} />
       </Helmet>
       <div className="post-page">
         <h2>{postInfo.title}</h2>
-        <div className="post-info">
-          <div className="author"><p>{postInfo.author.username}</p></div>•
-          <time><p>{format(new Date(postInfo.createdAt), "dd-L-yyyy")}</p></time>
-        </div>
+        {userInfo.id != postInfo.author._id && (
+          <div>
+            <time>
+              <p>Posted at {format(new Date(postInfo.createdAt), "dd-L-yyyy")}</p>
+            </time>
+          </div>
+        )}
+
+        {userInfo.id === postInfo.author._id && (
+          <div>
+            <time>
+              <p>
+                Posted by You at{" "}
+                {format(new Date(postInfo.createdAt), "d-L-yyyy")}
+              </p>
+            </time>
+          </div>
+        )}
+        
+
         <div className="action-container">
           <div className="dropdown-container">
-            <select onChange={handleDropdownChange}>
-              <option disabled="">Options</option>
-              <option value="report">Report</option>
+            <div className="index-promo">
               {userInfo.id === postInfo.author._id && (
                 <>
-                  <option value={`edit/${postInfo._id}`}>Edit</option>
-                  <option value="delete">Delete</option>
+                  <Link style={{padding:'0', margin:'0'}} to={`/edit/${postInfo._id}`}>
+                    <div className="gicon-title">
+                      <span className="material-symbols-outlined">edit</span>
+                      <p>Edit</p>
+                    </div>
+                  </Link>
+                  <Link style={{margin:'0'}} onClick={handleDelete}>
+                    <div className="gicon-title">
+                      <span className="material-symbols-outlined">delete</span>
+                      <p>Delete</p>
+                    </div>
+                  </Link>
                 </>
               )}
-            </select>
+
+              {userInfo.id !== postInfo.author._id && (
+                <>
+                  <Link style={{ padding: "0", margin: "0" }}>
+                    <div className="gicon-title">
+                      <span className="material-symbols-outlined">person</span>
+                      <p>{postInfo.author.username}</p>
+                    </div>
+                  </Link>
+                  <Link
+                    to="/report"
+                    state={{
+                      author: postInfo.author.username,
+                      postName: postInfo.title,
+                    }}
+                  >
+                    <div className="gicon-title">
+                      <span className="material-symbols-outlined">flag</span>
+                      <p>Report</p>
+                    </div>
+                  </Link>
+                </>
+              )}
+            </div>
           </div>
 
           <ul className="social-menu-post">
@@ -168,7 +204,7 @@ export default function PostPage() {
             </li>
             <li>
               <a
-                href={`whatsapp://send?text=Check out this post: ${postInfo.title} Click here: ${window.location.href}`}
+                href={`whatsapp://send?text= ${postInfo.cover} ${postInfo.title} Click here: ${window.location.href}`}
                 data-action="share/whatsapp/share"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -181,7 +217,10 @@ export default function PostPage() {
         <div className="image">
           <img src={url_photo} alt="Post Cover" />
         </div>
-        <div className="content" dangerouslySetInnerHTML={{ __html: postInfo.content }} />
+        <div
+          className="content"
+          dangerouslySetInnerHTML={{ __html: postInfo.content }}
+        />
       </div>
       <Footer />
     </>

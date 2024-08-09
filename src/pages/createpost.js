@@ -126,6 +126,7 @@ export default function CreatePost() {
           colorScheme="red"
           borderRadius='10px'
           fontSize='small'
+          gap={'10px'}
         >
           <AlertIcon color={"#6dcaae"} boxSize='30px' mr={0} />
           <AlertTitle mt={4} mb={1} fontSize='lg'>

@@ -86,7 +86,7 @@ div.index-promo a:hover::after {
   width: 100%;
 }
 
-/* Mobile styles */
+/*--------------------------------------------------------------------- Mobile styles ------------------------------------------------------------------------*/
 @media (max-width: 768px) {
   div.navbar-toggle {
     display: flex;
@@ -216,7 +216,7 @@ main {
   -webkit-backdrop-filter: blur(14.8px);
 }
 
-/*------------------Header component------------------------*/
+/*-------------------------------------------------------------------------Header component----------------------------------------------------------------*/
 header {
   display: flex;
   justify-content: space-between;
@@ -281,7 +281,7 @@ header nav span {
   margin-top: 10px;
 }
 
-/*---------------------------------Post page component------------------*/
+/*---------------------------------------------------------------------Post page component-------------------------------------------------------------------*/
 div.post {
   display: grid;
   grid-template-columns: 1fr;
@@ -343,7 +343,7 @@ div.post p.summary {
   padding-right: 5px;
 }
 
-/*-----------------------------form component css------------------*/
+/*------------------------------------------------------------------------form component css----------------------------------------------------------------*/
 form.login h1,
 form.register h1 {
   text-align: center;
@@ -370,7 +370,7 @@ form.login h4 {
   margin-bottom: 5px;
 }
 
-/*-----------------------------------------------------------contact form-------------------------------------------------------*/
+/*--------------------------------------------------------------------------contact form--------------------------------------------------------------------------------*/
 
 form.contact {
   max-width: 500px;
@@ -402,7 +402,7 @@ form.contact h1 {
   text-decoration: none;
 }
 
-/*---------------------------------------------------------------------------form report-----------------------------------------------*/
+/*-----------------------------------------------------------------form report---------------------------------------------------------------------------*/
 
 form.report {
   max-width: 500px;
@@ -413,7 +413,7 @@ form.report h1 {
   text-align: center;
 }
 
-/* ------------------------------------------------------------input buttons---------------------------------------*/
+/* -----------------------------------------------------------------------input buttons----------------------------------------------------------------------*/
 input {
   display: block;
   margin-bottom: 5px;
@@ -557,7 +557,7 @@ button:hover {
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
-/*--------------------------------------------------------------dropdown----------------------------------------*/
+/*--------------------------------------------------------------------------------------dropdown---------------------------------------------------------------*/
 
 .dropbtn {
   background: linear-gradient(to right, #009dffc9, #cb6ce6);
@@ -711,7 +711,7 @@ div.hone-index {
   padding-left: 5px;
 }
 
-/*--------------------------footer-------------------------------*/
+/*----------------------------------------------------------------------------footer----------------------------------------------------------------------------*/
 footer {
   max-width: 100%;
   align-items: center;
@@ -795,7 +795,7 @@ footer {
 .social-menu-post {
   display: flex;
   list-style: none;
-  gap: 15px;
+  gap: 8px;
   justify-content: center;
   align-items: center;
 }
@@ -810,7 +810,7 @@ footer {
 
 .social-menu-post a {
   color: #ffffff;
-  font-size: 20px;
+  font-size: 15px;
   display: inline-block;
   width: 20px;
   height: 20px;
@@ -838,7 +838,7 @@ footer {
 .social-menu-post a:active,
 .social-menu-post a:focus,
 .social-menu-post a:hover {
-  color: #6dcaae;
+  color: #6fffe9;
 }
 
 .social-menu a:active,
@@ -857,8 +857,7 @@ footer {
 
 .dropdown-container {
   position: relative;
-  width: 120px;
-  margin: 2px;
+  width: max-content;
 }
 .action-container {
   display: flex;
@@ -879,7 +878,7 @@ footer {
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 
-/*----------------------------------------------------editor toolbar ------------------------------*/
+/*---------------------------------------------------------------------------editor toolbar ----------------------------------------------------------------*/
 
 .ql-toolbar {
   border-bottom: 1px solid #ccc;
@@ -922,7 +921,7 @@ div.content p a {
   text-decoration: none !important;
 }
 
-/*----------------------------------user profile css---------------------------*/
+/*------------------------------------------------------------------user profile css---------------------------------------------------------------------*/
 .user-data-update {
   display: flex;
   flex-direction: column;
@@ -1000,7 +999,7 @@ div.content p a {
   }
 }
 
-/*------------------------------post data section---------------*/
+/*-----------------------------------------------------------------------post data section-----------------------------------------------------------------*/
 div.post-data-header {
   display: flex;
   align-items: center;
@@ -1108,7 +1107,7 @@ div.post-container img {
   align-self: baseline;
 }
 
-/*----------------------------------------------plagiarism remover ------------------------------------------------------------------*/
+/*--------------------------------------------------------------------- plagiarism remover -----------------------------------------------------------------------*/
 form.plag-remover {
   display: flex;
   flex-direction: column;
@@ -1234,7 +1233,7 @@ div.search-container select {
   color: #05fc57;
 }
 
-/*-----------------------------plag ai results ------------------------*/
+/*------------------------------------------------------------------- plag ai results -------------------------------------------------------------------------------------------------------*/
 div.plagGuard-results {
   box-shadow: 0 0 0 1.5px rgb(197, 197, 197);
   border-radius: 8px;
@@ -1265,7 +1264,7 @@ div.plag-toolbar {
   box-shadow: none;
 }
 
-/*------------------------------------------------safe content AI---------------------------*/
+/*----------------------------------------------------------------------------safe content AI---------------------------------------------------------------------------------------*/
 form.safe-content {
   display: flex;
   flex-direction: column;
@@ -1399,22 +1398,20 @@ div.explore-container {
   width: 100%;
   gap: 7px;
   justify-content: space-evenly;
-  overflow-x: auto; /* Enable horizontal scrolling */
-  overflow-y: hidden; /* Disable vertical scrolling */
+  overflow-x: auto; 
+  overflow-y: hidden; 
   flex-direction: row;
   background: transparent;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(5.4px);
   -webkit-backdrop-filter: blur(5.4px);
   border-radius: 5px;
-
-  /* Hide scrollbar for WebKit browsers */
-  -ms-overflow-style: none; /* Internet Explorer and Edge */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; 
+  scrollbar-width: none;
 }
 
 div.explore-container::-webkit-scrollbar {
-  display: none; /* Safari and Chrome */
+  display: none;
 }
 
 
