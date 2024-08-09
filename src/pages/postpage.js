@@ -14,6 +14,7 @@ export default function PostPage() {
   const { id } = useParams();
   const { userInfo } = useContext(UserContext);
   const navigate = useNavigate();
+  const keywords = postInfo.keywords.join(", ");
   const LOCAL_STORAGE_KEY = `post-${id}`;
 
   useEffect(() => {
@@ -99,16 +100,16 @@ export default function PostPage() {
       <Helmet>
         <title>{postInfo.title}</title>
         <meta name="description" content={postInfo.summary} />
-        <meta name="keywords" content={postInfo.keywords.join(", ")} />
+        <meta
+          name="keywords"
+          content={
+            Array.isArray(postInfo.keywords) ? postInfo.keywords.join(", ") : ""
+          }
+        />
         <meta property="og:title" content={postInfo.title} />
         <meta property="og:description" content={postInfo.summary} />
-        <meta property="og:image" content={postInfo.cover} />
-        <meta property="og:url" content={window.location.href} />
-        <meta property="og:type" content="article" />
-        <meta property="og:locale" content="en_GB" />
-        <meta property="og:locale:alternate" content="fr_FR" />
-        <meta property="og:locale:alternate" content="es_ES" />
       </Helmet>
+
       <div className="post-page">
         <h2>{postInfo.title}</h2>
         {userInfo.id != postInfo.author._id && (
@@ -216,7 +217,9 @@ export default function PostPage() {
             </li>
             <li>
               <a
-                  href={`whatsapp://send?text=${encodeURIComponent(postInfo.title)} Click here: ${window.location.href}`}
+                href={`whatsapp://send?text=${encodeURIComponent(
+                  postInfo.title
+                )} Click here: ${window.location.href}`}
                 data-action="share/whatsapp/share"
                 target="_blank"
                 rel="noopener noreferrer"

@@ -37,7 +37,7 @@ function UserProfile() {
         const response = await fetch(
           `${process.env.REACT_APP_API_URL}/users/${username}`
         );
-        
+
         const storedData = localStorage.getItem(LOCAL_STORAGE_KEY);
         if (storedData) {
           const parsedData = JSON.parse(storedData);
@@ -57,8 +57,6 @@ function UserProfile() {
           LOCAL_STORAGE_KEY,
           JSON.stringify({ userData: fetchedUser, userPosts: fetchedPosts })
         );
-
-        
       } catch (error) {
         console.error("Error fetching user data:", error);
       } finally {
@@ -319,9 +317,16 @@ function UserProfile() {
         ) : (
           userPosts.map((post) => (
             <div className="post-container" key={post._id}>
-              <img alt="cover" src={post.cover}></img>
+              <Link to={`/post/${post._id}`} style={{ textDecoration: "none" }}>
+                <img alt="cover" src={post.cover}></img>
+              </Link>
               <div className="text-container">
-                <p className="post-title">{post.title}</p>
+                <Link
+                  to={`/post/${post._id}`}
+                  style={{ textDecoration: "none" }}
+                >
+                  <p className="post-title">{post.title}</p>
+                </Link>
               </div>
               <div className="user-icons">
                 <Link to={`/edit/${post._id}`}>

@@ -1097,6 +1097,9 @@ div.post-container {
   margin: 1px;
   font-size: small;
 }
+.post-title:hover {
+  text-decoration: underline;
+}
 
 div.post-container img {
   width: 90px;
