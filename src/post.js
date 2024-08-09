@@ -25,7 +25,7 @@ const Post = forwardRef(
           </p>
 
           <p className="info">
-            <Link className="author">{author.username}</Link>
+            <Link to={`/user/${author.username}`} className="author">{author.username}</Link>
             <time>• {relativeTime}</time>
           </p>
         </div>

@@ -1,12 +1,15 @@
 import { Link, useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Helmet } from "react-helmet";
 import { Alert, AlertIcon, AlertTitle, useDisclosure } from "@chakra-ui/react";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
+import { UserContext } from "../userContext"; // Import UserContext to get logged-in user info
+import { formatDistanceToNow } from "date-fns";
 
 function UserProfile() {
-  const { username } = useParams();
+  const { username } = useParams(); // Username from the URL
+  const { userInfo } = useContext(UserContext); // Get logged-in user info
   const [userData, setUserData] = useState(null);
   const [userPosts, setUserPosts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -104,7 +107,6 @@ function UserProfile() {
     data.set("file", files[0]);
     data.set("email", email);
     data.set("username", userData.username);
-    console.log(files);
 
     const url = `${process.env.REACT_APP_API_URL}/updateUser`;
     const response = await fetch(url, {
@@ -160,6 +162,8 @@ function UserProfile() {
     );
   }
 
+  const isOwner = userInfo?.username === username;
+
   return (
     <>
       <Helmet>
@@ -211,47 +215,67 @@ function UserProfile() {
         {userData && (
           <>
             {!editMode ? (
-              <div className="user-data-update">
-                <div className="user-profile-edit">
-                  <div className="user-data-box">
-                    <div className="cover-box">
-                      {userData.icon ? (
-                        <img
-                          className="user-cover"
-                          src={userData.icon}
-                          alt="user_image"
-                        />
-                      ) : (
-                        <img
-                          className="user-cover"
-                          src="/user.png"
-                          alt="user_image"
-                        />
-                      )}
+              <>
+                <div
+                  style={{ justifyContent: "left" }}
+                  className="post-data-header"
+                >
+                  <p>Author Profile</p>
+                  <span className="material-symbols-outlined">work</span>
+                </div>
+                <div className="user-data-update">
+                  <div className="user-profile-edit">
+                    <div className="user-data-box">
+                      <div className="cover-box">
+                        {userData.icon ? (
+                          <img
+                            className="user-cover"
+                            src={userData.icon}
+                            alt="user_image"
+                          />
+                        ) : (
+                          <img
+                            className="user-cover"
+                            src="/user.png"
+                            alt="user_image"
+                          />
+                        )}
+                      </div>
+                      <p>{userData.username}</p>
                     </div>
-                    <p>{userData.username}</p>
-                  </div>
-                  <div className="user-data-box">
-                    <span className="material-symbols-outlined">mail</span>
-                    <p>{userData.email}</p>
-                  </div>
-                  <div className="user-data-box">
-                    <span className="material-symbols-outlined">interests</span>
-                    <p>{userData.interestType}</p>
-                  </div>
-                  <div className="user-data-box">
-                    <Link onClick={toggleEditMode}>
-                      <span className="material-symbols-outlined">edit</span>
-                    </Link>
-                    <Link
-                      onClick={toggleEditMode}
-                      style={{ textDecoration: "none" }}
-                    >
-                      <p>Edit Profile</p>
-                    </Link>
+                    <div className="user-data-box">
+                      <span className="material-symbols-outlined">
+                        interests
+                      </span>
+                      <p>{userData.interestType}</p>
+                    </div>
+
+                    {isOwner && (
+                      <>
+                        <div className="user-data-box">
+                          <span className="material-symbols-outlined">
+                            mail
+                          </span>
+                          <p>{userData.email}</p>
+                        </div>
+                        <div className="user-data-box">
+                          <Link onClick={toggleEditMode}>
+                            <span className="material-symbols-outlined">
+                              edit
+                            </span>
+                          </Link>
+                          <Link
+                            onClick={toggleEditMode}
+                            style={{ textDecoration: "none" }}
+                          >
+                            <p>Edit Profile</p>
+                          </Link>
+                        </div>
+                      </>
+                    )}
                   </div>
                 </div>
-              </div>
+              </>
             ) : (
               <form onSubmit={handleFormSubmit}>
                 <div className="user-data-update">
@@ -317,9 +341,8 @@ function UserProfile() {
         ) : (
           userPosts.map((post) => (
             <div className="post-container" key={post._id}>
-              <Link to={`/post/${post._id}`} style={{ textDecoration: "none" }}>
-                <img alt="cover" src={post.cover}></img>
-              </Link>
+              <img alt="cover" src={post.cover}></img>
+
               <div className="text-container">
                 <Link
                   to={`/post/${post._id}`}
@@ -328,20 +351,31 @@ function UserProfile() {
                   <p className="post-title">{post.title}</p>
                 </Link>
               </div>
-              <div className="user-icons">
-                <Link to={`/edit/${post._id}`}>
-                  <span className="material-symbols-outlined">edit</span>
-                </Link>
-                <Link
-                  to="#"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleDelete(post._id);
-                  }}
-                >
-                  <span className="material-symbols-outlined">delete</span>
-                </Link>
-              </div>
+              {!isOwner && (
+                <div className="user-icons">
+                  <Link to={`/post/${post._id}`}>
+                    <span class="material-symbols-outlined">
+                      arrow_right_alt
+                    </span>
+                  </Link>
+                </div>
+              )}
+              {isOwner && (
+                <div className="user-icons">
+                  <Link to={`/edit/${post._id}`}>
+                    <span className="material-symbols-outlined">edit</span>
+                  </Link>
+                  <Link
+                    to="#"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleDelete(post._id);
+                    }}
+                  >
+                    <span className="material-symbols-outlined">delete</span>
+                  </Link>
+                </div>
+              )}
             </div>
           ))
         )}

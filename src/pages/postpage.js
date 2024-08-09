@@ -71,7 +71,8 @@ export default function PostPage() {
     const confirmDelete = window.confirm(
       "Are you sure you want to delete this post?"
     );
-    if (confirmDelete && postInfo?.id) { // Check that postInfo and postInfo.id exist
+    if (confirmDelete && postInfo?.id) {
+      // Check that postInfo and postInfo.id exist
       try {
         const response = await fetch(
           `${process.env.REACT_APP_API_URL}/post/${postInfo._id}`,
@@ -151,7 +152,7 @@ export default function PostPage() {
 
               {userInfo.id !== postInfo.author._id && (
                 <>
-                  <Link style={{ padding: "0", margin: "0" }}>
+                  <Link to={`/user/${postInfo.author.username}`} style={{ padding: "0", margin: "0" }}>
                     <div className="gicon-title">
                       <span className="material-symbols-outlined">person</span>
                       <p>{postInfo.author.username}</p>
@@ -222,9 +223,11 @@ export default function PostPage() {
             </li>
           </ul>
         </div>
+
         <div className="image">
           <img src={url_photo} alt="Post Cover" />
         </div>
+
         <div
           className="content"
           dangerouslySetInnerHTML={{ __html: postInfo.content }}

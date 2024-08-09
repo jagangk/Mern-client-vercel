@@ -18,7 +18,7 @@ export default function Header() {
     onOpen: onOpenSuccess,
     onClose: onCloseSuccess,
   } = useDisclosure();
-  
+
   useEffect(() => {
     let timer;
 
@@ -111,29 +111,39 @@ export default function Header() {
         <nav>
           {username ? (
             <Flex align="center" gap="10px">
-              <Link className="dropbtn" to={`/user/${username}`} style={{ display: 'flex', alignItems: 'center' }}>
+              <Link
+                className="dropbtn"
+                to={`/user/${username}`}
+                style={{ display: "flex", alignItems: "center" }}
+              >
                 {userData?.icon ? (
                   <img
                     className="user-cover"
                     src={userData.icon}
                     alt="User Icon"
-                    style={{ width: "25px", height: "25px", borderRadius: "50%", marginRight:"8px" }}
+                    style={{
+                      width: "25px",
+                      height: "25px",
+                      borderRadius: "50%",
+                      marginRight: "8px",
+                    }}
                   />
                 ) : null}
-                  {username}
+                {username}
               </Link>
 
-                <Link onClick={logout}>
-                  <div className="gicon-title">
-                    <img
-                      alt="ai logo"
-                      className="promo-icon"
-                      src="../logout.png"
-                    />
-                    <Link className="logout" onClick={logout}>Logout</Link>
-                  </div>
-                </Link>
-
+              <Link onClick={logout}>
+                <div className="gicon-title">
+                  <img
+                    alt="ai logo"
+                    className="promo-icon"
+                    src="../logout.png"
+                  />
+                  <Link className="logout" onClick={logout}>
+                    Logout
+                  </Link>
+                </div>
+              </Link>
             </Flex>
           ) : (
             <Link to="/login">Sign in</Link>

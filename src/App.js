@@ -37,7 +37,7 @@ function App() {
          <Route path = "/PlagGuard" element = {<PlagiarismChecker />} />
          <Route path = "/safecontent" element = {<ContentChecker />} />
          <Route path = "/report" element = {<ReportPost />} />
-         <Route path= "/user/:username" element = {<ProtectedRoute><UserProfile /></ProtectedRoute>} />
+         <Route path= "/user/:username" element = {<UserProfile />} />
         </Route>
       </Routes>
     </UserContextProvider>
