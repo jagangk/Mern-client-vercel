@@ -149,6 +149,7 @@ export default function LoginPage() {
           login. If you encounter any issues during the login process, please
           reach us out <Link to="/contact">click here to contact.</Link>
         </p>
+        
       </div>
     </>
   );
