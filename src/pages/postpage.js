@@ -100,13 +100,23 @@ export default function PostPage() {
         <title>{postInfo.title}</title>
         <meta name="description" content={postInfo.summary} />
         <meta name="keywords" content={postInfo.keywords.join(", ")} />
+        <meta property="og:title" content={postInfo.title} />
+        <meta property="og:description" content={postInfo.summary} />
+        <meta property="og:image" content={postInfo.cover} />
+        <meta property="og:url" content={window.location.href} />
+        <meta property="og:type" content="article" />
+        <meta property="og:locale" content="en_GB" />
+        <meta property="og:locale:alternate" content="fr_FR" />
+        <meta property="og:locale:alternate" content="es_ES" />
       </Helmet>
       <div className="post-page">
         <h2>{postInfo.title}</h2>
         {userInfo.id != postInfo.author._id && (
           <div>
             <time>
-              <p>Posted at {format(new Date(postInfo.createdAt), "dd-L-yyyy")}</p>
+              <p>
+                Posted at {format(new Date(postInfo.createdAt), "dd-L-yyyy")}
+              </p>
             </time>
           </div>
         )}
@@ -121,20 +131,22 @@ export default function PostPage() {
             </time>
           </div>
         )}
-        
 
         <div className="action-container">
           <div className="dropdown-container">
             <div className="index-promo">
               {userInfo.id === postInfo.author._id && (
                 <>
-                  <Link style={{padding:'0', margin:'0'}} to={`/edit/${postInfo._id}`}>
+                  <Link
+                    style={{ padding: "0", margin: "0" }}
+                    to={`/edit/${postInfo._id}`}
+                  >
                     <div className="gicon-title">
                       <span className="material-symbols-outlined">edit</span>
                       <p>Edit</p>
                     </div>
                   </Link>
-                  <Link style={{margin:'0'}} onClick={handleDelete}>
+                  <Link onClick={handleDelete}>
                     <div className="gicon-title">
                       <span className="material-symbols-outlined">delete</span>
                       <p>Delete</p>
@@ -204,7 +216,7 @@ export default function PostPage() {
             </li>
             <li>
               <a
-                href={`whatsapp://send?text= ${postInfo.cover} ${postInfo.title} Click here: ${window.location.href}`}
+                  href={`whatsapp://send?text=${encodeURIComponent(postInfo.title)} Click here: ${window.location.href}`}
                 data-action="share/whatsapp/share"
                 target="_blank"
                 rel="noopener noreferrer"
