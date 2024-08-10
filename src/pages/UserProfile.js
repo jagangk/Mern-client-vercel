@@ -297,11 +297,19 @@ function UserProfile() {
                   <div className="user-profile-edit">
                     <div className="user-data-box">
                       <div className="cover-box">
-                        <img
-                          className="user-cover"
-                          src={userData.icon}
-                          alt="user_image"
-                        />
+                      {userData.icon ? (
+                          <img
+                            className="user-cover"
+                            src={userData.icon}
+                            alt="user_image"
+                          />
+                        ) : (
+                          <img
+                            className="user-cover"
+                            src="/user.png"
+                            alt="user_image"
+                          />
+                        )}
                       </div>
                     </div>
                     <div className="user-data-box">
