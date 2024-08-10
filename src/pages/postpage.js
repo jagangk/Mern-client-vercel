@@ -64,6 +64,7 @@ export default function PostPage() {
         <CircularProgress />
       </Box>
     );
+
   if (!postInfo) return null; // Ensure postInfo is not null before rendering
   const url_photo = `${postInfo.cover}`;
 
@@ -71,8 +72,7 @@ export default function PostPage() {
     const confirmDelete = window.confirm(
       "Are you sure you want to delete this post?"
     );
-    if (confirmDelete && postInfo?.id) {
-      // Check that postInfo and postInfo.id exist
+    if (confirmDelete && postInfo?._id) { // Safely check for postInfo and postInfo._id
       try {
         const response = await fetch(
           `${process.env.REACT_APP_API_URL}/post/${postInfo._id}`,
@@ -101,12 +101,12 @@ export default function PostPage() {
       <Helmet>
         <title>{postInfo.title}</title>
         <meta name="description" content={postInfo.summary} />
-        <meta name="keywords" content={postInfo.keywords.join(", ")} />
+        <meta name="keywords" content={postInfo.keywords?.join(", ")} />
       </Helmet>
 
       <div className="post-page">
         <h2>{postInfo.title}</h2>
-        {userInfo.id != postInfo.author._id && (
+        {userInfo?.id !== postInfo.author._id && (
           <div>
             <time>
               <p>
@@ -116,7 +116,7 @@ export default function PostPage() {
           </div>
         )}
 
-        {userInfo.id === postInfo.author._id && (
+        {userInfo?.id === postInfo.author._id && (
           <div>
             <time>
               <p>
@@ -130,7 +130,7 @@ export default function PostPage() {
         <div className="action-container">
           <div className="dropdown-container">
             <div className="index-promo">
-              {userInfo.id === postInfo.author._id && (
+              {userInfo?.id === postInfo.author._id && (
                 <>
                   <Link
                     style={{ padding: "0", margin: "0" }}
@@ -150,7 +150,7 @@ export default function PostPage() {
                 </>
               )}
 
-              {userInfo.id !== postInfo.author._id && (
+              {userInfo?.id !== postInfo.author._id && (
                 <>
                   <Link to={`/user/${postInfo.author.username}`} style={{ padding: "0", margin: "0" }}>
                     <div className="gicon-title">
@@ -237,3 +237,4 @@ export default function PostPage() {
     </>
   );
 }
+

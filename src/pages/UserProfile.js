@@ -163,6 +163,9 @@ function UserProfile() {
   }
 
   const isOwner = userInfo?.username === username;
+  const relativeTime = userData.createdAt
+    ? formatDistanceToNow(new Date(userData.createdAt), { addSuffix: true })
+    : "N/A";
 
   return (
     <>
@@ -249,6 +252,14 @@ function UserProfile() {
                       </span>
                       <p>{userData.interestType}</p>
                     </div>
+                    <div className="user-data-box">
+                      <span className="material-symbols-outlined">
+                        schedule
+                      </span>
+                      <p>
+                        <time>Joined {relativeTime}</time>
+                      </p>
+                    </div>
 
                     {isOwner && (
                       <>
@@ -323,62 +334,76 @@ function UserProfile() {
           </>
         )}
 
-        {userPosts.length > 0 && (
-          <div className="post-data-header">
-            <p>Posts Uploaded</p>
-            <span className="material-symbols-outlined">cloud</span>
-          </div>
-        )}
-
-        {userPosts.length === 0 ? (
-          <div className="no-post-ack">
-            <p>You haven't posted anything yet.</p>
-            <div className="create-post-ack">
-              <Link to="/create">Create post</Link>
-              <span className="material-symbols-outlined">add_circle</span>
-            </div>
-          </div>
-        ) : (
-          userPosts.map((post) => (
-            <div className="post-container" key={post._id}>
-              <img alt="cover" src={post.cover}></img>
-
-              <div className="text-container">
-                <Link
-                  to={`/post/${post._id}`}
-                  style={{ textDecoration: "none" }}
-                >
-                  <p className="post-title">{post.title}</p>
-                </Link>
+        <div className="posts-container">
+          <div className="user-posts">
+            {userPosts.length > 1 && (
+              <div
+                style={{ justifyContent: "left" }}
+                className="post-data-header"
+              >
+                <p>Posts uploaded</p>
+                <span className="material-symbols-outlined">cloud</span>
               </div>
-              {!isOwner && (
-                <div className="user-icons">
-                  <Link to={`/post/${post._id}`}>
-                    <span class="material-symbols-outlined">
-                      arrow_right_alt
-                    </span>
-                  </Link>
+            )}
+            {isOwner && userPosts.length === 0 && (
+              <div className="no-post-ack">
+                <p>You haven't posted anything yet.</p>
+                <div className="create-post-ack">
+                  <Link to="/create">Create post</Link>
+                  <span className="material-symbols-outlined">add_circle</span>
                 </div>
-              )}
-              {isOwner && (
-                <div className="user-icons">
-                  <Link to={`/edit/${post._id}`}>
-                    <span className="material-symbols-outlined">edit</span>
-                  </Link>
-                  <Link
-                    to="#"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      handleDelete(post._id);
-                    }}
-                  >
-                    <span className="material-symbols-outlined">delete</span>
-                  </Link>
+              </div>
+            )}
+
+            {!isOwner && userPosts.length === 0 ? (
+              <div className="no-post-ack">
+                <p>This author hasn't posted anything yet.</p>
+              </div>
+            ) : (
+              userPosts.map((post) => (
+                <div className="post-container" key={post._id}>
+                  <img alt="cover" src={post.cover}></img>
+
+                  <div className="text-container">
+                    <Link
+                      to={`/post/${post._id}`}
+                      style={{ textDecoration: "none" }}
+                    >
+                      <p className="post-title">{post.title}</p>
+                    </Link>
+                  </div>
+                  {!isOwner && (
+                    <div className="user-icons">
+                      <Link to={`/post/${post._id}`}>
+                        <span className="material-symbols-outlined">
+                          arrow_right_alt
+                        </span>
+                      </Link>
+                    </div>
+                  )}
+                  {isOwner && (
+                    <div className="user-icons">
+                      <Link to={`/edit/${post._id}`}>
+                        <span className="material-symbols-outlined">edit</span>
+                      </Link>
+                      <Link
+                        to="#"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          handleDelete(post._id);
+                        }}
+                      >
+                        <span className="material-symbols-outlined">
+                          delete
+                        </span>
+                      </Link>
+                    </div>
+                  )}
                 </div>
-              )}
-            </div>
-          ))
-        )}
+              ))
+            )}
+          </div>
+        </div>
       </div>
     </>
   );

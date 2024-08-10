@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Navbar from "../Explorebar";
+
 import Post from "../post";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
