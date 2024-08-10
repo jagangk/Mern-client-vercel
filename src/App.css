@@ -607,6 +607,13 @@ nav:hover .dropdown-content {
   display: inline-block;
 }
 
+div.post-basic-info-box {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+
+}
+
 div.post-page div.image {
   max-height: 300px;
   display: flex;

@@ -246,6 +246,14 @@ function UserProfile() {
                       </div>
                       <p>{userData.username}</p>
                     </div>
+                    {userData.verified === true && (
+                      <div className="user-data-box">
+                        <span class="material-symbols-outlined">verified</span>
+                        <p>
+                          <time>verified Author</time>
+                        </p>
+                      </div>
+                    )}
                     <div className="user-data-box">
                       <span className="material-symbols-outlined">
                         interests
@@ -260,6 +268,7 @@ function UserProfile() {
                         <time>Joined {relativeTime}</time>
                       </p>
                     </div>
+
 
                     {isOwner && (
                       <>
@@ -297,7 +306,7 @@ function UserProfile() {
                   <div className="user-profile-edit">
                     <div className="user-data-box">
                       <div className="cover-box">
-                      {userData.icon ? (
+                        {userData.icon ? (
                           <img
                             className="user-cover"
                             src={userData.icon}

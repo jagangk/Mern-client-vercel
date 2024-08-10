@@ -65,14 +65,14 @@ export default function PostPage() {
       </Box>
     );
 
-  if (!postInfo) return null; // Ensure postInfo is not null before rendering
+  if (!postInfo) return null; 
   const url_photo = `${postInfo.cover}`;
 
   const handleDelete = async () => {
     const confirmDelete = window.confirm(
       "Are you sure you want to delete this post?"
     );
-    if (confirmDelete && postInfo?._id) { // Safely check for postInfo and postInfo._id
+    if (confirmDelete && postInfo?._id) {
       try {
         const response = await fetch(
           `${process.env.REACT_APP_API_URL}/post/${postInfo._id}`,
@@ -106,26 +106,17 @@ export default function PostPage() {
 
       <div className="post-page">
         <h2>{postInfo.title}</h2>
-        {userInfo?.id !== postInfo.author._id && (
-          <div>
-            <time>
-              <p>
-                Posted at {format(new Date(postInfo.createdAt), "dd-L-yyyy")}
-              </p>
-            </time>
-          </div>
-        )}
 
-        {userInfo?.id === postInfo.author._id && (
-          <div>
+          <div className="post-basic-info-box">
+            <p>{postInfo.views} views</p>
+            <p>•</p>
             <time>
               <p>
-                Posted by You at{" "}
-                {format(new Date(postInfo.createdAt), "d-L-yyyy")}
+                {format(new Date(postInfo.createdAt), "dd-L-yyyy")}
               </p>
             </time>
           </div>
-        )}
+
 
         <div className="action-container">
           <div className="dropdown-container">
