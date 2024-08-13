@@ -6,10 +6,11 @@ import Footer from "../footer";
 import { Helmet } from "react-helmet";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
-import AmazonAds from "../Ads";
+import Post from "../post";
 
 export default function PostPage() {
   const [postInfo, setPostInfo] = useState(null);
+  const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const { id } = useParams();
   const { userInfo } = useContext(UserContext);
@@ -18,6 +19,7 @@ export default function PostPage() {
   const hasFetchedPost = useRef(false);
 
   useEffect(() => {
+    // Function to fetch the post from local storage
     const fetchPostFromStorage = () => {
       const storedPost = localStorage.getItem(LOCAL_STORAGE_KEY);
       if (storedPost) {
@@ -32,6 +34,7 @@ export default function PostPage() {
       }
     };
 
+    // Function to fetch the post from the API
     const fetchPostFromAPI = async () => {
       setLoading(true);
       try {
@@ -52,11 +55,40 @@ export default function PostPage() {
       }
     };
 
-    if (!hasFetchedPost.current) {
-      fetchPostFromStorage();
-      fetchPostFromAPI();
+    // First, check if the post is already fetched and stored locally
+    fetchPostFromStorage();
+
+    // Always fetch the post from the API
+    fetchPostFromAPI();
+  }, [id, LOCAL_STORAGE_KEY]); // Depend on id and LOCAL_STORAGE_KEY to trigger on change
+
+  // Separate useEffect for fetching related posts based on the current post's category
+  useEffect(() => {
+    if (postInfo?.PostType) {
+      const fetchPosts = async (category) => {
+        setLoading(true);
+        try {
+          const url = `${process.env.REACT_APP_API_URL}/posts/category/${category}`;
+          const response = await fetch(url);
+          if (response.ok) {
+            const data = await response.json();
+            const filteredPosts = data
+              .filter((post) => post._id !== postInfo._id)
+              .slice(0, 6); // Limit to 6 related posts
+            setPosts(filteredPosts);
+          } else {
+            console.error("Failed to fetch related posts");
+          }
+        } catch (error) {
+          console.error("Error fetching related posts:", error);
+        } finally {
+          setLoading(false);
+        }
+      };
+
+      fetchPosts(postInfo.PostType);
     }
-  }, [id, LOCAL_STORAGE_KEY]);
+  }, [postInfo?.PostType, postInfo?._id]); // Depend on PostType and postInfo._id
 
   if (loading)
     return (
@@ -65,7 +97,7 @@ export default function PostPage() {
       </Box>
     );
 
-  if (!postInfo) return null; 
+  if (!postInfo) return null;
   const url_photo = `${postInfo.cover}`;
 
   const handleDelete = async () => {
@@ -107,16 +139,13 @@ export default function PostPage() {
       <div className="post-page">
         <h2>{postInfo.title}</h2>
 
-          <div className="post-basic-info-box">
-            <p>{postInfo.views} views</p>
-            <p>•</p>
-            <time>
-              <p>
-                {format(new Date(postInfo.createdAt), "dd-L-yyyy")}
-              </p>
-            </time>
-          </div>
-
+        <div className="post-basic-info-box">
+          <p>{postInfo.views} views</p>
+          <p>•</p>
+          <time>
+            <p>{format(new Date(postInfo.createdAt), "dd-L-yyyy")}</p>
+          </time>
+        </div>
 
         <div className="action-container">
           <div className="dropdown-container">
@@ -143,7 +172,10 @@ export default function PostPage() {
 
               {userInfo?.id !== postInfo.author._id && (
                 <>
-                  <Link to={`/user/${postInfo.author.username}`} style={{ padding: "0", margin: "0" }}>
+                  <Link
+                    to={`/user/${postInfo.author.username}`}
+                    style={{ padding: "0", margin: "0" }}
+                  >
                     <div className="gicon-title">
                       <span className="material-symbols-outlined">person</span>
                       <p>{postInfo.author.username}</p>
@@ -224,8 +256,18 @@ export default function PostPage() {
           dangerouslySetInnerHTML={{ __html: postInfo.content }}
         />
       </div>
+      <div className="related">
+        <hr></hr>
+        <h4>Related Articles</h4>
+        <div className="posts-container">
+          {posts.length > 0 ? (
+            posts.map((post) => <Post key={post._id} {...post} />)
+          ) : (
+            <p>No posts found in this category</p>
+          )}
+        </div>
+      </div>
       <Footer />
     </>
   );
 }
-

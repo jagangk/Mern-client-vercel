@@ -70,6 +70,7 @@ export default function EditPost() {
             <option>News</option>
             <option>Science and Technology</option>
             <option>Entertainment</option>
+            <option>Gaming</option>
             <option>Sports</option>
             <option>Health</option>
             <option>Lifestyle and Travel</option>

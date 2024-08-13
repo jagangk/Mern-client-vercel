@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Navigate } from 'react-router-dom';
 import { Helmet } from "react-helmet";
-import ReactQuill from "react-quill";
 import { Alert, AlertIcon, AlertTitle, useDisclosure } from "@chakra-ui/react";
 import 'react-quill/dist/quill.snow.css';
 import Editor from "../Editor";
@@ -181,6 +180,7 @@ export default function CreatePost() {
             <option>Science</option>
             <option>Technology</option>
             <option>Entertainment</option>
+            <option>Gaming</option>
             <option>Sports</option>
             <option>Health</option>
             <option>Lifestyle</option>

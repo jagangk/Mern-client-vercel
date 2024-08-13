@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import Navbar from "../Explorebar";
-
 import Post from "../post";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
@@ -9,6 +8,7 @@ export default function Explore() {
   const [selectedCategory, setSelectedCategory] = useState("Trending");
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
+
 
   const fetchPosts = async (category) => {
     setLoading(true);
@@ -48,6 +48,7 @@ export default function Explore() {
           "Technology",
           "Sports",
           "Entertainment",
+          "Gaming",
           "Opinions",
           "Science",
           "Health",
@@ -65,7 +66,8 @@ export default function Explore() {
                 {category === "Business" && "monitoring"}
                 {category === "Technology" && "phone_iphone"}
                 {category === "Sports" && "sports_soccer"}
-                {category === "Entertainment" && "sports_esports"}
+                {category === "Entertainment" && "movie"}
+                {category === "Gaming" && "sports_esports"}
                 {category === "Science" && "experiment"}
                 {category === "Opinions" && "campaign"}
                 {category === "Health" && "health_and_beauty"}

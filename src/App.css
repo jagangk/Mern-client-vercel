@@ -1117,6 +1117,20 @@ div.post-container img {
   align-self: baseline;
 }
 
+div.related {
+  width: 100%;
+  margin-top: 10px;
+}
+
+hr {
+  border-radius: 5px;
+}
+
+div.related h4 {
+  margin: 0;
+  padding: 0;
+}
+
 /*--------------------------------------------------------------------- plagiarism remover -----------------------------------------------------------------------*/
 form.plag-remover {
   display: flex;
