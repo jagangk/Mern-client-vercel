@@ -133,8 +133,8 @@ export default function PostPage() {
 
         <meta property="og:title" content={postInfo.title} />
         <meta property="og:description" content={postInfo.summary} />
-        <meta property="og:image" content={postInfo.image} />
-        <meta property="og:url" content="URL" />
+        <meta property="og:image" content={postInfo.cover} />
+        <meta property="og:url" content={window.location.href} />
         <meta property="og:type" content="article" />
 
         <meta name="twitter:card" content="summary_large_image" />
@@ -246,9 +246,7 @@ export default function PostPage() {
             </li>
             <li>
               <a
-                href={`whatsapp://send?text=${encodeURIComponent(
-                  postInfo.title
-                )} Click here: ${window.location.href}`}
+                 href={`https://api.whatsapp.com/send?text=${encodeURIComponent(window.location.href)}`}
                 data-action="share/whatsapp/share"
                 target="_blank"
                 rel="noopener noreferrer"
