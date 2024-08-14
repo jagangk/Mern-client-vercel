@@ -8,7 +8,8 @@ import Box from "@mui/material/Box";
 import Navbar from "../Navbar";
 
 export default function IndexPage() {
-  const { posts, setPosts, page, setPage, hasMore, setHasMore } = useContext(UserContext);
+  const { posts, setPosts, page, setPage, hasMore, setHasMore } =
+    useContext(UserContext);
   const [loading, setLoading] = useState(false);
   const observer = useRef();
 
@@ -29,8 +30,8 @@ export default function IndexPage() {
         setHasMore(false);
       }
       setPosts((prevPosts) => {
-        const existingIds = new Set(prevPosts.map(post => post._id));
-        const newPosts = data.filter(post => !existingIds.has(post._id));
+        const existingIds = new Set(prevPosts.map((post) => post._id));
+        const newPosts = data.filter((post) => !existingIds.has(post._id));
         return [...prevPosts, ...newPosts];
       });
       setLoading(false);
@@ -62,7 +63,7 @@ export default function IndexPage() {
 
   return (
     <>
-      {posts.length >= 0 &&  (
+      {posts.length >= 0 && (
         <>
           <Navbar />
         </>
@@ -76,14 +77,18 @@ export default function IndexPage() {
           }
         })
       ) : (
-        <Box sx={{ display: "flex", justifyContent: "center" }}>
-          <CircularProgress />
-        </Box>
+        <div className="loader">
+          <Box sx={{ display: "flex", justifyContent: "center" }}>
+            <CircularProgress />
+          </Box>
+        </div>
       )}
       {loading && page > 1 && (
-        <Box sx={{ display: "flex", justifyContent: "center" }}>
-          <CircularProgress />
-        </Box>
+        <div className="loader">
+          <Box sx={{ display: "flex", justifyContent: "center" }}>
+            <CircularProgress />
+          </Box>
+        </div>
       )}
       <Footer />
     </>

@@ -52,6 +52,10 @@ div.home-index {
   flex-direction: column;
 }
 
+div.loader {
+  margin: 50px;
+}
+
 div.index-promo {
   display: flex;
   align-items: center;
