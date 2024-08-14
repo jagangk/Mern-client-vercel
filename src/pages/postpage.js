@@ -19,7 +19,6 @@ export default function PostPage() {
   const hasFetchedPost = useRef(false);
 
   useEffect(() => {
-    // Function to fetch the post from local storage
     const fetchPostFromStorage = () => {
       const storedPost = localStorage.getItem(LOCAL_STORAGE_KEY);
       if (storedPost) {
@@ -27,14 +26,13 @@ export default function PostPage() {
           const parsedPost = JSON.parse(storedPost);
           setPostInfo(parsedPost);
           setLoading(false);
-          hasFetchedPost.current = true; // Mark as fetched
+          hasFetchedPost.current = true;
         } catch (error) {
           console.error("Error parsing stored post:", error);
         }
       }
     };
 
-    // Function to fetch the post from the API
     const fetchPostFromAPI = async () => {
       setLoading(true);
       try {
@@ -55,14 +53,10 @@ export default function PostPage() {
       }
     };
 
-    // First, check if the post is already fetched and stored locally
     fetchPostFromStorage();
-
-    // Always fetch the post from the API
     fetchPostFromAPI();
-  }, [id, LOCAL_STORAGE_KEY]); // Depend on id and LOCAL_STORAGE_KEY to trigger on change
+  }, [id, LOCAL_STORAGE_KEY]);
 
-  // Separate useEffect for fetching related posts based on the current post's category
   useEffect(() => {
     if (postInfo?.PostType) {
       const fetchPosts = async (category) => {
@@ -74,7 +68,7 @@ export default function PostPage() {
             const data = await response.json();
             const filteredPosts = data
               .filter((post) => post._id !== postInfo._id)
-              .slice(0, 6); // Limit to 6 related posts
+              .slice(0, 6);
             setPosts(filteredPosts);
           } else {
             console.error("Failed to fetch related posts");
@@ -88,7 +82,7 @@ export default function PostPage() {
 
       fetchPosts(postInfo.PostType);
     }
-  }, [postInfo?.PostType, postInfo?._id]); // Depend on PostType and postInfo._id
+  }, [postInfo?.PostType, postInfo?._id]);
 
   if (loading)
     return (
@@ -132,8 +126,26 @@ export default function PostPage() {
     <>
       <Helmet>
         <title>{postInfo.title}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="canonical" href="URL" />
         <meta name="description" content={postInfo.summary} />
         <meta name="keywords" content={postInfo.keywords?.join(", ")} />
+
+        <meta property="og:title" content={postInfo.title} />
+        <meta property="og:description" content={postInfo.summary} />
+        <meta property="og:image" content={postInfo.image} />
+        <meta property="og:url" content="URL" />
+        <meta property="og:type" content="article" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={postInfo.title} />
+        <meta name="twitter:description" content={postInfo.summary} />
+        <meta name="twitter:image" content={postInfo.image} />
+        <meta name="twitter:site" content="@YourTwitterHandle" />
+
+        <meta name="robots" content="index, follow" />
+        <html lang="en" />
+        <meta charset="UTF-8" />
       </Helmet>
 
       <div className="post-page">

@@ -803,6 +803,10 @@ footer {
   margin: 0;
 }
 
+ul.social-menu-post {
+  margin: 0;
+}
+
 .social-menu-post {
   display: flex;
   list-style: none;
