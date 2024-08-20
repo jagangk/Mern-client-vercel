@@ -127,22 +127,29 @@ export default function PostPage() {
       <Helmet>
         <title>{postInfo.title}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="canonical" href="URL" />
+
+        {/* Canonical URL */}
+        <link rel="canonical" href={window.location.href} />
+
+        {/* Meta Description */}
         <meta name="description" content={postInfo.summary} />
         <meta name="keywords" content={postInfo.keywords?.join(", ")} />
 
+        {/* Open Graph Meta Tags */}
         <meta property="og:title" content={postInfo.title} />
         <meta property="og:description" content={postInfo.summary} />
         <meta property="og:image" content={postInfo.cover} />
         <meta property="og:url" content={window.location.href} />
         <meta property="og:type" content="article" />
 
+        {/* Twitter Meta Tags */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={postInfo.title} />
         <meta name="twitter:description" content={postInfo.summary} />
         <meta name="twitter:image" content={postInfo.image} />
         <meta name="twitter:site" content="@YourTwitterHandle" />
 
+        {/* Indexing and Language */}
         <meta name="robots" content="index, follow" />
         <html lang="en" />
         <meta charset="UTF-8" />
@@ -246,7 +253,9 @@ export default function PostPage() {
             </li>
             <li>
               <a
-                 href={`https://api.whatsapp.com/send?text=${encodeURIComponent(window.location.href)}`}
+                href={`https://api.whatsapp.com/send?text=${encodeURIComponent(
+                  window.location.href
+                )}`}
                 data-action="share/whatsapp/share"
                 target="_blank"
                 rel="noopener noreferrer"
