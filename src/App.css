@@ -180,7 +180,7 @@ body {
   padding-right: 5px;
   max-height: max-content;
   color: #d5d5d5;
-  background: linear-gradient(135deg, #000428, #004e92, #1f1c2c);
+  background: linear-gradient(135deg, #162249, #0a0a0a, #1f1a41);
   background-size: cover;
   background-attachment: fixed;
   background-repeat: no-repeat;
@@ -325,24 +325,28 @@ div.post div.text a:hover {
 div.post p.info {
   margin: 6px 0;
   font-size: small;
+  font-weight: 500;
   padding-left: 10px;
 }
 
 div.post p.info a.author {
   margin: 6px 0;
   color: #66a1ff;
+  font-weight: 500;
   margin-right: 5px;
 }
 
 div.post p.summary a {
-  color: #b6b6b6;
+  color: #b1b1b1;
+  font-weight: 500;
 }
 
 div.post p.summary {
   margin: 6px 0;
   line-height: 1.4rem;
-  font-size: small;
-  color: #f5f5f5;
+  font-size: 15px;
+  font-weight: 500;
+  color: #f5f5f5c5;
   padding-left: 10px;
   padding-right: 5px;
 }
@@ -659,10 +663,10 @@ div.post-page h2 {
 }
 
 p {
-  font-weight: 300;
+  font-weight: 500;
   color: #ffffffde;
   line-height: 1.6rem;
-  font-size: 14px;
+  font-size: 15px;
 }
 
 .report-div {
@@ -935,7 +939,6 @@ div.content p a {
   color: #6dcaae;
   text-decoration: none !important;
 }
-
 /*------------------------------------------------------------------user profile css---------------------------------------------------------------------*/
 .user-data-update {
   display: flex;
