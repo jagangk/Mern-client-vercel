@@ -16,7 +16,7 @@ export default function PostPage() {
   const { userInfo } = useContext(UserContext);
   const navigate = useNavigate();
   const LOCAL_STORAGE_KEY = `post-${id}`;
-  const CACHE_EXPIRATION = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
+  const hasFetchedPost = useRef(false);
 
   useEffect(() => {
     const fetchPostFromStorage = () => {
@@ -24,18 +24,18 @@ export default function PostPage() {
       if (storedData) {
         try {
           const { post, timestamp } = JSON.parse(storedData);
-          if (Date.now() - timestamp < CACHE_EXPIRATION) {
+          const currentTime = Date.now();
+          const cacheDuration = 24 * 60 * 60 * 1000; // Cache valid for 24 hours
+
+          if (currentTime - timestamp < cacheDuration) {
             setPostInfo(post);
             setLoading(false);
-            return true;
-          } else {
-            localStorage.removeItem(LOCAL_STORAGE_KEY); // Clear outdated cache
+            hasFetchedPost.current = true;
           }
         } catch (error) {
           console.error("Error parsing stored post:", error);
         }
       }
-      return false;
     };
 
     const fetchPostFromAPI = async () => {
@@ -46,11 +46,18 @@ export default function PostPage() {
         );
         if (response.ok) {
           const postData = await response.json();
-          setPostInfo(postData);
-          localStorage.setItem(
-            LOCAL_STORAGE_KEY,
-            JSON.stringify({ post: postData, timestamp: Date.now() })
-          );
+
+          // Only store in localStorage if post has changed or isn't in storage
+          if (
+            !hasFetchedPost.current ||
+            postData.updatedAt !== postInfo?.updatedAt
+          ) {
+            setPostInfo(postData);
+            localStorage.setItem(
+              LOCAL_STORAGE_KEY,
+              JSON.stringify({ post: postData, timestamp: Date.now() })
+            );
+          }
         } else {
           console.error("Failed to fetch post");
         }
@@ -61,7 +68,8 @@ export default function PostPage() {
       }
     };
 
-    if (!fetchPostFromStorage()) {
+    fetchPostFromStorage();
+    if (!hasFetchedPost.current) {
       fetchPostFromAPI();
     }
   }, [id, LOCAL_STORAGE_KEY]);
@@ -101,6 +109,7 @@ export default function PostPage() {
     );
 
   if (!postInfo) return null;
+
   const url_photo = `${postInfo.cover}`;
 
   const handleDelete = async () => {
