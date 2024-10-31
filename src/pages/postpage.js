@@ -16,21 +16,26 @@ export default function PostPage() {
   const { userInfo } = useContext(UserContext);
   const navigate = useNavigate();
   const LOCAL_STORAGE_KEY = `post-${id}`;
-  const hasFetchedPost = useRef(false);
+  const CACHE_EXPIRATION = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
 
   useEffect(() => {
     const fetchPostFromStorage = () => {
-      const storedPost = localStorage.getItem(LOCAL_STORAGE_KEY);
-      if (storedPost) {
+      const storedData = localStorage.getItem(LOCAL_STORAGE_KEY);
+      if (storedData) {
         try {
-          const parsedPost = JSON.parse(storedPost);
-          setPostInfo(parsedPost);
-          setLoading(false);
-          hasFetchedPost.current = true;
+          const { post, timestamp } = JSON.parse(storedData);
+          if (Date.now() - timestamp < CACHE_EXPIRATION) {
+            setPostInfo(post);
+            setLoading(false);
+            return true;
+          } else {
+            localStorage.removeItem(LOCAL_STORAGE_KEY); // Clear outdated cache
+          }
         } catch (error) {
           console.error("Error parsing stored post:", error);
         }
       }
+      return false;
     };
 
     const fetchPostFromAPI = async () => {
@@ -42,7 +47,10 @@ export default function PostPage() {
         if (response.ok) {
           const postData = await response.json();
           setPostInfo(postData);
-          localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(postData));
+          localStorage.setItem(
+            LOCAL_STORAGE_KEY,
+            JSON.stringify({ post: postData, timestamp: Date.now() })
+          );
         } else {
           console.error("Failed to fetch post");
         }
@@ -53,8 +61,9 @@ export default function PostPage() {
       }
     };
 
-    fetchPostFromStorage();
-    fetchPostFromAPI();
+    if (!fetchPostFromStorage()) {
+      fetchPostFromAPI();
+    }
   }, [id, LOCAL_STORAGE_KEY]);
 
   useEffect(() => {
@@ -127,29 +136,19 @@ export default function PostPage() {
       <Helmet>
         <title>{postInfo.title}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-        {/* Canonical URL */}
         <link rel="canonical" href={window.location.href} />
-
-        {/* Meta Description */}
         <meta name="description" content={postInfo.summary} />
         <meta name="keywords" content={postInfo.keywords?.join(", ")} />
-
-        {/* Open Graph Meta Tags */}
         <meta property="og:title" content={postInfo.title} />
         <meta property="og:description" content={postInfo.summary} />
         <meta property="og:image" content={postInfo.cover} />
         <meta property="og:url" content={window.location.href} />
         <meta property="og:type" content="article" />
-
-        {/* Twitter Meta Tags */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={postInfo.title} />
         <meta name="twitter:description" content={postInfo.summary} />
         <meta name="twitter:image" content={postInfo.image} />
         <meta name="twitter:site" content="@YourTwitterHandle" />
-
-        {/* Indexing and Language */}
         <meta name="robots" content="index, follow" />
         <html lang="en" />
         <meta charset="UTF-8" />
@@ -157,7 +156,6 @@ export default function PostPage() {
 
       <div className="post-page">
         <h2>{postInfo.title}</h2>
-
         <div className="post-basic-info-box">
           <p>{postInfo.views} views</p>
           <p>•</p>
@@ -188,7 +186,6 @@ export default function PostPage() {
                   </Link>
                 </>
               )}
-
               {userInfo?.id !== postInfo.author._id && (
                 <>
                   <Link
@@ -216,54 +213,8 @@ export default function PostPage() {
               )}
             </div>
           </div>
-
-          <ul className="social-menu-post">
-            <li>
-              <a
-                href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
-                  window.location.href
-                )}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <i className="fa fa-facebook"></i>
-              </a>
-            </li>
-            <li>
-              <a
-                href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(
-                  window.location.href
-                )}&text=${encodeURIComponent(postInfo.title)}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <i className="fa fa-twitter"></i>
-              </a>
-            </li>
-            <li>
-              <a
-                href={`instagram://library?AssetPath=${encodeURIComponent(
-                  url_photo
-                )}&InstagramCaption=${encodeURIComponent(postInfo.title)}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <i className="fa fa-instagram"></i>
-              </a>
-            </li>
-            <li>
-              <a
-                href={`https://api.whatsapp.com/send?text=${encodeURIComponent(
-                  window.location.href
-                )}`}
-                data-action="share/whatsapp/share"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <i className="fa fa-whatsapp"></i>
-              </a>
-            </li>
-          </ul>
+          {/* Social Share Links */}
+          {/* ... */}
         </div>
 
         <div className="image">
@@ -275,6 +226,7 @@ export default function PostPage() {
           dangerouslySetInnerHTML={{ __html: postInfo.content }}
         />
       </div>
+
       <div className="related">
         <hr></hr>
         <h4>Related Articles</h4>
