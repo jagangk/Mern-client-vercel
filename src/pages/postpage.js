@@ -25,7 +25,7 @@ export default function PostPage() {
         try {
           const { post, timestamp } = JSON.parse(storedData);
           const currentTime = Date.now();
-          const cacheDuration = 24 * 60 * 60 * 1000; // Cache valid for 24 hours
+          const cacheDuration = 24 * 60 * 60 * 1000;
 
           if (currentTime - timestamp < cacheDuration) {
             setPostInfo(post);

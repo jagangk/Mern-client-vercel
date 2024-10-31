@@ -140,7 +140,6 @@ div.index-promo a:hover::after {
     box-shadow: none;
   }
 
-
   div.promo {
     display: none;
     flex-direction: column;
@@ -173,6 +172,23 @@ div.loader-div {
   padding-bottom: 5px;
 }
 
+div.content a {
+  color: #0969bd;
+}
+
+pre {
+  background: #252525;
+  padding: 10px;
+  color: #72a9e4cb;
+  border-radius: 5px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-x: auto;
+  max-width: 100%;
+  backdrop-filter: blur(14.8px);
+  -webkit-backdrop-filter: blur(14.8px);
+}
+
 body {
   padding-top: 15px;
   padding-bottom: 15px;
@@ -180,7 +196,7 @@ body {
   padding-right: 5px;
   max-height: max-content;
   color: #d5d5d5;
-  background: linear-gradient(135deg, #162249, #0a0a0a, #1f1a41);
+  background: rgb(51, 51, 51);
   background-size: cover;
   background-attachment: fixed;
   background-repeat: no-repeat;
@@ -427,7 +443,7 @@ input {
   margin-bottom: 5px;
   width: 100%;
   padding: 10px 10px;
-  background: #386696;
+  background: #8b8b8b;
   border: 0;
   backdrop-filter: blur(5.4px);
   -webkit-backdrop-filter: blur(5.4px);
@@ -462,7 +478,7 @@ textarea {
   margin-top: 5px;
   border: 0;
   outline: 0;
-  background: #386696;
+  background: #8b8b8b;
   backdrop-filter: blur(5.4px);
   -webkit-backdrop-filter: blur(5.4px);
   transition: 0.7s;
@@ -484,7 +500,7 @@ select {
   border: 0;
   outline: 0;
   border: 0;
-  background: #386696;
+  background: #8b8b8b;
   transition: 0.7s;
   backdrop-filter: blur(5.4px);
   -webkit-backdrop-filter: blur(5.4px);
@@ -545,7 +561,7 @@ textarea {
 button {
   width: 100%;
   display: block;
-  background: #00042871;
+  background-color: #007bff;
   border: 0;
   border-radius: 5px;
   padding: 10px 10px;
@@ -619,7 +635,6 @@ div.post-basic-info-box {
   display: flex;
   flex-direction: row;
   gap: 5px;
-
 }
 
 div.post-page div.image {
@@ -1393,7 +1408,6 @@ div.explore-main {
   align-items: center;
 }
 
-
 .search-box {
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(5.4px);
@@ -1427,28 +1441,26 @@ div.explore-main {
   box-shadow: none;
 }
 
-
 div.explore-container {
   display: flex;
   width: 100%;
   gap: 7px;
   justify-content: space-evenly;
-  overflow-x: auto; 
-  overflow-y: hidden; 
+  overflow-x: auto;
+  overflow-y: hidden;
   flex-direction: row;
   background: transparent;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(5.4px);
   -webkit-backdrop-filter: blur(5.4px);
   border-radius: 5px;
-  -ms-overflow-style: none; 
+  -ms-overflow-style: none;
   scrollbar-width: none;
 }
 
 div.explore-container::-webkit-scrollbar {
   display: none;
 }
-
 
 div.posts-container {
   padding-top: 15px;
