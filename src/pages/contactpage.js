@@ -169,7 +169,6 @@ export default function ContactPage() {
       <h3>Business Inquiries</h3>
       <p>Interested in partnering with us or have a business proposal? Please reach us out at <a target="_blank" href="mailto:blogsteratech@gmail.com">blogsteratech@gmail.com</a>.</p>
       </div>
-      <Footer />
       </>
   );
 }

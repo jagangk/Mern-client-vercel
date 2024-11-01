@@ -46,8 +46,6 @@ export default function PostPage() {
         );
         if (response.ok) {
           const postData = await response.json();
-
-          // Only store in localStorage if post has changed or isn't in storage
           if (
             !hasFetchedPost.current ||
             postData.updatedAt !== postInfo?.updatedAt
@@ -222,8 +220,6 @@ export default function PostPage() {
               )}
             </div>
           </div>
-          {/* Social Share Links */}
-          {/* ... */}
         </div>
 
         <div className="image">
@@ -241,7 +237,7 @@ export default function PostPage() {
         <h4>Related Articles</h4>
         <div className="posts-container">
           {posts.length > 0 ? (
-            posts.map((post) => <Post key={post._id} {...post} />)
+            posts.map((post) => <Post {...post} />)
           ) : (
             <p>No posts found in this category</p>
           )}

@@ -143,13 +143,6 @@ export default function LoginPage() {
           Create account
         </button>
       </form>
-      <div className="contact-div">
-        <p>
-          You'll be able to access our platform's features after successful
-          login. If you encounter any issues during the login process, please
-          reach us out <Link to="/contact">click here to contact.</Link>
-        </p>
-      </div>
     </>
   );
 }

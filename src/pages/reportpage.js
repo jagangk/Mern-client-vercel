@@ -120,7 +120,7 @@ export default function ReportPost() {
             colorScheme="red"
             borderRadius="10px"
             fontSize="small"
-            gap={'5px'}
+            gap={"5px"}
           >
             <AlertIcon color={"#6dcaae"} boxSize="30px" mr={0} />
             <AlertTitle mt={4} mb={1} fontSize="lg">
@@ -142,7 +142,7 @@ export default function ReportPost() {
             colorScheme="red"
             borderRadius="10px"
             fontSize="small"
-            gap={'5px'}
+            gap={"5px"}
           >
             <AlertIcon color={"#d83030"} boxSize="30px" mr={0} />
             <AlertTitle mt={4} mb={1} fontSize="lg">
@@ -163,7 +163,7 @@ export default function ReportPost() {
             colorScheme="red"
             borderRadius="10px"
             fontSize="small"
-            gap={'5px'}
+            gap={"5px"}
           >
             <AlertIcon color={"#d83030"} boxSize="30px" mr={0} />
             <AlertTitle mt={4} mb={1} fontSize="lg">
@@ -174,7 +174,7 @@ export default function ReportPost() {
 
         <h1>Report Content</h1>
         <input
-          style={{ color: "#98bdf7", cursor: "not-allowed" }}
+          style={{ cursor: "not-allowed" }}
           className="disabled-input"
           type="text"
           value={author}
@@ -182,7 +182,7 @@ export default function ReportPost() {
         />
 
         <input
-          style={{ color: "#98bdf7", cursor: "not-allowed" }}
+          style={{ cursor: "not-allowed" }}
           className="disabled-input"
           type="text"
           value={postName}

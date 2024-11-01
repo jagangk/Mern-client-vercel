@@ -206,13 +206,6 @@ export default function RegisterPage() {
 
         <button>Register</button>
       </form>
-      <div className="contact-div">
-        <p>
-          After registering, you'll be able to log in and access our platform's
-          features. If you encounter any issues during the registration process,
-          please reach us out <Link to="/contact">click here to contact.</Link>
-        </p>
-      </div>
     </>
   );
 }

@@ -377,6 +377,7 @@ form.login,
 form.register {
   max-width: 400px;
   margin: 0 auto;
+  margin-bottom: 20px;
 }
 
 form.login a {
@@ -561,7 +562,7 @@ textarea {
 button {
   width: 100%;
   display: block;
-  background-color: #007bff;
+  background:#004e92;
   border: 0;
   border-radius: 5px;
   padding: 10px 10px;
@@ -1472,23 +1473,4 @@ div.posts-container {
   gap: 5px;
   justify-content: center;
   background: none;
-}
-
-button {
-  width: 100%;
-  display: block;
-  background: #00042871;
-  border: 0;
-  border-radius: 5px;
-  padding: 10px 10px;
-  font-weight: 500;
-  color: #ffffff;
-  cursor: pointer;
-  outline: none;
-  transition: box-shadow 0.6s;
-  font-family: "Montserrat", sans-serif;
-}
-
-button:hover {
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }

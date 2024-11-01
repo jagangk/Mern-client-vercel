@@ -185,12 +185,6 @@ export default function ChangePassword() {
 
         <button type="submit">Submit</button>
       </form>
-      <div className="report-div">
-        <p>
-          If you encounter any issues during the process, please reach us out{" "}
-          <Link to="/contact">click here to contact.</Link>
-        </p>
-      </div>
     </>
   );
 }
